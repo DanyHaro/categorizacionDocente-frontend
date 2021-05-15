@@ -1,0 +1,126 @@
+html,
+body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: 'RobotoCondensedRegular';
+    font-size: 16px;
+}
+
+.full-width {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.ShowBox {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+.formated-section {
+    padding: 60px 0;
+}
+
+.font-oswald {
+    font-family: 'OswaldRegular';
+}
+
+
+/*====== Login ==*/
+
+.Login {
+    right: 0;
+    z-index: 77;
+    background: #fff;
+    color: #141414;
+    text-transform: none;
+    line-height: normal;
+    padding: 7px;
+    text-align: left;
+    font-size: 14px;
+    transition: all .3s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.Login a {
+    text-decoration: none;
+    line-height: auto;
+    text-align: center;
+    display: block;
+}
+
+.banner {
+    position: relative;
+    width: 100%;
+    height: calc(112vh - 75px);
+    background-color: #F5F5F5;
+    background-size: cover;
+    background-position: center;
+    transition: all .1s ease-out;
+    background-image: url('../../../assets/img/banner-1.jpg');
+    animation: banner 28s infinite linear;
+}
+
+
+/*fondo negro opaco*/
+
+.banner-content {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    color: #FFF;
+    background-color: rgba(0, 22, 40, .6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner-content h1 {
+    margin: 0;
+    padding: 0;
+    padding-bottom: 30px;
+    font-size: 40px;
+    text-align: center;
+}
+
+.banner-content a {
+    text-decoration: none;
+    color: #FFF;
+    padding: 9px 20px;
+    border: 1px solid #FFF;
+    text-transform: uppercase;
+    transition: all .3s ease-in-out;
+}
+
+.banner-content a:hover {
+    background-color: #fff;
+    color: #333;
+}
+
+@keyframes banner {
+    0% {
+        background-image: url('../../../assets/img/banner-1.jpg');
+    }
+    25% {
+        background-image: url('../../../assets/img/banner-1.jpg');
+    }
+    26% {
+        background-image: url('../../../assets/img/banner-2.jpg');
+    }
+    50% {
+        background-image: url('../../../assets/img/banner-2.jpg');
+    }
+    51% {
+        background-image: url('../../../assets/img/banner-3.jpg');
+    }
+    90% {
+        background-image: url('../../../assets/img/banner-3.jpg');
+    }
+}
