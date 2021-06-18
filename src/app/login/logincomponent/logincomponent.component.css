@@ -1,4 +1,3 @@
-html,
 body {
     position: relative;
     width: 100%;
@@ -30,40 +29,21 @@ body {
 }
 
 
+
 /*====== Login ==*/
 
-.Login {
-    right: 0;
-    z-index: 77;
-    background: #fff;
-    color: #141414;
-    text-transform: none;
-    line-height: normal;
-    padding: 7px;
-    text-align: left;
-    font-size: 14px;
-    transition: all .3s ease-in-out;
-    opacity: 0;
-    pointer-events: none;
-}
 
-.Login a {
-    text-decoration: none;
-    line-height: auto;
-    text-align: center;
-    display: block;
-}
 
 .banner {
     position: relative;
     width: 100%;
-    height: calc(112vh - 75px);
+    height: calc(110.2vh - 77px);
     background-color: #F5F5F5;
     background-size: cover;
     background-position: center;
     transition: all .1s ease-out;
     background-image: url('../../../assets/img/banner-1.jpg');
-    animation: banner 28s infinite linear;
+    animation: banner 25s infinite linear;
 }
 
 
@@ -123,4 +103,69 @@ body {
     90% {
         background-image: url('../../../assets/img/banner-3.jpg');
     }
+}
+
+
+
+/*MY LOGIN*/
+#porfa{
+    margin-top: -10px;
+    margin-left: 60px;
+    color: white;
+    font-family: sans-serif;
+}
+.form-body{
+    display: flex;
+    flex-direction: column;
+    
+}
+.box{
+    position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	display: flex;
+	flex-direction: column;
+	width: 280px;
+	z-index: 2;
+}
+.form-head h2{
+    text-align: center;
+    margin:10px 0px 20px;
+    color:#ffffff;
+}
+.form-body input{
+    height: 40px;
+    margin-bottom: 20px;
+    border:1px solid #ffffff;
+    width: 100%;
+    background-color: transparent;
+    border-radius: 20px;
+    text-align: center;
+    color:#ffffff;
+    transition:box-shadow .5s ease;
+}
+.form-body input:focus{
+	box-shadow: 0px 0px 10px black;
+}
+.form-body input::placeholder{
+	color:#ffffff;
+}
+.box #form-footer {
+    text-align: center;
+
+}
+#form-footer button{
+
+	height: 40px;
+	border-radius: 20px;
+	padding: 0px 50px;
+	color:#ffffff;
+	background-color: rgb(255, 169, 45);
+	border:none;
+	cursor: pointer;
+	transition:box-shadow .5s ease;
+}
+#form-footer button{
+	box-shadow: 0px 0px 10px black;
 }

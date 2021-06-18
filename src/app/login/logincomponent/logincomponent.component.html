@@ -1,59 +1,70 @@
+<!-- <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+	<section class="login-page">
+
+		<form method="post" autocomplete="off">
+			
+			<div class="box">
+				<div class="form-head" style="margin-top:7px;">
+					<p id="porfa">Por favor, identifíquese</p>
+				</div>
+				<div class="form-body">
+					<input type="text" placeholder="Usuario" name="username"/>
+					<input type="Password" placeholder="Contraseña" name="pass" />
+				</div>
+				<div class="form-footer">
+					<button type="submit">Iniciar Sesión</button>
+				</div>
+				
+
+			</div>
+
+		</form>
+
+	</section>
+
+</body> -->
+
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <section class="banner">
-    <div class="banner-content">
-        <div class="limiter animated fadeInLeft">
-            <div class="container-login100">
-                <div class="wrap-login100 p-t-50 p-b-90">
+	<div class="banner-content">
+		<div class="limiter animated fadeInLeft">
+			<div class="container-login100">
+				<div class="wrap-login100 p-t-50 p-b-90">
 
-                    <form class="login100-form validate-form flex-sb flex-w">
+					<form class="login100-form validate-form flex-sb flex-w">
 
-                        <span class="login100-form-title p-b-51">
-                            Login
-                        </span>
-
-                        <!-- <span class="text-danger">El correo es obligatorio</span> -->
-                        <div class="wrap-input100 m-b-16">
-                            <input class="input100" type="email" name="email" required email placeholder="email" autocomplete="off">
-
-                            <span class="focus-input100"></span>
-                        </div>
-
-                        <!-- <span class="text-danger">La contraseña debe de ser más de 6 letras</span> -->
-                        <div class="wrap-input100 m-b-16" data-validate="Password is required">
-                            <input class="input100" type="password" name="password" required minlength="6" placeholder="Password" autocomplete="off">
-                            <span class="focus-input100"></span>
-                        </div>
-
-                        <div class="flex-sb-m w-full p-t-3 p-b-24">
-                            <div class="contact100-form-checkbox">
-                                <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-                                <label class="label-checkbox100" for="ckb1">
-                                    Recordar mi usuario
-                                </label>
-                            </div>
-
-                            <div>
-                                <a routerLink="/registro" class="txt1">
-                                    ¿No tienes cuenta?
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="container-login100-form-btn m-t-17">
-                            <button class="login100-form-btn" type="submit">
-                                Ingresar
-                            </button>
-                        </div>
-
-                    </form>
-                </div>
-            </div>
-        </div>
+						<div class="box">
+							<img src="../../../assets/img/logoupeu.png" style="height: 190px; width:174px; float:left; margin-left:53px;">
+							<div class="form-body">
+								<input type="text" placeholder="Usuario" name="username" autocomplete="off"/>
+								<input type="Password" placeholder="Contraseña" name="pass" autocomplete="off" />
+							</div>
+	
+							<div class="form-head" style="margin-top:7px;">
+								<p id="porfa">Por favor, identifíquese</p>
+							</div>
+	
+							<div id="form-footer">
+								<button type="submit" (click)="iniciarsesion()">Iniciar Sesión</button>
+							</div>
+							
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
 
 
-    </div>
+	</div>
 </section>
