@@ -70,18 +70,12 @@ body {
     text-align: center;
 }
 
-.banner-content a {
-    text-decoration: none;
-    color: #FFF;
-    padding: 9px 20px;
-    border: 1px solid #FFF;
-    text-transform: uppercase;
-    transition: all .3s ease-in-out;
+a{
+    color: white;
+    font-size: 15px;
 }
-
 .banner-content a:hover {
-    background-color: #fff;
-    color: #333;
+    color: rgb(3, 105, 238);
 }
 
 @keyframes banner {

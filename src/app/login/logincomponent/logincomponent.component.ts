@@ -14,7 +14,7 @@ export class LogincomponentComponent implements OnInit {
   }
 
   iniciarsesion(){
-    this.router.navigateByUrl("/principal")
+    this.router.navigateByUrl('/cards');
   }
 
 }

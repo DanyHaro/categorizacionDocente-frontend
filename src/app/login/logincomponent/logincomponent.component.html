@@ -45,26 +45,79 @@
 					<form class="login100-form validate-form flex-sb flex-w">
 
 						<div class="box">
-							<img src="../../../assets/img/logoupeu.png" style="height: 190px; width:174px; float:left; margin-left:53px;">
-							<div class="form-body">
-								<input type="text" placeholder="Usuario" name="username" autocomplete="off"/>
-								<input type="Password" placeholder="Contraseña" name="pass" autocomplete="off" />
-							</div>
-	
-							<div class="form-head" style="margin-top:7px;">
+							<img src="../../../assets/img/logoupeu.png"
+								style="height: 199px; width:180px; float:left; margin-left:53px;">
+							<div class="form-head" style="margin-top:15px;">
 								<p id="porfa">Por favor, identifíquese</p>
 							</div>
-	
-							<div id="form-footer">
-								<button type="submit" (click)="iniciarsesion()">Iniciar Sesión</button>
+							<div class="form-body">
+								<input type="text" placeholder="Usuario" name="username" autocomplete="off" />
+								<input type="Password" placeholder="Contraseña" name="pass" autocomplete="off" />
 							</div>
-							
+							<a href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Registrate</a>
+
+							<div id="form-footer">
+								<button type="button" (click)="iniciarsesion()">Iniciar Sesión</button>
+							</div>
+
 						</div>
+
 					</form>
 				</div>
 			</div>
 		</div>
-
-
 	</div>
 </section>
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+	aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-xl">
+		<div class="modal-content" style="background-color: rgba(85, 2, 30, 0.6);">
+			<div class="modal-header">
+				<h2 class="modal-title" id="staticBackdropLabel" style="color: rgb(218, 216, 216);">Registrese en el sistema</h2>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form class="row g-6">
+
+					<div class="col-auto row align-items-start">
+
+						<div class="col-auto">
+							<label for="nombres" style="color: rgb(255, 255, 255);">Nombres y Apellidos</label>
+							<input type="password" class="form-control" id="nombres" placeholder="Nombre completo">
+						</div>
+
+						<div class="col-auto">
+							<label for="gmail" style="color: rgb(238, 238, 238);">Correo Electronico</label>
+							<input type="email" class="form-control" id="gmail" placeholder="Gmail">
+						</div>
+
+						<div class="col-auto">
+							<label for="dni" style="color: rgb(238, 238, 238);">DNI / Pasaporte</label>
+							<input type="text" class="form-control" id="dni" placeholder="DNI/Pasaporte">
+						</div>
+
+						<div class="col-auto">
+							<label for="edad" style="color: rgb(238, 238, 238);">Edad</label>
+							<input type="password" class="form-control" id="edad" placeholder="Edad">
+						</div>
+
+						<div class="col-auto">
+							<label for="edad" style="color: rgb(238, 238, 238);">Adjunte DNI</label>
+							<input type="file" class="form-control" id="edad" placeholder="Edad">
+						</div>
+
+						
+					</div>
+
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-primary">Enviar solicitud</button>
+			</div>
+		</div>
+	</div>
+</div>

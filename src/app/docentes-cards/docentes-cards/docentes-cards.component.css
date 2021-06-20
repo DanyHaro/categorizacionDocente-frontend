@@ -3,16 +3,32 @@ body{
     padding: 0px;
 }
 .fondo{
-    background: aqua;
     width: 70%;
     height: 100%;
-    padding: 15px;
+    padding: 15px 7px;
+    /* background-color: rgba(1, 16, 29, 0.6); */
+    align-items: center;
 }
-.col:hover{
-    color: blue;
-    
+
+.banner-content{
+    background-color: rgba(1, 16, 29, 0.6);
+    height: 100%;
 }
+
 .card{
-    border-radius: 20px;
-    /* background: blueviolet; */
+    border-radius: 5px;
+    color: rgb(216, 205, 205);
+    background-color: rgba(6, 25, 41, 0.6)
+}
+
+.card:hover{
+    color: tomato;
+    size: 50px;
+    cursor: pointer;
+}
+
+.banner{
+    background-image: url('https://www.upeu.edu.pe/wp-content/uploads/2015/07/2014-02-20.jpg');
+    background-repeat: no-repeat;
+    height: 100%;
 }
