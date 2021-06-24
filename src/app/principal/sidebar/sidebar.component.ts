@@ -27,7 +27,7 @@ export class SidebarComponent implements OnInit {
     },
 
     {
-      name: 'Especialidad',
+      name: 'Especialidad / Diplomatura',
       route: '',
       icon:'home'
 

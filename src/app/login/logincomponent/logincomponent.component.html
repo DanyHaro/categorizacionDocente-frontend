@@ -54,7 +54,7 @@
 								<input type="text" placeholder="Usuario" name="username" autocomplete="off" />
 								<input type="Password" placeholder="Contraseña" name="pass" autocomplete="off" />
 							</div>
-							<a href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Registrate</a>
+							<a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Registrate</a>
 
 							<div id="form-footer">
 								<button type="button" (click)="iniciarsesion()">Iniciar Sesión</button>
@@ -85,28 +85,53 @@
 					<div class="col-auto row align-items-start">
 
 						<div class="col-auto">
-							<label for="nombres" style="color: rgb(255, 255, 255);">Nombres y Apellidos</label>
-							<input type="password" class="form-control" id="nombres" placeholder="Nombre completo">
+							<label for="nombres" style="color: rgb(255, 255, 255);">Nombres</label>
+							<input type="text" class="form-control" id="nombres" placeholder="Nombres" autocomplete="off">
+						</div>
+
+						<div class="col-auto">
+							<label for="nombres" style="color: rgb(255, 255, 255);">Apellidos</label>
+							<input type="text" class="form-control" id="nombres" placeholder="Apellidos" autocomplete="off">
+						</div>
+
+						<div class="col-auto">
+							<label for="nombres" style="color: rgb(255, 255, 255);">Telefono</label>
+							<input type="text" class="form-control" id="nombres" placeholder="telefono/celular" autocomplete="off">
+						</div>
+
+						<div class="col-auto">
+							<label for="nombres" style="color: rgb(255, 255, 255);">Sexo</label>
+							<input type="text" class="form-control" id="nombres" placeholder="Nombre completo" autocomplete="off">
+						</div>
+
+						<div class="col-auto">
+							<label for="nombres" style="color: rgb(255, 255, 255);">Direccion de domicilio</label>
+							<input type="text" class="form-control" id="nombres" placeholder="Domicilio" autocomplete="off">
 						</div>
 
 						<div class="col-auto">
 							<label for="gmail" style="color: rgb(238, 238, 238);">Correo Electronico</label>
-							<input type="email" class="form-control" id="gmail" placeholder="Gmail">
+							<input type="email" class="form-control" autocomplete="off" id="gmail" placeholder="Gmail">
 						</div>
 
 						<div class="col-auto">
 							<label for="dni" style="color: rgb(238, 238, 238);">DNI / Pasaporte</label>
-							<input type="text" class="form-control" id="dni" placeholder="DNI/Pasaporte">
+							<input type="text" class="form-control" maxlength="8" autocomplete="off" id="dni" placeholder="DNI/Pasaporte">
 						</div>
 
 						<div class="col-auto">
 							<label for="edad" style="color: rgb(238, 238, 238);">Edad</label>
-							<input type="password" class="form-control" id="edad" placeholder="Edad">
+							<input type="text" autocomplete="off" class="form-control" id="edad" placeholder="Edad">
 						</div>
 
 						<div class="col-auto">
-							<label for="edad" style="color: rgb(238, 238, 238);">Adjunte DNI</label>
-							<input type="file" class="form-control" id="edad" placeholder="Edad">
+							<label for="edad" style="color: rgb(238, 238, 238);">Parte posterior DNI</label>
+							<input type="file" autocomplete="off" class="form-control" id="edad" placeholder="Edad">
+						</div>
+
+						<div class="col-auto">
+							<label for="edad" style="color: rgb(238, 238, 238);">Parte inferior DNI</label>
+							<input type="file" autocomplete="off" class="form-control" id="edad" placeholder="Edad">
 						</div>
 
 						

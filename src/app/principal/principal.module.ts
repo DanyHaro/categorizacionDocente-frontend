@@ -7,7 +7,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 /*ANGULAR MATERIAL*/
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
-import { MatSliderModule } from '@angular/material/slider';
+import {MatSliderModule } from '@angular/material/slider';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';

@@ -4,7 +4,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 const routes: Routes = [
-    { path: "", component: SidebarComponent }
+    { path: "", component: SidebarComponent, children:[{path: 'pages',loadChildren:()=>import('../pages/pages.module').then(m=>m.PagesModule)}]}
 ];
 
 @NgModule({

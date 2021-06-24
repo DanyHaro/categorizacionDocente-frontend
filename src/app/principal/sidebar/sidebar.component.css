@@ -32,6 +32,12 @@
   mat-sidenav {
     background-color: rgb(136, 34, 59);
   }
+  #optionsSide{
+    color: white;
+  }
+  #optionsSide:hover{
+    color: teal;
+  }
   mat-toolbar{
     background-color: rgb(92, 31, 49);
     color: white;
