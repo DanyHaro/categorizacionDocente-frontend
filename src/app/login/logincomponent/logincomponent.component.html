@@ -119,10 +119,12 @@
 							<input type="text" class="form-control" maxlength="8" autocomplete="off" id="dni" placeholder="DNI/Pasaporte">
 						</div>
 
-						<div class="col-auto">
-							<label for="edad" style="color: rgb(238, 238, 238);">Edad</label>
-							<input type="text" autocomplete="off" class="form-control" id="edad" placeholder="Edad">
-						</div>
+						<mat-form-field class="col-auto" style="background: white; width: 190px; height: 55px; margin: 6px; left: 8px;" appearance="fill" [color]="colorControl.value">
+							<mat-label>Edad</mat-label>
+							<input matInput type="number" placeholder="Ex. 12" [formControl]="fontSizeControl" min="10">
+							<!-- <span matSuffix>px</span> -->
+							<mat-error *ngIf="fontSizeControl.invalid">Min size: 10px</mat-error>
+						</mat-form-field>
 
 						<div class="col-auto">
 							<label for="edad" style="color: rgb(238, 238, 238);">Parte posterior DNI</label>

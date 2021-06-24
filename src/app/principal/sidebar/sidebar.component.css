@@ -29,8 +29,13 @@
        `<body>` to be our scrolling element for mobile layouts. */
     flex: 1 0 auto;
   }
+
+  /*STYLES OF MATERIAL ANGULAR*/
   mat-sidenav {
     background-color: rgb(136, 34, 59);
+  }
+  mat-sidenav {
+    height: 100%;
   }
   #optionsSide{
     color: white;
