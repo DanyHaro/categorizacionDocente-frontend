@@ -3,8 +3,11 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+import { environment } from '../environments/environment';
 
 //IMPORTS FROM ANGULAR MATERIAL
 // import {A11yModule} from '@angular/cdk/a11y';
@@ -51,13 +54,14 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 // import {MatTreeModule} from '@angular/material/tree';
 // import {OverlayModule} from '@angular/cdk/overlay';
 
-
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule,
 
     //ANGULAR MATERIAL
     // A11yModule,
@@ -104,10 +108,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     // OverlayModule,
     // PortalModule,
     // ScrollingModule,
-    
-    
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
