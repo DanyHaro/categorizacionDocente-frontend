@@ -1,40 +1,39 @@
 <div class="example-container">
-    <form [formGroup]="options">
-        <mat-checkbox [formControl]="hideRequiredControl">Hide required marker</mat-checkbox>
+    <form [formGroup]="options" style="margin: 20px;">
+        <!-- <mat-checkbox [formControl]="hideRequiredControl">Hide required marker</mat-checkbox>
         <div>
             <label>Float label: </label>
             <mat-radio-group [formControl]="floatLabelControl">
                 <mat-radio-button value="auto">Auto</mat-radio-button>
                 <mat-radio-button value="always">Always</mat-radio-button>
             </mat-radio-group>
-        </div>
-
-        <mat-form-field appearance="fill" [hideRequiredMarker]="hideRequiredControl.value" [floatLabel]="floatLabelControl.value">
-            <input matInput placeholder="Universidad" required>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" [hideRequiredMarker]="hideRequiredControl.value" [floatLabel]="floatLabelControl.value">
-            <input matInput placeholder="Grado en" required>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" [hideRequiredMarker]="hideRequiredControl.value" [floatLabel]="floatLabelControl.value">
-            <input matInput placeholder="Simple placeholder" required>
-        </mat-form-field>
+        </div> -->
+        <h1>Grados</h1>
+        <hr>
 
         <mat-form-field appearance="fill" [floatLabel]="floatLabelControl.value">
-            <mat-label>Universidad</mat-label>
-            <input matInput placeholder="Simple placeholder">
+            <mat-label>Institución Edcucativa</mat-label>
+            <input autocomplete="off" matInput placeholder="Nombre de la institución">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         </mat-form-field>
 
         <mat-form-field appearance="fill" [floatLabel]="floatLabelControl.value">
             <mat-label>Grado en</mat-label>
-            <input matInput placeholder="Simple placeholder">
+            <input autocomplete="off" matInput placeholder="Nombre del grado">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         </mat-form-field>
 
         <mat-form-field appearance="fill" [floatLabel]="floatLabelControl.value">
-            <mat-label>Both a label and a placeholder</mat-label>
-            <input matInput placeholder="Simple placeholder">
+            <mat-label>Codigo</mat-label>
+            <input autocomplete="off" type="text" matInput placeholder="Codigo">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         </mat-form-field>
+
+
+        <!-- <mat-form-field appearance="fill" [floatLabel]="floatLabelControl.value">
+            <mat-label>Codigo</mat-label>
+            <input type="text" autocomplete="off" matInput placeholder="Codigo del grado">
+        </mat-form-field> -->
 
         <mat-form-field appearance="fill" [color]="colorControl.value">
             <mat-label>Nº Horas</mat-label>
@@ -44,14 +43,52 @@
         </mat-form-field>
 
 
-        <mat-form-field appearance="fill" [hideRequiredMarker]="hideRequiredControl.value" [floatLabel]="floatLabelControl.value">
+        <mat-form-field appearance="fill" [hideRequiredMarker]="hideRequiredControl.value"
+            [floatLabel]="floatLabelControl.value">
             <mat-select required>
-                <mat-option>-- None --</mat-option>
-                <mat-option value="option">Option</mat-option>
+                <mat-option>-- ninguno --</mat-option>
+                <mat-option value="option">Postdoctorado</mat-option>
+                <mat-option value="option">Grado de Doctor en su especialidad</mat-option>
+                <mat-option value="option">Grado de maestro/magíster</mat-option>
+                <mat-option value="option">Grado de Bachiller en su especialidad</mat-option>
+                <mat-option value="option">Otro grado de Bachiller</mat-option>
+
             </mat-select>
             <mat-label>
-                <mat-icon>favorite</mat-icon> <b> Fancy</b> <i> label</i></mat-label>
+                <i> Tipo</i>
+            </mat-label>
         </mat-form-field>
 
+        <mat-form-field appearance="fill" [hideRequiredMarker]="hideRequiredControl.value"
+            [floatLabel]="floatLabelControl.value">
+            <mat-select required>
+                <mat-option>-- ninguno --</mat-option>
+                <mat-option value="option">Argentina</mat-option>
+                <mat-option value="option">Alemania</mat-option>
+                <mat-option value="option">Estados Unidos</mat-option>
+                <mat-option value="option">Perú</mat-option>
+                <mat-option value="option">Colombia</mat-option>
+
+            </mat-select>
+            <mat-label>
+                <i>País de la Institución</i>
+            </mat-label>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Fecha de Obtención (w/ deserialization)</mat-label>
+            <input matInput [matDatepicker]="picker2" [formControl]="serializedDate">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+
+        <div class="mb-3" style="width: 28%; display: inline-block; margin: 5px;">
+            <label for="formFileMultiple" class="form-label">Subir Archivo</label>
+            <input class="form-control" type="file" id="formFileMultiple" multiple>
+        </div>
+
+
+        <button type="button" class="btn btn-outline-primary">GUARDAR</button>
     </form>
+
 </div>

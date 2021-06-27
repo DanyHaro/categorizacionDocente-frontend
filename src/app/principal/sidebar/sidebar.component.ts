@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import{MediaMatcher} from '@angular/cdk/layout'
+import { OpcionesSidebar } from 'src/app/Models/opcionesSidebar';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,7 +10,7 @@ import{MediaMatcher} from '@angular/cdk/layout'
 export class SidebarComponent implements OnInit {
 
   mobileQuery: MediaQueryList;
-
+  opcionsidebar: OpcionesSidebar[];
   // fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
 
   fillerNav = [
