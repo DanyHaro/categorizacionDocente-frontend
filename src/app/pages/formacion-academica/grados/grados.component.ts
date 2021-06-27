@@ -14,6 +14,8 @@ export class GradosComponent implements OnInit {
   colorControl = new FormControl('primary');
   fontSizeControl = new FormControl(16, Validators.min(10));
 
+  date = new FormControl(new Date());
+  serializedDate = new FormControl((new Date()).toISOString());
 
   constructor(fb: FormBuilder) {
     this.options = fb.group({

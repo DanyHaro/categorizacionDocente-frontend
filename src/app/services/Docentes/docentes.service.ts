@@ -7,5 +7,5 @@ export class DocentesService {
 
   constructor() { }
 
-  Usuario = 'http://localhost:5050/adjuntar/'
+  Usuario = 'http://localhost:5050/CAD/'
 }

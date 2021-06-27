@@ -14,7 +14,7 @@
             fixedTopGap="56">
             <mat-nav-list>
                 <!-- [routerLink]="nav.route" -->
-                <a data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="optionsSide" mat-list-item *ngFor="let nav of fillerNav" style="padding: 5px; margin-top: 8px;">
+                <a [routerLink]="['pages/grados']" id="optionsSide" mat-list-item *ngFor="let nav of fillerNav" style="padding: 5px; margin-top: 8px;">
                     <mat-icon>{{nav.icon}}</mat-icon>
                     {{nav.name}}
                 </a> 
@@ -33,56 +33,4 @@
     </div> -->
 </div>
 
-
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-	aria-labelledby="staticBackdropLabel" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered modal-xl">
-		<div class="modal-content" style="background-color: rgb(231, 231, 231)">
-			<div class="modal-header">
-				<h2 class="modal-title" id="staticBackdropLabel" style="color: rgb(218, 216, 216);">Registrese en el sistema</h2>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body">
-				<form class="row g-6">
-
-					<div class="col-auto row align-items-start">
-
-						<div class="col-auto">
-							<label for="nombres" style="color: rgb(255, 255, 255);">Nombres y Apellidos</label>
-							<input type="text" class="form-control" id="nombres" placeholder="Nombre completo" autocomplete="off">
-						</div>
-
-						<div class="col-auto">
-							<label for="gmail" style="color: rgb(238, 238, 238);">Correo Electronico</label>
-							<input type="email" class="form-control" autocomplete="off" id="gmail" placeholder="Gmail">
-						</div>
-
-						<div class="col-auto">
-							<label for="dni" style="color: rgb(238, 238, 238);">DNI / Pasaporte</label>
-							<input type="text" class="form-control" autocomplete="off" id="dni" placeholder="DNI/Pasaporte">
-						</div>
-
-						<div class="col-auto">
-							<label for="edad" style="color: rgb(238, 238, 238);">Edad</label>
-							<input type="text" autocomplete="off" class="form-control" id="edad" placeholder="Edad">
-						</div>
-
-						<div class="col-auto">
-							<label for="edad" style="color: rgb(238, 238, 238);">Adjunte DNI</label>
-							<input type="file" autocomplete="off" class="form-control" id="edad" placeholder="Edad">
-						</div>
-
-						
-					</div>
-
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-				<button type="button" class="btn btn-primary">Enviar solicitud</button>
-			</div>
-		</div>
-	</div>
-</div>
 

@@ -3,7 +3,9 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+//ANGULAR MATERIAL
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 //IMPORTS FROM ANGULAR MATERIAL
@@ -57,7 +59,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatNativeDateModule
 
     //ANGULAR MATERIAL
     // A11yModule,
