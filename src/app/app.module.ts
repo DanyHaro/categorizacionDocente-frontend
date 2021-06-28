@@ -9,6 +9,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
+import { GestiondocenteComponent } from './admin/Secretaria/gestiondocente/gestiondocente.component';
 
 //IMPORTS FROM ANGULAR MATERIAL
 // import {A11yModule} from '@angular/cdk/a11y';
@@ -56,7 +57,7 @@ import { HttpClientModule } from '@angular/common/http';
 // import {OverlayModule} from '@angular/cdk/overlay';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, GestiondocenteComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

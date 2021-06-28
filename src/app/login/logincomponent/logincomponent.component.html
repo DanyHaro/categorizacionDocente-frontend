@@ -52,13 +52,13 @@
 				
 
 				<mat-grid-list cols="4" rowHeight="70px">
-				<form class="row g-6">
+				<form class="row g-6"  [formGroup]="form">
 
 
                     <mat-grid-tile [colspan]="1" [rowspan]="1">
 					    <mat-form-field class="example-full-width" appearance="fill">
                             <mat-label>Nombres</mat-label>
-                            <input matInput [(ngModel)]="persona.nombres"  name="nombres" >
+                            <input matInput formControlName="nombres"   name="nombres" >
                         </mat-form-field>
 
 					</mat-grid-tile>
@@ -67,7 +67,7 @@
                     <mat-grid-tile [colspan]="1" [rowspan]="1">
 					    <mat-form-field class="example-full-width" appearance="fill">
                             <mat-label>Apellidos</mat-label>
-                            <input matInput [(ngModel)]="persona.apellidos" name="apellidos" >
+                            <input matInput formControlName="apellidos"  name="apellidos" >
                         </mat-form-field>
 					</mat-grid-tile>
 
@@ -77,7 +77,7 @@
 				     	<div class="col-auto">
 							<label for="edad" style="color: black;">Imagen del dni</label>
 							<br>
-							<input type="file" id="hola" (change)="mostrar($event)" required class="form-control" id="imagen" >
+							<input type="file" id="hola" formControlName="foto" (change)="mostrar($event)" required class="form-control" id="imagen" >
 						</div>
 						
                          
@@ -87,14 +87,16 @@
                    <mat-grid-tile [colspan]="1" [rowspan]="1">
 					    <mat-form-field class="example-full-width" appearance="fill">
                             <mat-label>Telefono</mat-label>
-                            <input matInput ngModel name="telefono" [(ngModel)]="persona.telefono" pattern="^[0-9]+" maxlength="9" required>
+                            <input matInput  name="telefono" formControlName="telefono" maxlength="9" >
+							<mat-error *ngIf="form.get('telefono').hasError('required')" >*requerido</mat-error>
+							 <mat-error *ngIf="form.get('telefono').hasError('minlength')" >Numero no valido</mat-error>
                         </mat-form-field>
 					</mat-grid-tile>
 
 					<mat-grid-tile [colspan]="1" [rowspan]="1">
 					<mat-form-field appearance="fill">
                         <mat-label>Sexo</mat-label>
-                        <mat-select name="sexo" [(ngModel)]="persona.sexo">
+                        <mat-select name="sexo" formControlName="sexo">
                            <mat-option  value="M">
                             Hombre
                            </mat-option>
@@ -116,29 +118,38 @@
                     <mat-grid-tile [colspan]="2" [rowspan]="1">
                         <mat-form-field class="example-full-width" style="width: 90%;" appearance="fill">
                             <mat-label>Direccion de Domicilio</mat-label>
-                            <input matInput ngModel required [(ngModel)]="persona.direccion" name="direccion">
+                            <input matInput formControlName="direccion"  name="direccion">
+							<mat-error *ngIf="form.get('direccion').hasError('required')" >*requerido</mat-error>
                         </mat-form-field>
                     </mat-grid-tile>
 
 					<mat-grid-tile [colspan]="1" [rowspan]="1">
                         <mat-form-field class="example-full-width" appearance="fill">
                             <mat-label>	Correo Electronico</mat-label>
-                            <input matInput ngModel  name="email" [(ngModel)]="persona.correo" type="email" required>
+                            <input matInput   name="email" formControlName="correo"   type="email" >
+								 <mat-error *ngIf="form.get('correo').hasError('required')" >*requerido</mat-error>
+								  <mat-error *ngIf="form.get('correo').hasError('email')">*ingrese un correo valido</mat-error>
+
+							
                         </mat-form-field>
                     </mat-grid-tile>
 
                     <mat-grid-tile [colspan]="1" [rowspan]="1">
 					    <mat-form-field class="example-full-width" appearance="fill">
                             <mat-label>Dni</mat-label>
-                            <input matInput ngModel name="dni" pattern="^[0-9]+" maxlength="8" [(ngModel)]="persona.dni"required>
+                            <input matInput formControlName="dni" name="dni" maxlength="8">
+							<mat-error *ngIf="form.get('dni').hasError('required')" >*requerido</mat-error>
+							<mat-error *ngIf="form.get('dni').hasError('minlength')">*dni no es valido</mat-error>
+
+							
                         </mat-form-field>
                     </mat-grid-tile>
 
 					<mat-grid-tile [colspan]="1" [rowspan]="1">
 					<mat-form-field appearance="fill">
                         <mat-label>Nacionalidad</mat-label>
-                        <mat-select name="pais"  [(ngModel)]="persona.idpais">
-                           <mat-option *ngFor="let pais of paises" value="{{pais.idpais}}">
+                        <mat-select name="pais"  formControlName="idpais" >
+                           <mat-option  *ngFor="let pais of paises" value="{{pais.idpais}}">
                             {{pais.nombre}}
                            </mat-option>
                         </mat-select>
@@ -155,7 +166,7 @@
 			</div>
 			<div class="modal-footer">
 				<button  mat-raised-button type="reset" color="warn" data-bs-dismiss="modal" (click)="borrar()">Cancelar</button>&nbsp;&nbsp;
-				<button mat-raised-button color="primary" [disabled]="!archivo" (click)="enviarsolicitud()">Enviar Solicitud</button>
+				<button mat-raised-button color="primary" [disabled]="form.invalid" data-bs-dismiss="modal" (click)="enviarsolicitud()">Enviar Solicitud</button>
 			</div>
 		
 	</div>
