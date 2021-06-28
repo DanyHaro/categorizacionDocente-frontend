@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { environment } from '../environments/environment';
+import { HttpClientModule } from '@angular/common/http';
 
 //IMPORTS FROM ANGULAR MATERIAL
 // import {A11yModule} from '@angular/cdk/a11y';
@@ -62,6 +63,7 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule,
+    HttpClientModule
 
     //ANGULAR MATERIAL
     // A11yModule,

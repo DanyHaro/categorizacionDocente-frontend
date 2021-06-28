@@ -5,13 +5,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyAPmpJykr5VR0j7lyoplhi9tY0f6-X4oWM',
-    authDomain: 'subirlegajos.firebaseapp.com',
-    projectId: 'subirlegajos',
-    storageBucket: 'subirlegajos.appspot.com',
-    messagingSenderId: '1012985946468',
-    appId: '1:1012985946468:web:1eff1c130aa98adb215a71',
-    measurementId: 'G-CDV3J67871',
+    apiKey: 'AIzaSyCPIBo977RKYV2k68JaRrzJnFD9yaFpZTY',
+    authDomain: 'prueba1-7a347.firebaseapp.com',
+    databaseURL: 'https://prueba1-7a347-default-rtdb.firebaseio.com',
+    projectId: 'prueba1-7a347',
+    storageBucket: 'prueba1-7a347.appspot.com',
+    messagingSenderId: '109352717840',
   },
 };
 

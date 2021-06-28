@@ -41,77 +41,124 @@
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
 	aria-labelledby="staticBackdropLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-xl">
-		<div class="modal-content" style="background-color: rgba(85, 2, 30, 0.6);">
+		<div class="modal-content" style="background-color: #9f0030;">
 			<div class="modal-header">
-				<h2 class="modal-title" id="staticBackdropLabel" style="color: rgb(218, 216, 216);">Registrese en el sistema</h2>
+				<h2 class="modal-title" id="staticBackdropLabel" style="color: rgb(218, 216, 216);">Registro de Usuario</h2>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body" style="background-color: white;">
+				
+
+				
+
+				<mat-grid-list cols="4" rowHeight="70px">
 				<form class="row g-6">
 
-					<div class="col-auto row align-items-start">
 
-						<div class="col-auto">
-							<label for="nombres" style="color: rgb(255, 255, 255);">Nombres</label>
-							<input type="text" class="form-control" id="nombres" placeholder="Nombres" autocomplete="off">
+                    <mat-grid-tile [colspan]="1" [rowspan]="1">
+					    <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Nombres</mat-label>
+                            <input matInput [(ngModel)]="persona.nombres"  name="nombres" >
+                        </mat-form-field>
+
+					</mat-grid-tile>
+
+
+                    <mat-grid-tile [colspan]="1" [rowspan]="1">
+					    <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Apellidos</mat-label>
+                            <input matInput [(ngModel)]="persona.apellidos" name="apellidos" >
+                        </mat-form-field>
+					</mat-grid-tile>
+
+
+                    <mat-grid-tile [colspan]="2" [rowspan]="1">
+					    
+				     	<div class="col-auto">
+							<label for="edad" style="color: black;">Imagen del dni</label>
+							<br>
+							<input type="file" id="hola" (change)="mostrar($event)" required class="form-control" id="imagen" >
 						</div>
-
-						<div class="col-auto">
-							<label for="nombres" style="color: rgb(255, 255, 255);">Apellidos</label>
-							<input type="text" class="form-control" id="nombres" placeholder="Apellidos" autocomplete="off">
-						</div>
-
-						<div class="col-auto">
-							<label for="nombres" style="color: rgb(255, 255, 255);">Telefono</label>
-							<input type="text" class="form-control" id="nombres" placeholder="telefono/celular" autocomplete="off">
-						</div>
-
-						<div class="col-auto">
-							<label for="nombres" style="color: rgb(255, 255, 255);">Sexo</label>
-							<input type="text" class="form-control" id="nombres" placeholder="Nombre completo" autocomplete="off">
-						</div>
-
-						<div class="col-auto">
-							<label for="nombres" style="color: rgb(255, 255, 255);">Direccion de domicilio</label>
-							<input type="text" class="form-control" id="nombres" placeholder="Domicilio" autocomplete="off">
-						</div>
-
-						<div class="col-auto">
-							<label for="gmail" style="color: rgb(238, 238, 238);">Correo Electronico</label>
-							<input type="email" class="form-control" autocomplete="off" id="gmail" placeholder="Gmail">
-						</div>
-
-						<div class="col-auto">
-							<label for="dni" style="color: rgb(238, 238, 238);">DNI / Pasaporte</label>
-							<input type="text" class="form-control" maxlength="8" autocomplete="off" id="dni" placeholder="DNI/Pasaporte">
-						</div>
-
-						<mat-form-field class="col-auto" style="background: white; width: 190px; height: 55px; margin: 6px; left: 8px;" appearance="fill" [color]="colorControl.value">
-							<mat-label>Edad</mat-label>
-							<input matInput type="number" placeholder="Ex. 12" [formControl]="fontSizeControl" min="10">
-							<!-- <span matSuffix>px</span> -->
-							<mat-error *ngIf="fontSizeControl.invalid">Min size: 10px</mat-error>
-						</mat-form-field>
-
-						<div class="col-auto">
-							<label for="edad" style="color: rgb(238, 238, 238);">Parte posterior DNI</label>
-							<input type="file" autocomplete="off" class="form-control" id="edad" placeholder="Edad">
-						</div>
-
-						<div class="col-auto">
-							<label for="edad" style="color: rgb(238, 238, 238);">Parte inferior DNI</label>
-							<input type="file" autocomplete="off" class="form-control" id="edad" placeholder="Edad">
-						</div>
-
 						
-					</div>
+                         
+					</mat-grid-tile>
 
-				</form>
+
+                   <mat-grid-tile [colspan]="1" [rowspan]="1">
+					    <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Telefono</mat-label>
+                            <input matInput ngModel name="telefono" [(ngModel)]="persona.telefono" pattern="^[0-9]+" maxlength="9" required>
+                        </mat-form-field>
+					</mat-grid-tile>
+
+					<mat-grid-tile [colspan]="1" [rowspan]="1">
+					<mat-form-field appearance="fill">
+                        <mat-label>Sexo</mat-label>
+                        <mat-select name="sexo" [(ngModel)]="persona.sexo">
+                           <mat-option  value="M">
+                            Hombre
+                           </mat-option>
+						   <mat-option  value="F">
+                            Mujer
+                           </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+					    
+					</mat-grid-tile>
+
+					<mat-grid-tile [colspan]="2" [rowspan]="3">
+					     <div id="preview">
+						   
+						 </div>
+					</mat-grid-tile>
+
+                    <mat-grid-tile [colspan]="2" [rowspan]="1">
+                        <mat-form-field class="example-full-width" style="width: 90%;" appearance="fill">
+                            <mat-label>Direccion de Domicilio</mat-label>
+                            <input matInput ngModel required [(ngModel)]="persona.direccion" name="direccion">
+                        </mat-form-field>
+                    </mat-grid-tile>
+
+					<mat-grid-tile [colspan]="1" [rowspan]="1">
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>	Correo Electronico</mat-label>
+                            <input matInput ngModel  name="email" [(ngModel)]="persona.correo" type="email" required>
+                        </mat-form-field>
+                    </mat-grid-tile>
+
+                    <mat-grid-tile [colspan]="1" [rowspan]="1">
+					    <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Dni</mat-label>
+                            <input matInput ngModel name="dni" pattern="^[0-9]+" maxlength="8" [(ngModel)]="persona.dni"required>
+                        </mat-form-field>
+                    </mat-grid-tile>
+
+					<mat-grid-tile [colspan]="1" [rowspan]="1">
+					<mat-form-field appearance="fill">
+                        <mat-label>Nacionalidad</mat-label>
+                        <mat-select name="pais"  [(ngModel)]="persona.idpais">
+                           <mat-option *ngFor="let pais of paises" value="{{pais.idpais}}">
+                            {{pais.nombre}}
+                           </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+					    
+					</mat-grid-tile>
+
+
+					
+					 </form>
+                </mat-grid-list>
+              
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-				<button type="button" class="btn btn-primary">Enviar solicitud</button>
+				<button  mat-raised-button type="reset" color="warn" data-bs-dismiss="modal" (click)="borrar()">Cancelar</button>&nbsp;&nbsp;
+				<button mat-raised-button color="primary" [disabled]="!archivo" (click)="enviarsolicitud()">Enviar Solicitud</button>
 			</div>
-		</div>
+		
 	</div>
 </div>
+
+

@@ -9,10 +9,14 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { MetodoPagoComponent } from './metodo-pago/metodo-pago.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatStepperModule} from '@angular/material/stepper';
 
+import {MatSelectModule} from '@angular/material/select';
 
+import {MatButtonModule} from '@angular/material/button';
 
-
+import { CdkStepperModule } from '@angular/cdk/stepper';
 
 @NgModule({
   declarations: [LogincomponentComponent, MetodoPagoComponent],
@@ -24,7 +28,14 @@ import { MetodoPagoComponent } from './metodo-pago/metodo-pago.component';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatGridListModule,
+    MatSelectModule,
+    MatStepperModule,
+    CdkStepperModule,
+    MatButtonModule
+    
+    
   ]
 })
 export class LoginModule { }
