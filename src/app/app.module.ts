@@ -57,7 +57,7 @@ import { GestiondocenteComponent } from './admin/Secretaria/gestiondocente/gesti
 // import {OverlayModule} from '@angular/cdk/overlay';
 
 @NgModule({
-  declarations: [AppComponent, GestiondocenteComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
