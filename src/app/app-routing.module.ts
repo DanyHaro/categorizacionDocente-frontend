@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MetodoPagoComponent } from './login/metodo-pago/metodo-pago.component';
+import { PagosComponent } from './login/pagos/pagos.component';
 
 const routes: Routes = [
-  { path: 'metodopago', component: MetodoPagoComponent },
+  { path: 'metodo-pago', component: MetodoPagoComponent },
+  { path: 'pagos2', component: PagosComponent },
+
   {
     path: 'login',
     loadChildren: () =>

@@ -1,0 +1,62 @@
+<mat-horizontal-stepper>
+  <mat-step label="Step 1" state="phone">
+    <div class="sub">
+      <p class="">
+        Bienvenido a la Categorización Docente, le extendemos un cordial saludo
+        de parte del Rector de la Universidad Peruana Unión e invitarle a
+        participar en este proceso 2021-2
+      </p>
+    </div>
+    <hr />
+    <div class="opcion">
+      <p>¿Desea participar en esta categorización docente 2021-2?</p>
+      <mat-radio-group aria-label="Seleccione una opción">
+        <mat-radio-button value="1"> Si </mat-radio-button>
+        <mat-radio-button value="2"> No </mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div class="">
+      <a href="">
+        <img
+          src="https://educared.fundaciontelefonica.com.pe/wp-content/uploads/2021/03/chico-estudiante-estudiando-internet-viendo-conferencias-linea-computadora-hablando-tutor-matematicas-traves-videollamada-ilustracion-dibujos-animados_74855-14524.jpg"
+          alt=""
+          width="515"
+          height="355"
+          style="margin-left: 790px; margin-top: -100px"
+        />
+      </a>
+    </div>
+    <div class="" style="margin-top: -260px">
+      <mat-form-field apariencia="llenar" style="width: 750px">
+        <mat-label>Motivo</mat-label>
+        <textarea
+          matInput
+          placeholder="Escriba su motivo(Opcional)"
+          style="height: 200px"
+        >
+        </textarea>
+      </mat-form-field>
+    </div>
+    <div>
+      <button mat-button matStepperNext>Siguiente</button>
+    </div>
+  </mat-step>
+  <mat-step label="Step 2" state="chat">
+    <p>Socialize with each other.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext>Next</button>
+    </div>
+  </mat-step>
+  <mat-step label="Step 3">
+    <p>You're welcome.</p>
+  </mat-step>
+
+  <!-- Icon overrides. -->
+  <ng-template matStepperIcon="phone">
+    <mat-icon>call_end</mat-icon>
+  </ng-template>
+  <ng-template matStepperIcon="chat">
+    <mat-icon>forum</mat-icon>
+  </ng-template>
+</mat-horizontal-stepper>

@@ -1,0 +1,40 @@
+.mat-stepper-horizontal {
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+
+.sub {
+  margin-top: 5px;
+  text-align: center;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 18px;
+}
+
+.opcion {
+  margin-top: 80px;
+}
+
+/* .sub::after {
+  content: "";
+  position: absolute;
+  width: 920px;
+  height: 1.8px;
+  background-color: black;
+  /* top: 0.6rem; 
+  border-radius: 0.6rem;
+  margin-top: 10px;
+  margin-left: -460px; 
+}*/
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+
+/* : host {
+   pantalla : flex;
+  flex-direction : columna;
+  alinear-elementos : flex-start;
+} */
