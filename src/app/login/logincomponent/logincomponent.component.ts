@@ -6,6 +6,9 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+// ES6 Modules or TypeScript
+import Swal from 'sweetalert2';
+
 
 import { v4 as uuidv4 } from 'uuid';
 import { Persona } from 'src/app/Models/Persona';
@@ -23,7 +26,25 @@ export class LogincomponentComponent implements OnInit {
    paises:Pais[];
    archivo:File;
     imgCodified:string;
-  constructor(private router: Router, private service:PersonaService) {}
+    form;
+  constructor(private router: Router, private service:PersonaService,private formBuilder: FormBuilder) {
+    this.form = formBuilder.group({
+      nombres:new FormControl('', []),
+      apellidos: new FormControl('',[]),
+      correo: new FormControl('',[Validators.required,Validators.email]),
+      sexo :new FormControl('',[]),
+      direccion :new FormControl('',[Validators.required]),
+      idpais :new FormControl('',[]),
+      dni :new FormControl('',[Validators.required,Validators.minLength(8)]),
+      telefono :new FormControl('',[Validators.required,Validators.minLength(9)]),
+      foto:new FormControl('',[Validators.required]),
+
+
+ 
+    });
+  }
+  
+
   
   ngOnInit() {
       this.service.getPaises().subscribe(
@@ -40,7 +61,6 @@ export class LogincomponentComponent implements OnInit {
   }
   mostrar(event){
     this.archivo = event.target.files[0];
-    this.persona.foto=this.archivo.name;
     var supportedImages = ["image/jpeg", "image/png", "image/gif"];
     var seEncontraronElementoNoValidos = false;
 
@@ -55,21 +75,57 @@ export class LogincomponentComponent implements OnInit {
     };
 
     enviarsolicitud(){
-      let rango = this.persona.foto.split('.') 
-      let ext = rango[rango.length-1];
-      this.persona.foto = this.myId + '.' + ext;
-      console.log(this.persona.foto)
-      console.log(this.persona)
-      this.myId = uuidv4();
+    
+      if (this.form.valid) {
+         
+        let rango = this.archivo.name.split('.') 
+        let ext = rango[rango.length-1];
+        let nombrenuevo = this.myId + '.' + ext;
 
-      this.service.registrarpersona(this.persona).subscribe(
-         (data)=>{ this.service.guardarimagen(this.archivo,this.persona.foto)
+        this.myId = uuidv4();
+        this.persona = this.form.value;
+        this.persona.foto = nombrenuevo;
+        this.service.registrarpersona(this.persona).subscribe(
+         (data)=>{ this.service.guardarimagen(this.archivo,this.persona.foto);
+          Swal.fire({
+            icon: 'success',
+            title: 'Su solicitud esta siendo procesada, se le informara mediante su correo electronico.',
+            text: 'Estado de solicitud',
+         
+          });
+        
+          },err=>{
+            console.log(err)
+            Swal.fire({
+              icon: 'error',
+              title: 'Opps..',
+              text: 'Algo salio mal, porfavor ingrese sus datos de nuevo.',
+           
+            });
           })
+
   
+        
+        console.log(this.persona)
+        this.borrar();
+      }
+      else{
+        Swal.fire({
+          icon: 'error',
+          title: 'Opps..',
+          text: `Se encontraron los siguientes errores ${this.form.errors}`,
+       
+        });
+      }
+      
       }
       borrar(){
         this.persona = new Persona();
         console.log(this.archivo)
+   
+        this.form.value = '';
+        
+        
       }
   
  

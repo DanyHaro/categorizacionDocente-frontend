@@ -1,0 +1,19 @@
+table {
+    width: 80%;
+  }
+  .inputs{
+     font-size: 17px;
+  }
+  img{
+    width: 90%;
+    height: 90%;
+    margin-bottom: 10%;
+  }
+
+  .button{
+    width: 80%;
+    height: 100%;
+  }
+  .mat-raised-button .success{
+    color: green !important;
+  }
