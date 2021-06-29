@@ -68,7 +68,6 @@ export class LogincomponentComponent implements OnInit {
   
       }
       borrar(){
-   
         this.persona = new Persona();
         console.log(this.archivo)
       }

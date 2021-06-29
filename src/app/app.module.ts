@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireStorageModule } from 'angularfire2/storage';
@@ -11,6 +10,9 @@ import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 
 //IMPORTS FROM ANGULAR MATERIAL
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatNativeDateModule} from '@angular/material/core';
+
 // import {A11yModule} from '@angular/cdk/a11y';
 // import {ClipboardModule} from '@angular/cdk/clipboard';
 // import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -63,7 +65,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule,
-    HttpClientModule
+    HttpClientModule,
+    MatNativeDateModule
 
     //ANGULAR MATERIAL
     // A11yModule,

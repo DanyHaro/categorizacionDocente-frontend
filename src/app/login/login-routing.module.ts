@@ -6,7 +6,7 @@ import { MetodoPagoComponent } from './metodo-pago/metodo-pago.component';
 
 const routes: Routes = [
   { path: '', component: LogincomponentComponent },
-  { path: 'metodo-pago', component: MetodoPagoComponent },
+  // { path: 'metodo-pago', component: MetodoPagoComponent },
 ];
 
 @NgModule({
