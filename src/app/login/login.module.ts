@@ -12,6 +12,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
+//import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [LogincomponentComponent, MetodoPagoComponent, PagosComponent],
@@ -26,6 +28,8 @@ import { MatRadioModule } from '@angular/material/radio';
     MatStepperModule,
     ReactiveFormsModule,
     MatRadioModule,
+    MatCardModule,
+    //MatDatepickerModule,
   ],
 })
 export class LoginModule {}
