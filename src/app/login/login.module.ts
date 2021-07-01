@@ -14,6 +14,13 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 //import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatGridListModule } from '@angular/material/grid-list';
+
+import { MatSelectModule } from '@angular/material/select';
+
+import { MatButtonModule } from '@angular/material/button';
+
+import { CdkStepperModule } from '@angular/cdk/stepper';
 
 @NgModule({
   declarations: [LogincomponentComponent, MetodoPagoComponent, PagosComponent],
@@ -30,6 +37,12 @@ import { MatCardModule } from '@angular/material/card';
     MatRadioModule,
     MatCardModule,
     //MatDatepickerModule,
+    ReactiveFormsModule,
+    MatGridListModule,
+    MatSelectModule,
+    MatStepperModule,
+    CdkStepperModule,
+    MatButtonModule,
   ],
 })
 export class LoginModule {}

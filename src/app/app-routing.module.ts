@@ -24,6 +24,13 @@ const routes: Routes = [
         (m) => m.DocentesCardsModule
       ),
   },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./admin/admin.module').then(
+        (m) => m.AdminModule
+      ),
+  },
   { path: '**', pathMatch: 'full', redirectTo: 'login' },
 ];
 
