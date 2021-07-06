@@ -1,43 +1,55 @@
 <div class="banner">
   <div class="banner-content">
 
+
     <div style="background: rgb(92, 31, 49); width: 30%; height: 100%; margin-left: 70%;">
       <div>
-        <img src="" alt="">
-
+        <img style="width: 70%; margin-left: 15%; padding: 15px;" src="https://www.upeu.edu.pe/fsalud/wp-content/uploads/sites/5/2021/04/logo-upeu-white.png" alt="">
+        <img id="imagenusuario"
+          src="https://png.pngtree.com/png-clipart/20190516/original/pngtree-users-vector-icon-png-image_3725294.jpg"
+          alt="">
+        <div style="text-align: center; margin-top: 15px;">
+          <h1 style="color: white;">@{{usuarioLogueado.usuario}}</h1>
+          <h2 style="color: white;">UPeU: Auxiliar</h2>
+          <button class="btn btn-danger">Cerrar Sesión</button>
+          <p style="margin-top: 20px;">
+            <a href="#">
+              <i>¿Olvidaste tu contraseña?</i>
+            </a>
+          </p>
+        </div>
       </div>
     </div>
 
+
+
     <div class="row row-cols-1 row-cols-md-4 g-2 fondo" style="margin-top: -50%;">
-      <div class="col">
+      <!-- <div class="col">
         <div class="card" (click)="goCards()" style="height: 300px;">
           <img src="https://i.pinimg.com/originals/ef/cf/0e/efcf0e152c41112da48b619152043030.png"
             style="width: 50%; margin-left: 50px; margin-top: 50px;" class="card-img-top" alt="...">
           <div class="card-body" style="margin-top: 30px;">
-            <h2 class="card-title">FORMACIÓN ACADEMICA PROFESIONAL</h2>
-            <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+            <h2 class="card-title"></h2>
           </div>
         </div>
-      </div>
+      </div> -->
 
-      <div class="col">
-        <div class="card" style="height: 300px;">
+      <div class="col"  *ngFor="let opcionitem of cards">
+        <div class="card" (click)="goCards(opcionitem.iditem)" style="height: 300px;">
           <img src="https://i.pinimg.com/originals/ef/cf/0e/efcf0e152c41112da48b619152043030.png"
             style="width: 50%; margin-left: 50px; margin-top: 50px;" class="card-img-top" alt="...">
           <div class="card-body" style="margin-top: 30px;">
-            <h2 class="card-title">EXPERIENCIA LABORAL Y PROFESIONAL</h2>
-            <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+            <h2 class="card-title">{{opcionitem.nombre}}</h2>
           </div>
         </div>
       </div>
 
-      <div class="col">
+      <!-- <div class="col">
         <div class="card" style="height: 300px;">
           <img src="https://i.pinimg.com/originals/ef/cf/0e/efcf0e152c41112da48b619152043030.png"
             style="width: 50%; margin-left: 50px; margin-top: 50px;" class="card-img-top" alt="...">
           <div class="card-body" style="margin-top: 30px;">
             <h2 class="card-title">CAPACIDAD DOCENTE</h2>
-            <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
           </div>
         </div>
       </div>
@@ -48,7 +60,6 @@
             style="width: 50%; margin-left: 50px; margin-top: 50px;" class="card-img-top" alt="...">
           <div class="card-body" style="margin-top: 30px;">
             <h2 class="card-title">DESEMPEÑO DOCENTE</h2>
-            <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
           </div>
         </div>
       </div>
@@ -60,7 +71,6 @@
             style="width: 50%; margin-left: 50px; margin-top: 50px;" class="card-img-top" alt="...">
           <div class="card-body" style="margin-top: 30px;">
             <h2 class="card-title">CAPACITACIÓN PROFESIONAL</h2>
-            <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
           </div>
         </div>
       </div>
@@ -72,7 +82,6 @@
             style="width: 50%; margin-left: 50px; margin-top: 50px;" class="card-img-top" alt="...">
           <div class="card-body" style="margin-top: 30px;">
             <h2 class="card-title">INVESTIGACIÓN Y APORTE AL CONOCIMIENTO</h2>
-            <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
           </div>
         </div>
       </div>
@@ -83,7 +92,6 @@
             style="width: 50%; margin-left: 50px; margin-top: 50px;" class="card-img-top" alt="...">
           <div class="card-body" style="margin-top: 30px;">
             <h2 class="card-title">VINCULACIÓN CON EL MEDIO</h2>
-            <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
           </div>
         </div>
       </div>
@@ -94,10 +102,9 @@
             style="width: 50%; margin-left: 50px; margin-top: 50px;" class="card-img-top" alt="...">
           <div class="card-body" style="margin-top: 30px;">
             <h2 class="card-title">APORTES Y LOGROS</h2>
-            <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
           </div>
         </div>
-      </div>
+      </div> -->
 
     </div>
   </div>

@@ -13,12 +13,12 @@ const routes: Routes = [
       import('./login/login.module').then((m) => m.LoginModule),
   },
   {
-    path: 'principal',
+    path: 'principal/:id',
     loadChildren: () =>
       import('./principal/principal.module').then((m) => m.PrincipalModule),
   },
   {
-    path: 'cards',
+    path: 'cards/:id',
     loadChildren: () =>
       import('./docentes-cards/docentes-cards.module').then(
         (m) => m.DocentesCardsModule

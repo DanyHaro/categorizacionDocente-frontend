@@ -1,6 +1,7 @@
 export class User{
-    public user:string;
-    public password:String
-
+    public idusuario:number;
+    public usuario:string;
+    public password:String;
+    public iddocente:number;
 
 }

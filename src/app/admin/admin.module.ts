@@ -28,10 +28,10 @@ import {MatTabsModule} from '@angular/material/tabs';
     ReactiveFormsModule,
     MatGridListModule,
     MatSelectModule,
-MatButtonModule,
-MatTabsModule,
-MatSelectModule,
-MatRadioModule
+    MatButtonModule,
+    MatTabsModule,
+    MatSelectModule,
+    MatRadioModule
   ]
 })
 export class AdminModule { }

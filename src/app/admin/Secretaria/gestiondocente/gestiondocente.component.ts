@@ -65,7 +65,7 @@ export class GestiondocenteComponent implements OnInit {
     var condicion=1;
     do {
       encontrado=this.users.find(
-        user=>{ if(user.user == usuarioname.toLowerCase()){
+        user=>{ if(user.usuario == usuarioname.toLowerCase()){
           return true;
         } else{
           return null;
@@ -79,7 +79,7 @@ export class GestiondocenteComponent implements OnInit {
         condicion = 0;
       }
     } while (condicion==1);
-      this.usuario.user=usuarioname.toLocaleLowerCase();
+      this.usuario.usuario=usuarioname.toLocaleLowerCase();
       this.usuario.password=passwordname.toLocaleLowerCase();
   }
 

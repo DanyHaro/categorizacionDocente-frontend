@@ -32,3 +32,12 @@ body{
     background-repeat: no-repeat;
     height: 100%;
 }
+#imagenusuario{
+    width: 25%;
+    height: auto;
+    margin-top: 40%;
+    margin-left: 38%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}

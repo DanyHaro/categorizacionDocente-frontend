@@ -18,15 +18,15 @@
 								<p id="porfa">Por favor, identifíquese</p>
 							</div>
 							<div class="form-body">
-								<input type="text" placeholder="Usuario" name="username" autocomplete="off" />
-								<input type="Password" placeholder="Contraseña" name="pass" autocomplete="off" />
+								<input [(ngModel)]="usuario.usuario" type="text" placeholder="Usuario" name="username" autocomplete="off" />
+								<input [(ngModel)]="usuario.password" type="Password" placeholder="Contraseña" name="pass" autocomplete="off" />
 							</div>
 							<a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Registrate</a>
 
 							<div id="form-footer">
 								<button type="button" (click)="iniciarsesion()">Iniciar Sesión</button>
 							</div>
-
+							
 						</div>
 
 					</form>

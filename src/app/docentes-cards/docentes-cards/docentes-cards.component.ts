@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { heroeInterface, LegajosDocentesService } from 'src/app/services/legajosDocentes/legajos-docentes.service';
+import { Router,ActivatedRoute } from '@angular/router';
+import { Items } from 'src/app/Models/items';
+import { ItemDocentesService } from 'src/app/services/itemsDocentes/item-docentes.service';
+import { LoginService } from 'src/app/services/login/login.service';
 
 @Component({
   selector: 'app-docentes-cards',
@@ -9,16 +11,39 @@ import { heroeInterface, LegajosDocentesService } from 'src/app/services/legajos
 })
 export class DocentesCardsComponent implements OnInit {
 
-  cards:heroeInterface[]=[];
+  usuarioLogueado:any={};
 
-  constructor(private itemservice: LegajosDocentesService, private cardsrouter: Router) { }
+  cards: Items[]=[]
+
+  constructor(private cardsrouter: Router, private loginservice:LoginService, private rutaactivada: ActivatedRoute, private itemdocenteservice:ItemDocentesService ) { }
 
   ngOnInit(): void {
-    this.cards = this.itemservice.getHeroes();
-  }
+    this.rutaactivada.params.subscribe(parametro =>{
+      this.loginservice.getOneUser(parametro['id']).subscribe(databd=>{
+        console.log(databd,"USUARIO ENCONTRADO !");
+        this.usuarioLogueado = databd[0];
+      })
+    })
 
-  goCards(){
-    this.cardsrouter.navigateByUrl('/principal');
+    this.itemdocenteservice.getAllItems().subscribe(dataitem=>{
+      this.cards = dataitem;
+    })
+  }
+  
+
+  goCards(id:number){
+    this.itemdocenteservice.getAllItems().subscribe(dataitem=>{
+      for (let i = 0; i < dataitem.length; i++) {
+        if (dataitem[i].iditem == id) {
+          console.log("ITEM ENCONTRADO",dataitem[i].nombre);
+          this.cardsrouter.navigate(['principal',dataitem[i].iditem])
+          
+        }else{
+          console.log("NO ENCONTRADO !");
+          
+        }
+      }
+    })
   }
 
 }

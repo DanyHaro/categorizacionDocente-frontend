@@ -21,6 +21,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 
 import { CdkStepperModule } from '@angular/cdk/stepper';
+import { DocentesCardsModule } from '../docentes-cards/docentes-cards.module';
 
 @NgModule({
   declarations: [LogincomponentComponent, MetodoPagoComponent, PagosComponent],
@@ -28,6 +29,7 @@ import { CdkStepperModule } from '@angular/cdk/stepper';
     CommonModule,
     LoginRoutingModule,
     FormsModule,
+    DocentesCardsModule,
     //MODULE OF ANGULAR MATERIAL
     MatFormFieldModule,
     MatIconModule,

@@ -1,6 +1,8 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import{MediaMatcher} from '@angular/cdk/layout'
-import { OpcionesSidebar } from 'src/app/Models/opcionesSidebar';
+import { ItemDocentesService } from 'src/app/services/itemsDocentes/item-docentes.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Factor } from 'src/app/Models/factor';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,37 +12,39 @@ import { OpcionesSidebar } from 'src/app/Models/opcionesSidebar';
 export class SidebarComponent implements OnInit {
 
   mobileQuery: MediaQueryList;
-  opcionsidebar: OpcionesSidebar[];
+  // opcionsidebar: OpcionesSidebar[];
   // fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
 
-  fillerNav = [
-    {
-      name: 'Grado',
-      route: '',
-      icon:'home'
-    },
+  fillerNav:Factor[]=[]
 
-    {
-      name: 'Titulo',
-      route: '',
-      icon:'home'
+  // fillerNav = [
+  //   {
+  //     name: 'Grado',
+  //     route: '',
+  //     icon:'home'
+  //   },
 
-    },
+  //   {
+  //     name: 'Titulo',
+  //     route: '',
+  //     icon:'home'
 
-    {
-      name: 'Especialidad / Diplomatura',
-      route: '',
-      icon:'home'
+  //   },
 
-    },
+  //   {
+  //     name: 'Especialidad / Diplomatura',
+  //     route: '',
+  //     icon:'home'
 
-    {
-      name: 'Idiomas',
-      route: '',
-      icon:'home'
+  //   },
 
-    }
-  ]
+  //   {
+  //     name: 'Idiomas',
+  //     route: '',
+  //     icon:'home'
+
+  //   }
+  // ]
 
   fillerContent = Array.from({length: 50}, () =>
       `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -51,7 +55,8 @@ export class SidebarComponent implements OnInit {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private factorservice:ItemDocentesService, private sidebarRouter:Router,private rutaactivada:ActivatedRoute) {
+
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -64,6 +69,13 @@ export class SidebarComponent implements OnInit {
   shouldRun = true;
 
   ngOnInit(): void {
+    this.rutaactivada.params.subscribe(parametro=>{
+      this.factorservice.getGroupfactor(parametro['id']).subscribe(datafactor=>{
+        console.log("GRUPO FACTOR ENCONTRADO !",datafactor);
+        this.fillerNav = datafactor;
+      })
+
+    })
   }
 
 }
