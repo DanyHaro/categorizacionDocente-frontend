@@ -1,0 +1,86 @@
+<div class="example-container">
+  <form [formGroup]="options" style="margin: 20px">
+    <!-- <mat-checkbox [formControl]="hideRequiredControl">Hide required marker</mat-checkbox>
+        <div>
+            <label>Float label: </label>
+            <mat-radio-group [formControl]="floatLabelControl">
+                <mat-radio-button value="auto">Auto</mat-radio-button>
+                <mat-radio-button value="always">Always</mat-radio-button>
+            </mat-radio-group>
+        </div> -->
+    <h1>Experiencia Administrativa NoUniversitaria</h1>
+    <hr />
+
+    <mat-form-field
+      appearance="fill"
+      [hideRequiredMarker]="hideRequiredControl.value"
+      [floatLabel]="floatLabelControl.value"
+    >
+      <mat-select required>
+        <mat-option value="option">Director Titular</mat-option>
+        <mat-option value="option"
+          >Director Académico de Entidad Educativa</mat-option
+        >
+        <mat-option value="option"
+          >Subdirector Académico de Entidad Educativa</mat-option
+        >
+        <mat-option value="option">Subdirector de Colegio</mat-option>
+        <mat-option value="option">Coordinador de Colegio</mat-option>
+        <mat-option value="option"
+          >Sub Dirección de Formación General</mat-option
+        >
+        <mat-option value="option">Coordinador de Área</mat-option>
+        <mat-option value="option">Sub Director Administrativo</mat-option>
+        <mat-option value="option">Secretario General</mat-option>
+        <mat-option value="option"
+          >Gestión Académica y Administrativo</mat-option
+        >
+        <mat-option value="option">Asesor Educativo</mat-option>
+        <mat-option value="option">Coordinador General</mat-option>
+        <mat-option value="option">Miembro de Comités</mat-option>
+      </mat-select>
+      <mat-label>
+        <i>Experiencia en Gestión Académica</i>
+      </mat-label>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" [floatLabel]="floatLabelControl.value">
+      <mat-label>Institución</mat-label>
+      <input
+        autocomplete="off"
+        matInput
+        placeholder="Ingrese el nombre de la Institución"
+      />
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Fecha de Inicio</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker2"
+        [formControl]="serializedDate"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Fecha de Fin</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker3"
+        [formControl]="serializedDate"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+      <mat-datepicker #picker3></mat-datepicker>
+    </mat-form-field>
+
+    <div class="mb-3" style="width: 28%; display: inline-block; margin: 5px">
+      <label for="formFileMultiple" class="form-label">Subir Archivo</label>
+      <input class="form-control" type="file" id="formFileMultiple" multiple />
+    </div>
+
+    <button type="button" class="btn btn-outline-primary">GUARDAR</button>
+  </form>
+</div>
