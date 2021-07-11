@@ -15,7 +15,10 @@ import {MatSelectModule} from '@angular/material/select';
 import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { IdiomasComponent } from './formacion-academica/idiomas/idiomas.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 
 
@@ -25,13 +28,14 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
   GradosComponent,
   TitulosComponent,
   DiplomaturasComponent,
-  EstudiosComponent
+  EstudiosComponent,
+  IdiomasComponent,
 ],
   imports: [
     CommonModule,
     PagesRoutingModule,
     FormsModule,
-
+    ReactiveFormsModule,
     //ANGULAR MATERIAL
     MatIconModule,
     MatCheckboxModule,
@@ -40,8 +44,10 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatSelectModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatDatepickerModule
-    
+    MatDatepickerModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatGridListModule
   ]
 })
 export class PagesModule { }

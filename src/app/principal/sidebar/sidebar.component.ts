@@ -16,35 +16,7 @@ export class SidebarComponent implements OnInit {
   // fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
 
   fillerNav:Factor[]=[]
-
-  // fillerNav = [
-  //   {
-  //     name: 'Grado',
-  //     route: '',
-  //     icon:'home'
-  //   },
-
-  //   {
-  //     name: 'Titulo',
-  //     route: '',
-  //     icon:'home'
-
-  //   },
-
-  //   {
-  //     name: 'Especialidad / Diplomatura',
-  //     route: '',
-  //     icon:'home'
-
-  //   },
-
-  //   {
-  //     name: 'Idiomas',
-  //     route: '',
-  //     icon:'home'
-
-  //   }
-  // ]
+  idUsuarioLogueado:any;
 
   fillerContent = Array.from({length: 50}, () =>
       `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -70,12 +42,14 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.rutaactivada.params.subscribe(parametro=>{
+      console.log(parametro['ide'],"SOY EL USUARIO FAC");
+      this.idUsuarioLogueado = parametro['ide'];
       this.factorservice.getGroupfactor(parametro['id']).subscribe(datafactor=>{
-        console.log("GRUPO FACTOR ENCONTRADO !",datafactor);
         this.fillerNav = datafactor;
       })
 
     })
   }
+
 
 }

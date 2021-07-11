@@ -27,7 +27,12 @@ export class LoginService {
     return this.metodoHttp.get<User[]>(this.ruta + '/' +id);
   }
 
-  autenticar(){
-    
+  SetInformation(idusuario:string){
+    localStorage.setItem('idusuario',idusuario);
+  }
+
+  getInformation(){
+    let id
+    return id=localStorage.getItem('idusuario')
   }
 }

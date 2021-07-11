@@ -36,6 +36,7 @@ export class LogincomponentComponent implements OnInit {
 
   form;
   constructor(private router: Router, private service: PersonaService, private formBuilder: FormBuilder,private usuarioservice:LoginService) {
+    
     this.form = formBuilder.group({
       nombres: new FormControl('', []),
       apellidos: new FormControl('', []),
@@ -75,6 +76,7 @@ export class LogincomponentComponent implements OnInit {
           console.log(this.allusuarios);
           
           console.log("BIENVENIDO !");
+          this.usuarioservice.SetInformation(data[i].idusuario.toString())
           this.router.navigate(['cards',data[i].idusuario]);
         }else{
           console.log("USUARIO O CONTRASEÑA INCORRECTO !");
@@ -102,7 +104,8 @@ export class LogincomponentComponent implements OnInit {
   };
 
   enviarsolicitud() {
-
+    console.log(this.archivo,"SOY ARCHIVO");
+    
     if (this.form.valid) {
 
       let rango = this.archivo.name.split('.')

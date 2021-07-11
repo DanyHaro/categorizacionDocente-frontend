@@ -1,1 +1,114 @@
-<p>titulos works!</p>
+<div class="example-container">
+    <form [formGroup]="form" style="margin: 20px;">
+        
+        <h1>TITULO</h1>
+        <hr>
+
+        <mat-form-field appearance="fill" [hideRequiredMarker]="hideRequiredControl.value"
+            [floatLabel]="floatLabelControl.value">
+            <!-- name="pais" formControlName="idpais" -->
+            <mat-select required>
+                <mat-option>-- ninguno --</mat-option>
+                <mat-option #selectpaises (click)="paisSeleccionado(selectpaises.value)" *ngFor="let country of paises" value={{country.idpais}}>{{country.nombre}}</mat-option>
+            </mat-select>
+            <mat-label>
+                <i>País de la Institución</i>
+            </mat-label>
+        </mat-form-field>
+
+        
+        <mat-form-field appearance="fill" [hideRequiredMarker]="hideRequiredControl.value"
+            [floatLabel]="floatLabelControl.value">
+            <mat-select required name="centroestudios" formControlName="iduniversidad" >
+                <mat-option>-- ninguno --</mat-option>
+                <mat-option *ngFor="let unis of universidades" value={{unis.iduniversidad}}>{{unis.nombre}}</mat-option>
+            </mat-select>
+            <mat-label>
+                <i>Centro de Estudios</i>
+            </mat-label>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" [hideRequiredMarker]="hideRequiredControl.value"
+            [floatLabel]="floatLabelControl.value">
+            <mat-select required name="tipo" formControlName="idsubfactor">
+                <mat-option>-- ninguno --</mat-option>
+                <mat-option *ngFor="let subfac of subfactorArray" value={{subfac.idsubfactor}}>{{subfac.nombre}}</mat-option>
+
+            </mat-select>
+            <mat-label>
+                <i> Tipo</i>
+            </mat-label>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill" [floatLabel]="floatLabelControl.value">
+            <mat-label>Especialidad</mat-label>
+            <input required name="especialidad" formControlName="especialidad" name="especialidad" autocomplete="off" matInput placeholder="Nombre del grado">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+
+
+
+        <mat-form-field appearance="fill" [color]="colorControl.value">
+            <mat-label>Nº Horas</mat-label>
+            <input required formControlName="horas" name="horas" autocomplete="off" matInput type="number" placeholder="Max. 60" [formControl]="fontSizeControl" min="10">
+            <!-- <span matSuffix>px</span> -->
+            <mat-error *ngIf="fontSizeControl.invalid">Min: 12</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" [color]="colorControl.value">
+            <mat-label>Nº Creditos</mat-label>
+            <input required formControlName="horas" name="horas" autocomplete="off" matInput type="number" placeholder="Max. 60" [formControl]="fontSizeControl" min="10">
+            <!-- <span matSuffix>px</span> -->
+            <mat-error *ngIf="fontSizeControl.invalid">Min: 12</mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill" [color]="colorControl.value">
+            <mat-label>Años</mat-label>
+            <input required formControlName="years" name="years" autocomplete="off" matInput type="number" placeholder="Max. 8" [formControl]="fontSizeControl" min="10">
+            <!-- <span matSuffix>px</span> -->
+            <mat-error *ngIf="fontSizeControl.invalid">Min: 1</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Fecha de Obtención</mat-label>
+            <input required formControlName="f_obtencion" matInput [matDatepicker]="picker2" [formControl]="serializedDate">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+
+        <div>
+            <label>Registrado SUNEDU </label>
+            <!-- [formControl]="floatLabelControl" -->
+            
+            <mat-radio-group formControlName="sunedu" required> 
+                <mat-radio-button value="true" name="sunedu">Si</mat-radio-button>
+                <mat-radio-button value="false" name="sunedu">No</mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <div class="mb-3" style="width: 28%; display: inline-block; margin: 5px;">
+            <!-- <label for="formFileMultiple" class="form-label">Subir Archivo</label> -->
+            <input required (change)="mostrar($event)" class="form-control" type="file" id="formFileMultiple" formControlName="archivo" name="archivo" multiple>
+        </div>
+
+        <mat-grid-tile [colspan]="2" [rowspan]="3">
+            <div id="preview">
+
+            </div>
+       </mat-grid-tile>
+        <!-- <mat-grid-tile [colspan]="2" [rowspan]="1">   
+            <div class="col-auto">
+               <label for="edad" style="color: black;">Imagen del dni</label>
+               <br>
+               <input style="background: yellow;" type="file" id="hola" formControlName="archivo"(change)="mostrar($event)" required class="form-control" id="imagen" >
+           </div>
+       </mat-grid-tile> -->
+        
+
+
+        <button type="button" (click)="guardarLegajo()" class="btn btn-outline-primary">GUARDAR</button>
+    </form>
+</div>
+

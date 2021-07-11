@@ -17,3 +17,10 @@
 .example-container .mat-radio-button {
     margin: 0 12px;
 }
+table {
+    width: 100%;
+}
+i:hover{
+    cursor: pointer;
+    color: rgb(153, 27, 23);
+}

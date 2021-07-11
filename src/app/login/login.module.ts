@@ -39,7 +39,6 @@ import { DocentesCardsModule } from '../docentes-cards/docentes-cards.module';
     MatRadioModule,
     MatCardModule,
     //MatDatepickerModule,
-    ReactiveFormsModule,
     MatGridListModule,
     MatSelectModule,
     MatStepperModule,

@@ -1,57 +1,38 @@
 <div class="example-container">
-    <form [formGroup]="options" style="margin: 20px;">
-        <!-- <mat-checkbox [formControl]="hideRequiredControl">Hide required marker</mat-checkbox>
-        <div>
-            <label>Float label: </label>
-            <mat-radio-group [formControl]="floatLabelControl">
-                <mat-radio-button value="auto">Auto</mat-radio-button>
-                <mat-radio-button value="always">Always</mat-radio-button>
-            </mat-radio-group>
-        </div> -->
-        <h1>Grados</h1>
+    <form [formGroup]="form" style="margin: 20px;">
+        
+        <h1>GRADOS</h1>
         <hr>
-
-        <mat-form-field appearance="fill" [floatLabel]="floatLabelControl.value">
-            <mat-label>Institución Edcucativa</mat-label>
-            <input autocomplete="off" matInput placeholder="Nombre de la institución">
-            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" [floatLabel]="floatLabelControl.value">
-            <mat-label>Grado en</mat-label>
-            <input autocomplete="off" matInput placeholder="Nombre del grado">
-            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" [floatLabel]="floatLabelControl.value">
-            <mat-label>Codigo</mat-label>
-            <input autocomplete="off" type="text" matInput placeholder="Codigo">
-            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        </mat-form-field>
-
-
-        <!-- <mat-form-field appearance="fill" [floatLabel]="floatLabelControl.value">
-            <mat-label>Codigo</mat-label>
-            <input type="text" autocomplete="off" matInput placeholder="Codigo del grado">
-        </mat-form-field> -->
-
-        <mat-form-field appearance="fill" [color]="colorControl.value">
-            <mat-label>Nº Horas</mat-label>
-            <input matInput type="number" placeholder="Ex. 12" [formControl]="fontSizeControl" min="10">
-            <!-- <span matSuffix>px</span> -->
-            <mat-error *ngIf="fontSizeControl.invalid">Min size: 10px</mat-error>
-        </mat-form-field>
-
 
         <mat-form-field appearance="fill" [hideRequiredMarker]="hideRequiredControl.value"
             [floatLabel]="floatLabelControl.value">
+            <!-- name="pais" formControlName="idpais" -->
             <mat-select required>
                 <mat-option>-- ninguno --</mat-option>
-                <mat-option value="option">Postdoctorado</mat-option>
-                <mat-option value="option">Grado de Doctor en su especialidad</mat-option>
-                <mat-option value="option">Grado de maestro/magíster</mat-option>
-                <mat-option value="option">Grado de Bachiller en su especialidad</mat-option>
-                <mat-option value="option">Otro grado de Bachiller</mat-option>
+                <mat-option #selectpaises (click)="paisSeleccionado(selectpaises.value)" *ngFor="let country of paises" value={{country.idpais}}>{{country.nombre}}</mat-option>
+            </mat-select>
+            <mat-label>
+                <i>País de la Institución</i>
+            </mat-label>
+        </mat-form-field>
+
+        
+        <mat-form-field appearance="fill" [hideRequiredMarker]="hideRequiredControl.value"
+            [floatLabel]="floatLabelControl.value">
+            <mat-select required name="centroestudios" formControlName="iduniversidad" >
+                <mat-option>-- ninguno --</mat-option>
+                <mat-option *ngFor="let unis of universidades" value={{unis.iduniversidad}}>{{unis.nombre}}</mat-option>
+            </mat-select>
+            <mat-label>
+                <i>Centro de Estudios</i>
+            </mat-label>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" [hideRequiredMarker]="hideRequiredControl.value"
+            [floatLabel]="floatLabelControl.value">
+            <mat-select required name="tipo" formControlName="idsubfactor">
+                <mat-option>-- ninguno --</mat-option>
+                <mat-option *ngFor="let subfac of subfactorArray" value={{subfac.idsubfactor}}>{{subfac.nombre}}</mat-option>
 
             </mat-select>
             <mat-label>
@@ -59,36 +40,111 @@
             </mat-label>
         </mat-form-field>
 
-        <mat-form-field appearance="fill" [hideRequiredMarker]="hideRequiredControl.value"
-            [floatLabel]="floatLabelControl.value">
-            <mat-select required>
-                <mat-option>-- ninguno --</mat-option>
-                <mat-option value="option">Argentina</mat-option>
-                <mat-option value="option">Alemania</mat-option>
-                <mat-option value="option">Estados Unidos</mat-option>
-                <mat-option value="option">Perú</mat-option>
-                <mat-option value="option">Colombia</mat-option>
 
-            </mat-select>
-            <mat-label>
-                <i>País de la Institución</i>
-            </mat-label>
+        <mat-form-field appearance="fill" [floatLabel]="floatLabelControl.value">
+            <mat-label>Especialidad</mat-label>
+            <input required name="especialidad" formControlName="especialidad" name="especialidad" autocomplete="off" matInput placeholder="Nombre del grado">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+
+
+
+        <mat-form-field appearance="fill" [color]="colorControl.value">
+            <mat-label>Nº Horas</mat-label>
+            <input required formControlName="horas" name="horas" autocomplete="off" matInput type="number" placeholder="Max. 60" [formControl]="fontSizeControl" min="10">
+            <!-- <span matSuffix>px</span> -->
+            <mat-error *ngIf="fontSizeControl.invalid">Min: 12</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" [color]="colorControl.value">
+            <mat-label>Años</mat-label>
+            <input required formControlName="years" name="years" autocomplete="off" matInput type="number" placeholder="Max. 8" [formControl]="fontSizeControl" min="10">
+            <!-- <span matSuffix>px</span> -->
+            <mat-error *ngIf="fontSizeControl.invalid">Min: 1</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
-            <mat-label>Fecha de Obtención (w/ deserialization)</mat-label>
-            <input matInput [matDatepicker]="picker2" [formControl]="serializedDate">
+            <mat-label>Fecha de Obtención</mat-label>
+            <input required formControlName="f_obtencion" matInput [matDatepicker]="picker2" [formControl]="serializedDate">
             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
             <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>
 
-        <div class="mb-3" style="width: 28%; display: inline-block; margin: 5px;">
-            <label for="formFileMultiple" class="form-label">Subir Archivo</label>
-            <input class="form-control" type="file" id="formFileMultiple" multiple>
+        <div>
+            <label>Registrado SUNEDU </label>
+            <!-- [formControl]="floatLabelControl" -->
+            
+            <mat-radio-group formControlName="sunedu" required> 
+                <mat-radio-button value="true" name="sunedu">Si</mat-radio-button>
+                <mat-radio-button value="false" name="sunedu">No</mat-radio-button>
+            </mat-radio-group>
         </div>
 
+        <div class="mb-3" style="width: 28%; display: inline-block; margin: 5px;">
+            <!-- <label for="formFileMultiple" class="form-label">Subir Archivo</label> -->
+            <input required (change)="mostrar($event)" class="form-control" type="file" id="formFileMultiple" formControlName="archivo" name="archivo" multiple>
+        </div>
 
-        <button type="button" class="btn btn-outline-primary">GUARDAR</button>
+        <mat-grid-tile [colspan]="2" [rowspan]="3">
+            <div id="preview">
+
+            </div>
+       </mat-grid-tile>
+        <!-- <mat-grid-tile [colspan]="2" [rowspan]="1">   
+            <div class="col-auto">
+               <label for="edad" style="color: black;">Imagen del dni</label>
+               <br>
+               <input style="background: yellow;" type="file" id="hola" formControlName="archivo"(change)="mostrar($event)" required class="form-control" id="imagen" >
+           </div>
+       </mat-grid-tile> -->
+        
+
+
+        <button type="button" (click)="guardarLegajo()" class="btn btn-outline-primary">GUARDAR</button>
     </form>
+</div>
 
+
+<!-- TABLE -->
+
+
+<div class="card-body">
+    
+    <table class="table table-hover">
+        <thead>
+            <tr style="text-align: center;">
+                <th>TIPO</th>
+                <th>UNIVERSIDAD</th>
+                <th>ESPECIALIDAD</th>
+                <th>HORAS</th>
+                <th>F.OBTENCIÓN</th>
+                <th>SUNEDU</th>
+                <th>AÑOS</th>
+                <th>ARCHIVO</th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let grados of element_datos" style="background: yellow; text-align: center;">
+                <td>{{grados.idsubfactor}}</td>
+                <td>{{grados.iduniversidad}}</td>
+                <td>{{grados.especialidad}}</td>
+                <td>{{grados.horas}}</td>
+                <td>{{grados.f_obtencion}}</td>
+                <td>{{grados.sunedu}}</td>
+                <td>{{grados.years}}</td>
+                <td><i class="far fa-eye fa-2x"></i></td>
+                <td>
+                    <i style="margin: 15px;" class="far fa-trash-alt fa-2x"></i>
+                    <i class="far fa-edit fa-2x"></i>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <mat-paginator [length]="this.element_datos.length"
+        [pageSize]="5"
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        (page)="onPageChange($event)">
+    </mat-paginator>
 </div>

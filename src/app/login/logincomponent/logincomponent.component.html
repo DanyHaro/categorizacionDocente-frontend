@@ -37,6 +37,12 @@
 </section>
 
 
+
+
+
+
+
+
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
 	aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -80,7 +86,6 @@
 							<input type="file" id="hola" formControlName="foto" (change)="mostrar($event)" required class="form-control" id="imagen" >
 						</div>
 						
-                         
 					</mat-grid-tile>
 
 
@@ -136,12 +141,10 @@
 
                     <mat-grid-tile [colspan]="1" [rowspan]="1">
 					    <mat-form-field class="example-full-width" appearance="fill">
-                            <mat-label>Dni</mat-label>
+                            <mat-label>DNI/Pasaporte</mat-label>
                             <input matInput formControlName="dni" name="dni" maxlength="8">
 							<mat-error *ngIf="form.get('dni').hasError('required')" >*requerido</mat-error>
 							<mat-error *ngIf="form.get('dni').hasError('minlength')">*dni no es valido</mat-error>
-
-							
                         </mat-form-field>
                     </mat-grid-tile>
 

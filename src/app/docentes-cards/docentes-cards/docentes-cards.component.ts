@@ -35,11 +35,21 @@ export class DocentesCardsComponent implements OnInit {
     this.itemdocenteservice.getAllItems().subscribe(dataitem=>{
       for (let i = 0; i < dataitem.length; i++) {
         if (dataitem[i].iditem == id) {
-          console.log("ITEM ENCONTRADO",dataitem[i].nombre);
-          this.cardsrouter.navigate(['principal',dataitem[i].iditem])
+          // console.log("ITEM ENCONTRADO",dataitem[i].nombre);
+
+          this.rutaactivada.params.subscribe(parametrousuario=>{
+            this.loginservice.getOneUser(parametrousuario['id']).subscribe(user=>{
+
+              console.log("USUARIO PASADO : ",user);
+              this.cardsrouter.navigate(['principal',dataitem[i].iditem, user[0].idusuario])
+              
+            })
+          })
+          
+          
           
         }else{
-          console.log("NO ENCONTRADO !");
+          // console.log("NO ENCONTRADO !");
           
         }
       }
