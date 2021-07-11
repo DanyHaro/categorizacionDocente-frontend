@@ -7,6 +7,7 @@ import { IntegracionFeComponent } from "./capacidad-docente/integracion-fe/integ
 import { ModeloComponent } from "./capacidad-docente/modelo/modelo.component";
 import { ReconocimientoCapacidadComponent } from "./capacidad-docente/reconocimiento-capacidad/reconocimiento-capacidad.component";
 import { ServicioAprendizajeComponent } from "./capacidad-docente/servicio-aprendizaje/servicio-aprendizaje.component";
+import { CapacitacionComponent } from "./Capacitacion-Profesional/capacitacion/capacitacion.component";
 import { ActitudesLaboralesComponent } from "./desempeño-docente/actitudes-laborales/actitudes-laborales.component";
 import { AdviserConsejeriaComponent } from "./desempeño-docente/adviser-consejeria/adviser-consejeria.component";
 import { EvaluacionDesempenoComponent } from "./desempeño-docente/evaluacion-desempeno/evaluacion-desempeno.component";
@@ -20,15 +21,26 @@ import { EstudiosComponent } from "./formacion-academica/estudios/estudios.compo
 import { GradosComponent } from "./formacion-academica/grados/grados.component";
 import { IdiomasComponent } from "./formacion-academica/idiomas/idiomas.component";
 import { TitulosComponent } from "./formacion-academica/titulos/titulos.component";
+import { AsesoriasComponent } from "./Investigacion-Aportes-Conocimiento/asesorias/asesorias.component";
+import { LibrosComponent } from "./Investigacion-Aportes-Conocimiento/libros/libros.component";
+import { ParticipacionInvComponent } from "./Investigacion-Aportes-Conocimiento/participacion-inv/participacion-inv.component";
+import { PublicInvComponent } from "./Investigacion-Aportes-Conocimiento/public-inv/public-inv.component";
 import { PremiosComponent } from "./Vinculacion-Medio/premios/premios.component";
+import { ProyeccionSocialComponent } from "./Vinculacion-Medio/proyeccion-social/proyeccion-social.component";
 
 const routes: Routes = [
-    {path:'GRADOS/:id/:idusu',component:GradosComponent},
-    {path:'TÍTULOS/:id/:idusu',component:TitulosComponent},
-    {path:'DIPLOMATURAS/:id/:idusu',component:DiplomaturasComponent},
-    {path:'ESTUDIOS/:id/:idusu',component:EstudiosComponent},
-    {path:'IDIOMAS/:id/:idusu',component:IdiomasComponent},
-
+    {path:'grados',component:GradosComponent},
+    {path:'títulos',component:TitulosComponent},
+    {path:'diplomaturas',component:DiplomaturasComponent},
+    {path:'estudios',component:EstudiosComponent},
+    {path:'idiomas',component:IdiomasComponent},
+ 
+    {path:'dictaminación y jurado de tesis',component:AsesoriasComponent},
+    {path:'publicaciónes de libros u otros',component:LibrosComponent},
+    {path:'capacitación profesional',component:CapacitacionComponent},
+    {path:'publicación de investigaciones',component:PublicInvComponent},
+  
+    {path:'participación en eventos académicos',component:ParticipacionInvComponent},
   { path: 'modelo', component: ModeloComponent },
   { path: 'experiencia en la docencia', component: DocenciaComponent},
   { path: 'experiencia administrativa universitaria', component: UniversitariaComponent},
@@ -46,7 +58,7 @@ const routes: Routes = [
   { path: 'servicio aprendizaje', component: ServicioAprendizajeComponent },
   {path:'aportes y logros',component:AportesLogrosComponent},
   {path:'premios o reconocimientos',component:PremiosComponent},
-
+  {path:'proyección social',component:ProyeccionSocialComponent},
 ];
 
 @NgModule({

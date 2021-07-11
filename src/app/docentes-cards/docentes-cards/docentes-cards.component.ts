@@ -13,6 +13,7 @@ export class DocentesCardsComponent implements OnInit {
 
   usuarioLogueado:any={};
 iddocente:number;
+
   cards: Items[]=[]
 
   constructor(private cardsrouter: Router, private loginservice:LoginService, private rutaactivada: ActivatedRoute, private itemdocenteservice:ItemDocentesService ) { }
@@ -24,6 +25,8 @@ iddocente:number;
         this.usuarioLogueado = databd[0];
         this.iddocente = databd[0].iddocente;
         localStorage.setItem('iddocente', this.iddocente.toString());
+        localStorage.setItem('idusuario', this.usuarioLogueado.idusuario.toString());
+     
       })
     })
 
