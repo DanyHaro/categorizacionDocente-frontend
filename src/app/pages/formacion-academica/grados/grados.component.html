@@ -90,17 +90,8 @@
 
             </div>
        </mat-grid-tile>
-        <!-- <mat-grid-tile [colspan]="2" [rowspan]="1">   
-            <div class="col-auto">
-               <label for="edad" style="color: black;">Imagen del dni</label>
-               <br>
-               <input style="background: yellow;" type="file" id="hola" formControlName="archivo"(change)="mostrar($event)" required class="form-control" id="imagen" >
-           </div>
-       </mat-grid-tile> -->
-        
 
-
-        <button type="button" (click)="guardarLegajo()" class="btn btn-outline-primary">GUARDAR</button>
+        <button mat-raised-button color="primary" type="button" (click)="guardarLegajo()" class="btn btn-outline-primary">Enviar</button>
     </form>
 </div>
 
@@ -109,7 +100,7 @@
 
 
 <div class="card-body">
-    
+
     <table class="table table-hover">
         <thead>
             <tr style="text-align: center;">
@@ -142,9 +133,7 @@
             </tr>
         </tbody>
     </table>
-    <mat-paginator [length]="this.element_datos.length"
-        [pageSize]="5"
-        [pageSizeOptions]="[5, 10, 25, 100]"
+    <mat-paginator [length]="this.element_datos.length" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"
         (page)="onPageChange($event)">
     </mat-paginator>
 </div>
