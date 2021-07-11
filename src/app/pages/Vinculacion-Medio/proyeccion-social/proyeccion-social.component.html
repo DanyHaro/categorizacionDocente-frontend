@@ -1,0 +1,70 @@
+
+<div class="body">
+<h2>Proyeccion Social</h2>
+<hr>
+
+<mat-grid-list cols="7" rowHeight="70px">
+				<form class="row g-6"  [formGroup]="form">
+	                 <mat-grid-tile [colspan]="2" [rowspan]="1">
+
+					<mat-form-field appearance="fill" style="width: 90%;">
+                        <mat-label>Cargo/Tipo de Evento</mat-label>
+                        <mat-select name="idsubfactor" formControlName="idsubfactor">
+                           <mat-option *ngFor="let subfactor of subfactores" [value]="subfactor.idsubfactor">
+                            {{subfactor.nombre}}
+                           </mat-option>
+                          
+                        </mat-select>
+                         <mat-icon matSuffix>person</mat-icon>
+                    </mat-form-field>
+					</mat-grid-tile>
+
+
+
+	             <mat-grid-tile  [colspan]="1" [rowspan]="1">
+                   <mat-form-field appearance="fill"  style="width: 90%;">
+                           <mat-label>Fecha</mat-label>
+                           <input matInput  formControlName="fecha" type="date">
+                         
+                  </mat-form-field>
+                  </mat-grid-tile>
+                   
+
+                  <mat-grid-tile  [colspan]="2" [rowspan]="1">
+					   <mat-form-field class="example-full-width" style="width: 90%;" appearance="fill">
+                            <mat-label>Nombre del Evento(*)</mat-label>
+                            <input matInput formControlName="nombreeven"   name="nombres" >
+                            <mat-icon matSuffix>festival</mat-icon>
+                        </mat-form-field>
+					</mat-grid-tile>
+
+				
+               
+
+				
+
+                
+                     <mat-grid-tile [colspan]="2" [rowspan]="1">
+                         <div class="mb-3" style="width: 100%; display: inline-block; margin:5px">
+                         
+                          <input type="file" id="hola" formControlName="foto" (change)="mostrar($event)" placeholder="Evidencia" required class="form-control" >
+                        </div>
+                          <div class="mb-3" style="width: 5%; display: inline-block;margin:5px ">
+                               <mat-icon matSuffix>upload</mat-icon>
+                         
+                        </div>
+				     	
+					</mat-grid-tile>
+					
+                    
+                   
+                      <mat-grid-tile [colspan]="1" [rowspan]="1">
+
+					    <button mat-raised-button color="primary" (click)="enviar()">Enviar</button>
+					</mat-grid-tile>
+
+
+					 </form>
+                </mat-grid-list>
+  
+  </div>

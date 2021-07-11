@@ -10,9 +10,6 @@ import { ProfesionalComponent } from './experiencia-laboral/profesional/profesio
 import { DocenciaComponent } from './experiencia-laboral/docencia/docencia.component';
 import { NouniversitariaComponent } from './experiencia-laboral/nouniversitaria/nouniversitaria.component';
 import { UniversitariaComponent } from './experiencia-laboral/universitaria/universitaria.component';
-
-//IMPORTS FROM ANGULAR MATERIAL
-import { MatIconModule } from '@angular/material/icon';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -29,6 +26,21 @@ import { DocenteParcialComponent } from './capacidad-docente/docente-parcial/doc
 import { ReconocimientoCapacidadComponent } from './capacidad-docente/reconocimiento-capacidad/reconocimiento-capacidad.component';
 import { IntegracionFeComponent } from './capacidad-docente/integracion-fe/integracion-fe.component';
 import { ServicioAprendizajeComponent } from './capacidad-docente/servicio-aprendizaje/servicio-aprendizaje.component';
+import { AportesLogrosComponent } from './Aportes-Logros/aportes-logros/aportes-logros.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatButtonModule } from '@angular/material/button';
+import { PremiosComponent } from './Vinculacion-Medio/premios/premios.component';
+import { AsesoriasComponent } from './Investigacion-Aportes-Conocimiento/asesorias/asesorias.component';
+import { LibrosComponent } from './Investigacion-Aportes-Conocimiento/libros/libros.component';
+import { ProyeccionSocialComponent } from './Vinculacion-Medio/proyeccion-social/proyeccion-social.component';
+import { CapacitacionComponent } from './Capacitacion-Profesional/capacitacion/capacitacion.component';
+import { PublicInvComponent } from './Investigacion-Aportes-Conocimiento/public-inv/public-inv.component';
+import { ParticipacionInvComponent } from './Investigacion-Aportes-Conocimiento/participacion-inv/participacion-inv.component';
+
+
+//IMPORTS FROM ANGULAR MATERIAL
+import { MatIconModule } from '@angular/material/icon';
+
 
 @NgModule({
   declarations: [
@@ -50,6 +62,14 @@ import { ServicioAprendizajeComponent } from './capacidad-docente/servicio-apren
     ReconocimientoCapacidadComponent,
     IntegracionFeComponent,
     ServicioAprendizajeComponent,
+    AportesLogrosComponent,
+    PremiosComponent,
+    AsesoriasComponent,
+    LibrosComponent,
+    ProyeccionSocialComponent,
+    CapacitacionComponent,
+    PublicInvComponent,
+    ParticipacionInvComponent
   ],
   imports: [
     CommonModule,
@@ -65,6 +85,30 @@ import { ServicioAprendizajeComponent } from './capacidad-docente/servicio-apren
     ReactiveFormsModule,
     MatInputModule,
     MatDatepickerModule,
+    MatGridListModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    ReactiveFormsModule,
+MatButtonModule,
+MatSelectModule,
+MatRadioModule,
+CommonModule,
+
+FormsModule,
+
+MatFormFieldModule,
+MatIconModule,
+MatInputModule,
+ReactiveFormsModule,
+MatGridListModule,
+MatSelectModule,
+MatDatepickerModule,
+MatButtonModule,
+
+MatSelectModule,
+MatRadioModule,
+
   ],
 })
 export class PagesModule {}

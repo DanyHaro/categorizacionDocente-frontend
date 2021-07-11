@@ -1,0 +1,300 @@
+ <div id="container">
+ 
+
+             
+     <h3 *ngIf="docente">Docente: {{docente.nombres + ' ' + docente.apellidos | uppercase}} </h3>
+      <hr style="color: #5c1f31;border:2px solid">
+
+
+
+              
+             <mat-grid-list cols="4" rowHeight="70px" >
+              <mat-grid-tile [colspan]="2"  [rowspan]=1  >
+                            <mat-form-field  appearance="fill">
+                                 <mat-label>Items</mat-label>
+                               <mat-select  class="inputs"  >
+                                  <mat-option *ngFor="let item of items"(click)="mostrarfactor(item.iditem)"  [value]="item.iditem">
+                                    {{item.nombre}}
+                                  </mat-option>
+                               </mat-select>
+                             </mat-form-field>
+
+
+
+                     
+              
+              
+              </mat-grid-tile>
+              <mat-grid-tile [colspan]="2"  [rowspan]="1">
+                            <mat-form-field appearance="fill">
+                                 <mat-label>Factores</mat-label>
+                               <mat-select class="inputs"  >
+                                  <mat-option *ngFor="let factor of factores" (click)="mostrardet(factor.idfactor)"[value]="factor.idfactor">
+                                    {{factor.nombre}}
+                                  </mat-option>
+                               </mat-select>
+                             </mat-form-field>
+
+
+
+                     
+              
+              
+              </mat-grid-tile>
+              <mat-grid-tile [colspan]="4"  [rowspan]="6">
+                            <div   id="contenedor-principal">
+                             <!--Undefinido-->
+                         
+                               <!--Libros-->
+                             <div *ngIf="idfactor==23"  id="contenedor">
+                               <div  class="cont-primary" *ngFor="let libro of libros">       
+                                 <div class="cont-second" *ngIf="libro.tipo == false" >
+                                  <ngx-doc-viewer   style="border:1px solid black" url="{{libro.foto}}" viewer="google" style="width:100%;height:100%"></ngx-doc-viewer>
+                                   
+                                  
+                                  </div>
+                                  <div class="cont-second" *ngIf="libro.tipo == true">
+                                 
+                                   <img src="{{libro.foto}}">
+                                  
+                                  </div>
+                                  <div class="cont-second cont-grid" >
+                                  <mat-form-field class="example-full-width font" appearance="fill">
+                                     <mat-label>Año</mat-label>
+                                     <input matInput value="{{libro.ano}}" disabled>
+                                  </mat-form-field>
+
+                                  <mat-form-field class="example-full-width font" appearance="fill">
+                                     <mat-label>Tipo</mat-label>
+                                     <input matInput value="{{libro.idsubfactor}}" disabled>
+                                  </mat-form-field>
+                                    <mat-form-field style="grid-column:1/3" class="example-full-width font" appearance="fill">
+                                     <mat-label>Titulo</mat-label>
+                                     <input matInput value="{{libro.titulo}}"  disabled>
+                                  </mat-form-field>
+                                  <mat-form-field  class="example-full-width font" appearance="fill">
+                                     <mat-label>Rol</mat-label>
+                                     <input matInput value="{{libro.rol}}"  disabled>
+                                  </mat-form-field>
+                                
+                                  
+                                  <mat-form-field  class="example-full-width font" appearance="fill">
+                                     <mat-label>Editorial</mat-label>
+                                     <input matInput value="{{libro.editorial}}"  disabled>
+                                  </mat-form-field>
+                                
+                                   
+                                   
+                                    <mat-form-field style="width:50%;font-size:16px;"  class="example-full-width" appearance="fill">
+                                     <mat-label>Puntaje</mat-label>
+                                     <input matInput value="{{libro.puntaje}}"  >
+                                  </mat-form-field>
+                                   
+                                   
+                                     	<button  mat-raised-button  color="primary" style=" width:50%;height:50%;" >Modificar</button>
+                                  
+                                   
+                                   </div>       
+                                    
+                                </div> 
+                                 </div>
+                             <!--Asesorias-->
+                             <div *ngIf="idfactor==25"  id="contenedor">
+                               <div  class="cont-primary" *ngFor="let asesoria of asesorias">       
+                                 <div class="cont-second" *ngIf="asesoria.tipo == false" >
+                                  <ngx-doc-viewer   style="border:1px solid black" url="{{asesoria.foto}}" viewer="google" style="width:100%;height:100%"></ngx-doc-viewer>
+                                   
+                                  
+                                  </div>
+                                  <div class="cont-second" *ngIf="asesoria.tipo == true">
+                                 
+                                   <img src="{{asesoria.foto}}">
+                                  
+                                  </div>
+                                  <div class="cont-second cont-gridv2" >
+                                  <mat-form-field class="example-full-width font" appearance="fill">
+                                     <mat-label>Año</mat-label>
+                                     <input matInput value="{{asesoria.ano}}" disabled>
+                                  </mat-form-field>
+
+                                  <mat-form-field class="example-full-width font" appearance="fill">
+                                     <mat-label>Nivel</mat-label>
+                                     <input matInput value="{{asesoria.nivel}}" disabled>
+                                  </mat-form-field>
+                                  <mat-form-field  class="example-full-width font" appearance="fill">
+                                     <mat-label>Autor</mat-label>
+                                     <input matInput value="{{asesoria.autor}}"  disabled>
+                                  </mat-form-field>
+                                  <mat-form-field style="grid-column:1/4" class="example-full-width font" appearance="fill">
+                                     <mat-label>Titulo</mat-label>
+                                     <input matInput value="{{asesoria.titulo}}"  disabled>
+                                  </mat-form-field>
+                                  
+                                  <mat-form-field  class="example-full-width font" appearance="fill">
+                                     <mat-label>Especialidad</mat-label>
+                                     <input matInput value="{{asesoria.especialidad}}"  disabled>
+                                  </mat-form-field>
+                                 <mat-form-field  class="example-full-width font" appearance="fill">
+                                     <mat-label>Resolucion</mat-label>
+                                     <input matInput value="{{asesoria.resolucion}}"  disabled>
+                                  </mat-form-field>
+                                  <mat-form-field  class="example-full-width font" appearance="fill">
+                                     <mat-label>Tipo</mat-label>
+                                     <input matInput value="{{asesoria.idsubfactor}}"  disabled>
+                                  </mat-form-field>
+                                   
+                                   
+                                    <mat-form-field style="width:50%;font-size:16px;"  class="example-full-width" appearance="fill">
+                                     <mat-label>Puntaje</mat-label>
+                                     <input matInput value="{{asesoria.puntaje}}"  >
+                                  </mat-form-field>
+                                   
+                                   
+                                     	<button  mat-raised-button  color="primary" style=" width:50%;height:50%;" >Modificar</button>
+                                  
+                                   
+                                   </div>       
+                                    
+                                </div> 
+                                 </div>
+                               <!--Premios-->
+                               <div *ngIf="idfactor==27"  id="contenedor">
+                               <div  class="cont-primary" *ngFor="let premio of premios">       
+                                 <div class="cont-second" *ngIf="premio.tipo == false" >
+                                  <ngx-doc-viewer   style="border:1px solid black" url="{{premio.foto}}" viewer="google" style="width:100%;height:100%"></ngx-doc-viewer>
+                                   
+                                  
+                                  </div>
+                                  <div class="cont-second" *ngIf="premio.tipo == true">
+                                 
+                                   <img src="{{premio.foto}}">
+                                  
+                                  </div>
+                                  <div class="cont-second cont-grid" >
+                                  <mat-form-field class="example-full-width font" appearance="fill">
+                                     <mat-label>Institucion</mat-label>
+                                     <input matInput value="{{premio.institucion}}" disabled>
+                                  </mat-form-field>
+
+                                  <mat-form-field class="example-full-width font" appearance="fill">
+                                     <mat-label>Distincion</mat-label>
+                                     <input matInput value="{{premio.distincion}}" disabled>
+                                  </mat-form-field>
+                                  <mat-form-field style="grid-column:1/3" class="example-full-width font" appearance="fill">
+                                     <mat-label>Detalle de Premio o Distincion</mat-label>
+                                     <input matInput value="{{premio.detalle}}"  disabled>
+                                  </mat-form-field>
+                                  <mat-form-field  class="example-full-width font" appearance="fill">
+                                     <mat-label>Fecha</mat-label>
+                                     <input matInput value="{{premio.fecha | date:  'dd-MM-yyyy'}}"  disabled>
+                                  </mat-form-field>
+                                  <mat-form-field  class="example-full-width font" appearance="fill">
+                                     <mat-label>Tipo</mat-label>
+                                     <input matInput value="{{premio.idsubfactor}}"  disabled>
+                                  </mat-form-field>
+
+                                   <p></p>
+                                   
+                                   <p></p>
+                                    <mat-form-field style="width:50%;font-size:16px;"  class="example-full-width" appearance="fill">
+                                     <mat-label>Puntaje</mat-label>
+                                     <input matInput value="{{premio.puntaje}}"  >
+                                  </mat-form-field>
+                                   
+                                   
+                                     	<button  mat-raised-button  color="primary" style=" width:50%;height:50%;" >Modificar</button>
+                                  
+                                   
+                                   </div>       
+                                    
+                                </div> 
+                                 </div>
+                               <!--Aportes-->
+                                <div *ngIf="idfactor==28"  id="contenedor">
+                                 <div  class="cont-primary" *ngFor="let aporte of aportes">       
+                                  <div class="cont-second" *ngIf="aporte.tipo == false" >
+                                   <ngx-doc-viewer   style="border:1px solid black" url="{{aporte.foto}}" viewer="google" style="width:100%;height:100%"></ngx-doc-viewer>
+                                   
+                                  
+                                  </div>
+                                  <div class="cont-second" *ngIf="aporte.tipo == true">
+                                 
+                                   <img src="{{aporte.foto}}">
+                                  
+                                  </div>
+                                  <div class="cont-second cont-grid" >
+                                  <mat-form-field class="example-full-width font" appearance="fill">
+                                     <mat-label>Institucion</mat-label>
+                                     <input matInput value="{{aporte.institucion}}" disabled>
+                                  </mat-form-field>
+
+                                  <mat-form-field class="example-full-width font" appearance="fill">
+                                     <mat-label>Pais</mat-label>
+                                     <input matInput value="{{aporte.pais}}" disabled>
+                                  </mat-form-field>
+                                  <mat-form-field style="grid-column:1/3" class="example-full-width font" appearance="fill">
+                                     <mat-label>Detalle </mat-label>
+                                     <input matInput value="{{aporte.detalle}}"  disabled>
+                                  </mat-form-field>
+                                  <mat-form-field  class="example-full-width font" appearance="fill">
+                                     <mat-label>Fecha</mat-label>
+                                     <input matInput value="{{aporte.fecha | date:  'dd-MM-yyyy'}}"  disabled>
+                                  </mat-form-field>
+                                  <mat-form-field  class="example-full-width font" appearance="fill">
+                                     <mat-label>Tipo</mat-label>
+                                     <input matInput value="{{aporte.idsubfactor}}"  disabled>
+                                  </mat-form-field>
+
+                                   <p></p>
+                                   
+                                   <p></p>
+                                    <mat-form-field style="width:50%;font-size:16px;" class="example-full-width " appearance="fill">
+                                     <mat-label>Puntaje</mat-label>
+                                     <input   matInput value="{{aporte.puntaje}}"  >
+                                  </mat-form-field>
+                                   
+                                   
+                                     	<button  mat-raised-button  color="primary" style=" width:50%;height:50%;" >Modificar</button>
+                                  
+                                   
+                                   </div>       
+                                </div> 
+
+
+
+                                
+                                  </div>
+                         
+                         
+                         
+                         
+                         
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                            </div>
+                          
+                            
+                            
+
+
+
+                     
+              
+              
+              </mat-grid-tile>
+             
+               </mat-grid-list>
+              
+             
+	
+			
+       
+
+          </div>

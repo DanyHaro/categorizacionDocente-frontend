@@ -12,7 +12,7 @@ import { LoginService } from 'src/app/services/login/login.service';
 export class DocentesCardsComponent implements OnInit {
 
   usuarioLogueado:any={};
-
+iddocente:number;
   cards: Items[]=[]
 
   constructor(private cardsrouter: Router, private loginservice:LoginService, private rutaactivada: ActivatedRoute, private itemdocenteservice:ItemDocentesService ) { }
@@ -22,6 +22,8 @@ export class DocentesCardsComponent implements OnInit {
       this.loginservice.getOneUser(parametro['id']).subscribe(databd=>{
         console.log(databd,"USUARIO ENCONTRADO !");
         this.usuarioLogueado = databd[0];
+        this.iddocente = databd[0].iddocente;
+        localStorage.setItem('iddocente', this.iddocente.toString());
       })
     })
 

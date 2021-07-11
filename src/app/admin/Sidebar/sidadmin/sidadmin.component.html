@@ -3,7 +3,7 @@
         <button mat-icon-button (click)="snav.toggle()">
             <mat-icon>menu</mat-icon>
         </button>
-        <h1 class="example-app-name">Categorización Docente</h1>
+        <h1 class="example-app-name">Gestion Docente</h1>
         <!-- <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
             <mat-icon>favorite</mat-icon>
         </button> -->
@@ -13,9 +13,9 @@
         <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
             fixedTopGap="56">
             <mat-nav-list>
-                <a  id="optionsSide" mat-list-item *ngFor="let nav of fillerNav" [routerLink]="['pages/',nav.nombre | lowercase]" style="padding: 5px; margin-top: 8px;">
+                <a  id="optionsSide" mat-list-item *ngFor="let nav of fillerNav" [routerLink]="['gestion/',nav.route]" style="padding: 5px; margin-top: 8px;">
                     <!-- <mat-icon>{{nav.icon}}</mat-icon> -->
-                    {{nav.nombre }}
+                    {{nav.name }}
                 </a> 
             </mat-nav-list>
         </mat-sidenav>

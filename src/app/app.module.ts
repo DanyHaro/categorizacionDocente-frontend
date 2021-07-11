@@ -8,11 +8,12 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
-import { GestiondocenteComponent } from './admin/Secretaria/gestiondocente/gestiondocente.component';
+
 
 //IMPORTS FROM ANGULAR MATERIAL
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatNativeDateModule} from '@angular/material/core';
+
 
 // import {A11yModule} from '@angular/cdk/a11y';
 // import {ClipboardModule} from '@angular/cdk/clipboard';

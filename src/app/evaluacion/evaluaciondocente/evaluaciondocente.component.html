@@ -1,0 +1,76 @@
+
+
+
+
+
+
+<table mat-table [dataSource]="docentes" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="nombres">
+    <th mat-header-cell *matHeaderCellDef> Id </th>
+    <td mat-cell *matCellDef="let element"> {{element.iddocente}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="apellidos">
+    <th mat-header-cell *matHeaderCellDef> Nombres </th>
+    <td mat-cell *matCellDef="let element"> {{element.nombres}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="correo">
+    <th mat-header-cell *matHeaderCellDef> Apellidos </th>
+    <td mat-cell *matCellDef="let element"> {{element.apellidos}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="dni">
+    <th mat-header-cell *matHeaderCellDef> Rango </th>
+    <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="detalle">
+    <th mat-header-cell *matHeaderCellDef> Detalle </th>
+    <td mat-cell *matCellDef="let element"> <button mat-icon-button >
+       <mat-icon  (click)="navegar(element.iddocente)"  >open_in_new</mat-icon>
+      </button> </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
+
+		
+
+
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+	aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-xl">
+		<div class="modal-content" >
+		
+        
+        
+		
+        	
+
+					
+		
+		
+			
+		
+		</div>
+	</div>
+</div>
+
+
+
+
+
+

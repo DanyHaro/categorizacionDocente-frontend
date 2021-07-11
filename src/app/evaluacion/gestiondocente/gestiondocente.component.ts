@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Categoria } from 'src/app/Models/categoria';
 import { Docente } from 'src/app/Models/docente';
 import { Persona } from 'src/app/Models/Persona';
@@ -11,6 +12,7 @@ import { PersonaService } from 'src/app/services/Persona/persona.service';
   styleUrls: ['./gestiondocente.component.css']
 })
 export class GestiondocenteComponent implements OnInit {
+
   users:User[];
   tipocats=["nv","at"];
   usuario:User=new User();
@@ -19,7 +21,7 @@ export class GestiondocenteComponent implements OnInit {
   detallepersona:Persona = new Persona();
   personas:Persona[];
   categorias:Categoria[];
-  constructor( private service:PersonaService) { }
+  constructor( private service:PersonaService, private route:Router) { }
 
   ngOnInit(): void {
     this.service.allpeople('ES').subscribe(
@@ -102,5 +104,5 @@ export class GestiondocenteComponent implements OnInit {
     this.docente=new Docente();
     this.usuario=new User();
   }
-
+  
 }

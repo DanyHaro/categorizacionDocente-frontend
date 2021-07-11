@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AdminRoutingModule } from './admin-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
@@ -14,18 +13,24 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
 import {MatTabsModule} from '@angular/material/tabs';
-import { SidadminComponent } from './Sidebar/sidadmin/sidadmin.component';
+
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { EvaluaciondocenteComponent } from './evaluaciondocente/evaluaciondocente.component';
+import { EvaluacionRoutingModule } from './evaluacion-routing.module';
+import { GestiondocenteComponent } from './gestiondocente/gestiondocente.component';
+import { ModalComponent } from './modal/modal.component';
+import { NgxDocViewerModule } from 'ngx-doc-viewer';
 
 @NgModule({
-  declarations: [ SidadminComponent],
+  declarations: [EvaluaciondocenteComponent, GestiondocenteComponent, ModalComponent],
   imports: [
+    NgxDocViewerModule,
     CommonModule,
-    AdminRoutingModule,
+   EvaluacionRoutingModule,
     FormsModule,
     MatTableModule,
     MatFormFieldModule,
@@ -38,15 +43,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatTabsModule,
     MatSelectModule,
     MatRadioModule,
-
     MatSidenavModule,
     MatListModule,
     MatSliderModule,
-   
     MatToolbarModule,
-    MatMenuModule,
-   
-    
+    MatMenuModule
   ]
 })
-export class AdminModule { }
+export class EvaluacionModule { }
