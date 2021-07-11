@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Asesoria } from 'src/app/Models/asesoria';
 import { Subfactor } from 'src/app/Models/subfactor';
 import { PersonaService } from 'src/app/services/Persona/persona.service';
 import Swal from 'sweetalert2';
+import { ModaldialogComponent } from '../../modaldialog/modaldialog.component';
 
 @Component({
   selector: 'app-asesorias',
@@ -18,9 +22,13 @@ export class AsesoriasComponent implements OnInit {
   asesoria:Asesoria=new Asesoria();
   iddocente:number;
   archivo :File;
-  constructor(private router: Router, private service:PersonaService,private formBuilder: FormBuilder) { 
+  dataSource = null;
+  displayedColumns: string[] = ['año',  'nivel', 'titulo','autor','especialidad','resolucion','tipo','foto'];
+  asesorias:Asesoria[]=[]
+   @ViewChild (MatPaginator, {static: true}) paginador: MatPaginator;
+  constructor(private router: Router, private service:PersonaService,private formBuilder: FormBuilder,public dialog: MatDialog) { 
     this.form = formBuilder.group({
-      año:new FormControl('', []),
+      ano:new FormControl('', []),
       nivel:new FormControl('', []),
       titulo:new FormControl('',[]),
       autor:new FormControl('',[]),
@@ -32,10 +40,12 @@ export class AsesoriasComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.iddocente = Number(localStorage.getItem('iddocente'));
+    this.obteneraprot();
     this.service.getsubfactor(25).subscribe(
       (data)=>{this.subfactores = data}
     )
-    this.iddocente = Number(localStorage.getItem('iddocente'));
+    
   }
   mostrar(event){
     this.archivo = event.target.files[0];
@@ -57,12 +67,30 @@ enviar(){
     
     });
     this.form.reset();
-    this.form.enable ()
+    this.form.enable();
+    this.obteneraprot();
     }
     
   )
   
   
 }
+obteneraprot(){
+  this.service.getasesoria(this.iddocente).subscribe(
+    data=>{this.asesorias=data;
+      this.dataSource = new MatTableDataSource<any>(data);
+      this.dataSource.paginator = this.paginador;
+     }
+  )
+  
+}
+openDialog(foto) {
+  this.dialog.open(ModaldialogComponent, {
+    data: {
+      foto: foto
+    }
+  });
+}
+
 
 }

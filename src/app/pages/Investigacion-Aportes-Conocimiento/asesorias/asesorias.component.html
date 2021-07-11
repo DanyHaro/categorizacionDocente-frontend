@@ -9,7 +9,7 @@
                     <mat-grid-tile  [colspan]="1" [rowspan]="1">
 					    <mat-form-field class="example-full-width"  style="width: 90%;" appearance="fill">
                             <mat-label>Año</mat-label>
-                            <input matInput formControlName="año"   name="nombres" >
+                            <input matInput formControlName="ano"   name="nombres" >
                               <mat-icon matSuffix>calendar_today</mat-icon>
                         </mat-form-field>
 
@@ -112,3 +112,62 @@
                 </mat-grid-list>
   
   </div>
+
+
+  
+  <div class="body mat-elevation-z8 " style="width=80%" >
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="año">
+      <th mat-header-cell *matHeaderCellDef> Año</th>
+      <td mat-cell *matCellDef="let element"> {{element.ano}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="nivel">
+      <th mat-header-cell *matHeaderCellDef> Nivel del Jurado </th>
+      <td mat-cell *matCellDef="let element"> {{element.nivel}} </td>
+    </ng-container>
+
+<ng-container matColumnDef="titulo">
+      <th mat-header-cell *matHeaderCellDef>Titulo</th>
+      <td mat-cell *matCellDef="let element"> {{element.titulo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="autor">
+      <th mat-header-cell *matHeaderCellDef>Autor</th>
+      <td mat-cell *matCellDef="let element"> {{element.autor}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="especialidad">
+      <th mat-header-cell *matHeaderCellDef>Especialidad</th>
+      <td mat-cell *matCellDef="let element"> {{element.especialidad}} </td>
+    </ng-container>
+
+<ng-container matColumnDef="resolucion">
+      <th mat-header-cell *matHeaderCellDef>Resolucion</th>
+      <td mat-cell *matCellDef="let element"> {{element.resolucion}} </td>
+    </ng-container>
+    <!-- Weight Column -->
+ 
+
+ <ng-container matColumnDef="tipo">
+      <th mat-header-cell *matHeaderCellDef> Tipo de evento</th>
+      <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+    </ng-container>
+
+
+
+    
+  <ng-container matColumnDef="foto">
+      <th mat-header-cell *matHeaderCellDef> Foto </th>
+      <td mat-cell *matCellDef="let element"> <button style="border:none"  (click)="openDialog(element.foto)" data-toggle="modal" data-target="#exampleModal"> <mat-icon matSuffix>visibility</mat-icon> </button></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator  [pageSize]="3" [pageSizeOptions]="[3]" showFirstLastButtons></mat-paginator>
+  
+</div>

@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Premio } from 'src/app/Models/premio';
 import { Proyeccion } from 'src/app/Models/proyeccion';
 import { Subfactor } from 'src/app/Models/subfactor';
 import { PersonaService } from 'src/app/services/Persona/persona.service';
 import Swal from 'sweetalert2';
+import { ModaldialogComponent } from '../../modaldialog/modaldialog.component';
 
 @Component({
   selector: 'app-proyeccion-social',
@@ -17,9 +21,14 @@ export class ProyeccionSocialComponent implements OnInit {
   form;
   archivo:File;
   subfactores:Subfactor[];
-  iddocente:number
+  dataSource = null;
+  displayedColumns: string[] = ['evento',  'Fecha', 'tipo','foto'];
+   @ViewChild (MatPaginator, {static: true}) paginador: MatPaginator;
+    
+  iddocente:number;
+  proyecciones:Proyeccion[]=[]
   proyeccion:Proyeccion = new Proyeccion();
-  constructor(private router: Router, private service:PersonaService,private formBuilder: FormBuilder) {
+  constructor(private router: Router, private service:PersonaService,private formBuilder: FormBuilder,public dialog: MatDialog) {
     this.form = formBuilder.group({
       nombreeven:new FormControl('', []),
       fecha:new FormControl('', []),
@@ -31,10 +40,12 @@ export class ProyeccionSocialComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.iddocente = Number(localStorage.getItem('iddocente'));
+    this.obteneraprot();
     this.service.getsubfactor(26).subscribe(
       (data)=>{this.subfactores = data}
     )
-    this.iddocente = Number(localStorage.getItem('iddocente'));
+  
   }
   mostrar(event){
       this.archivo = event.target.files[0];
@@ -57,11 +68,28 @@ export class ProyeccionSocialComponent implements OnInit {
       
       });
       this.form.reset();
-      this.form.enable ()
+      this.form.enable ();
+      this.obteneraprot();
       }
       
     )
     
     
+  }
+  obteneraprot(){
+    this.service.getproyeccion(this.iddocente).subscribe(
+      data=>{this.proyecciones=data;
+        this.dataSource = new MatTableDataSource<any>(data);
+        this.dataSource.paginator = this.paginador;
+       }
+    )
+    
+  }
+ openDialog(foto) {
+    this.dialog.open(ModaldialogComponent, {
+      data: {
+        foto: foto
+      }
+    });
   }
 }

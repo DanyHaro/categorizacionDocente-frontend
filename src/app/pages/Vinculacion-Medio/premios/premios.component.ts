@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Premio } from 'src/app/Models/premio';
 import { Subfactor } from 'src/app/Models/subfactor';
 import { PersonaService } from 'src/app/services/Persona/persona.service';
 import Swal from 'sweetalert2';
+import { ModaldialogComponent } from '../../modaldialog/modaldialog.component';
 
 @Component({
   selector: 'app-premios',
@@ -16,9 +20,13 @@ export class PremiosComponent implements OnInit {
   form;
   archivo:File;
   subfactores:Subfactor[];
+  dataSource = null;
+  displayedColumns: string[] = ['institucion',  'pais', 'nombre','fecha','detalle','foto'];
+  premios:Premio[]=[]
+   @ViewChild (MatPaginator, {static: true}) paginador: MatPaginator;
   premio:Premio = new Premio();
   iddocente:number;
-  constructor(private router: Router, private service:PersonaService,private formBuilder: FormBuilder) {
+  constructor(private router: Router, private service:PersonaService,private formBuilder: FormBuilder,public dialog: MatDialog) {
     this.form = formBuilder.group({
       institucion:new FormControl('', []),
       pais:new FormControl('', []),
@@ -30,10 +38,12 @@ export class PremiosComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.iddocente = Number(localStorage.getItem('iddocente'));
+    this.obteneraprot();
     this.service.getsubfactor(27).subscribe(
       (data)=>{this.subfactores = data}
     )
-    this.iddocente = Number(localStorage.getItem('iddocente'));
+    
   }
   mostrar(event){
       this.archivo = event.target.files[0];
@@ -55,12 +65,29 @@ export class PremiosComponent implements OnInit {
       
       });
       this.form.reset();
-      this.form.enable ()
+      this.form.enable();
+      this.obteneraprot();
       }
       
     )
     
     
+  }
+  obteneraprot(){
+    this.service.getpremios(this.iddocente).subscribe(
+      data=>{this.premios=data;
+        this.dataSource = new MatTableDataSource<any>(data);
+        this.dataSource.paginator = this.paginador;
+       }
+    )
+    
+  }
+ openDialog(foto) {
+    this.dialog.open(ModaldialogComponent, {
+      data: {
+        foto: foto
+      }
+    });
   }
 
 }

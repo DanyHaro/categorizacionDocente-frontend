@@ -15,10 +15,12 @@ import { Participacion_inv } from 'src/app/Models/participacion_inv';
 import { Persona } from 'src/app/Models/Persona';
 import { Premio } from 'src/app/Models/premio';
 import { Proyeccion } from 'src/app/Models/proyeccion';
+
 import { Publicacion_inv } from 'src/app/Models/publicacion_inv';
 import { Subfactor } from 'src/app/Models/subfactor';
+
 import { User } from 'src/app/Models/user';
-import { AsesoriasComponent } from 'src/app/pages/Investigacion-Aportes-Conocimiento/asesorias/asesorias.component';
+
 
 @Injectable({
   providedIn: 'root'

@@ -36,31 +36,57 @@ import { ProyeccionSocialComponent } from './Vinculacion-Medio/proyeccion-social
 import { CapacitacionComponent } from './Capacitacion-Profesional/capacitacion/capacitacion.component';
 import { PublicInvComponent } from './Investigacion-Aportes-Conocimiento/public-inv/public-inv.component';
 import { ParticipacionInvComponent } from './Investigacion-Aportes-Conocimiento/participacion-inv/participacion-inv.component';
-
-
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatTableModule} from '@angular/material/table';
+import { IdiomasComponent } from './formacion-academica/idiomas/idiomas.component';
+import {MatDialogModule} from '@angular/material/dialog';
 //IMPORTS FROM ANGULAR MATERIAL
 import { MatIconModule } from '@angular/material/icon';
-import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import { IdiomasComponent } from './formacion-academica/idiomas/idiomas.component';
 
 
+import { ModaldialogComponent } from './modaldialog/modaldialog.component';
+import { NgxDocViewerModule } from 'ngx-doc-viewer';
 
 
 
 @NgModule({
   declarations: [
-  GradosComponent,
-  TitulosComponent,
-  DiplomaturasComponent,
-  EstudiosComponent,
-  IdiomasComponent,
-],
+    GradosComponent,
+    IdiomasComponent,
+    TitulosComponent,
+    DiplomaturasComponent,
+    EstudiosComponent,
+    PredocenteComponent,
+    ProfesionalComponent,
+    DocenciaComponent,
+    NouniversitariaComponent,
+    UniversitariaComponent,
+    AdviserConsejeriaComponent,
+    ActitudesLaboralesComponent,
+    EvaluacionDesempenoComponent,
+    ModeloComponent,
+    CosmovisionComponent,
+    DocenteParcialComponent,
+    ReconocimientoCapacidadComponent,
+    IntegracionFeComponent,
+    ServicioAprendizajeComponent,
+    AportesLogrosComponent,
+    PremiosComponent,
+    AsesoriasComponent,
+    LibrosComponent,
+    ProyeccionSocialComponent,
+    CapacitacionComponent,
+    PublicInvComponent,
+    ParticipacionInvComponent,
+    ModaldialogComponent
+  ],
+
   imports: [
     CommonModule,
     PagesRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxDocViewerModule,
     //ANGULAR MATERIAL
     MatIconModule,
     MatCheckboxModule,
@@ -70,9 +96,28 @@ import { IdiomasComponent } from './formacion-academica/idiomas/idiomas.componen
     ReactiveFormsModule,
     MatInputModule,
     MatDatepickerModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatGridListModule
-  ]
+
+ 
+
+    MatGridListModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    ReactiveFormsModule,
+MatButtonModule,
+MatSelectModule,
+MatRadioModule,
+CommonModule,
+
+
+MatDialogModule,
+
+
+
+
+MatTableModule,
+MatPaginatorModule
+  ],
+
 })
 export class PagesModule {}

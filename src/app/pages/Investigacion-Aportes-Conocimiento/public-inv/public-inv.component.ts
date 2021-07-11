@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { AportesLogros } from 'src/app/Models/aporteslogros';
 import { Publicacion_inv } from 'src/app/Models/publicacion_inv';
 import { Subfactor } from 'src/app/Models/subfactor';
 import { PersonaService } from 'src/app/services/Persona/persona.service';
 import Swal from 'sweetalert2';
+import { ModaldialogComponent } from '../../modaldialog/modaldialog.component';
 
 @Component({
   selector: 'app-public-inv',
@@ -19,7 +23,11 @@ export class PublicInvComponent implements OnInit {
   iddocente:number
   subfactores:Subfactor[];
   public_inv:Publicacion_inv= new Publicacion_inv();
-  constructor(private router: Router, private service:PersonaService,private formBuilder: FormBuilder) {
+  dataSource = null;
+  displayedColumns: string[] = ['titulo','pais','ano','url','paginas','tipo','foto'];
+  publicaciones:Publicacion_inv[]=[]
+   @ViewChild (MatPaginator, {static: true}) paginador: MatPaginator;
+  constructor(private router: Router, private service:PersonaService,private formBuilder: FormBuilder,public dialog: MatDialog) {
     this.form = formBuilder.group({
       titulo:new FormControl('', []),
       pais:new FormControl('', []),
@@ -32,10 +40,12 @@ export class PublicInvComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.iddocente = Number(localStorage.getItem('iddocente'));
+    this.obteneraprot();
     this.service.getsubfactor(22).subscribe(
       (data)=>{this.subfactores = data}
     )
-    this.iddocente = Number(localStorage.getItem('iddocente'));
+    
   }
   mostrar(event){
       this.archivo = event.target.files[0];
@@ -57,12 +67,31 @@ export class PublicInvComponent implements OnInit {
       
       });
       this.form.reset();
-      this.form.enable ()
+      this.form.enable();
+      this.obteneraprot();
       }
       
     )
     
     
+    
   }
+  obteneraprot(){
+    this.service.getpublicacion_inv(this.iddocente).subscribe(
+      data=>{this.publicaciones=data;
+        this.dataSource = new MatTableDataSource<any>(data);
+        this.dataSource.paginator = this.paginador;
+       }
+    )
+    
+  }
+  openDialog(foto) {
+    this.dialog.open(ModaldialogComponent, {
+      data: {
+        foto: foto
+      }
+    });
+  }
+  
 
 }

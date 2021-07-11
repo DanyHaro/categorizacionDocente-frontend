@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { AportesLogros } from 'src/app/Models/aporteslogros';
 import { Participacion_inv } from 'src/app/Models/participacion_inv';
 import { Subfactor } from 'src/app/Models/subfactor';
 import { PersonaService } from 'src/app/services/Persona/persona.service';
 import Swal from 'sweetalert2';
+import { ModaldialogComponent } from '../../modaldialog/modaldialog.component';
 
 @Component({
   selector: 'app-participacion-inv',
@@ -18,7 +22,11 @@ export class ParticipacionInvComponent implements OnInit {
   iddocente:number;
   subfactores:Subfactor[];
   participacion_inv:Participacion_inv= new Participacion_inv();
-  constructor(private router: Router, private service:PersonaService,private formBuilder: FormBuilder) {
+  dataSource = null;
+  displayedColumns: string[] = ['año',  'titulo','linea_invest','rol','f_inicio','tipo','foto'];
+  participaciones:Participacion_inv[]=[]
+   @ViewChild (MatPaginator, {static: true}) paginador: MatPaginator;
+  constructor(private router: Router, private service:PersonaService,private formBuilder: FormBuilder,public dialog: MatDialog) {
     this.form = formBuilder.group({
       idsubfactor: new FormControl('',[]),
       ano: new FormControl('',[]),
@@ -26,18 +34,18 @@ export class ParticipacionInvComponent implements OnInit {
       linea_invest:new FormControl('', []),
       rol: new FormControl('',[]),
       f_inicio:new FormControl('',[]),
-      financiamiento:new FormControl('',[]),
-      monto: new FormControl('',[]),
+
       foto:new FormControl('',[Validators.required]),
      
     });
    }
 
   ngOnInit(): void {
+    this.iddocente = Number(localStorage.getItem('iddocente'));
+    this.obteneraprot();
     this.service.getsubfactor(24).subscribe(
       (data)=>{this.subfactores = data}
     )
-    this.iddocente = Number(localStorage.getItem('iddocente'));
   }
   mostrar(event){
       this.archivo = event.target.files[0];
@@ -59,11 +67,30 @@ export class ParticipacionInvComponent implements OnInit {
       
       });
       this.form.reset();
-      this.form.enable ()
+      this.form.enable();
+      this.obteneraprot();
+
       }
       
     )
     
     
   }
+  obteneraprot(){
+    this.service.getparticipacion_inv(this.iddocente).subscribe(
+      data=>{this.participaciones=data;
+        this.dataSource = new MatTableDataSource<any>(data);
+        this.dataSource.paginator = this.paginador;
+       }
+    )
+    
+  }
+  openDialog(foto) {
+    this.dialog.open(ModaldialogComponent, {
+      data: {
+        foto: foto
+      }
+    });
+  }
+  
 }

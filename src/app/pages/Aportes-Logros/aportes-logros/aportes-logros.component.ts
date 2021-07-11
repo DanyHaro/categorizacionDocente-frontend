@@ -1,11 +1,16 @@
 import { NumberSymbol } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatTableDataSource, _MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { AportesLogros } from 'src/app/Models/aporteslogros';
+import { Pais } from 'src/app/Models/pais';
 import { Subfactor } from 'src/app/Models/subfactor';
 import { PersonaService } from 'src/app/services/Persona/persona.service';
 import Swal from 'sweetalert2';
+import { ModaldialogComponent } from '../../modaldialog/modaldialog.component';
 
 @Component({
   selector: 'app-aportes-logros',
@@ -16,9 +21,16 @@ export class AportesLogrosComponent implements OnInit {
 iddocente:number;
   form;
   archivo:File;
+  dataSource = null;
+
+  paises:Pais[];
   subfactores:Subfactor[];
+  aportes:AportesLogros[]=[];
   aporte:AportesLogros= new AportesLogros();
-  constructor(private router: Router, private service:PersonaService,private formBuilder: FormBuilder) {
+
+
+  displayedColumns: string[] = ['Institucion', 'Pais', 'Fecha', 'Tipo','Detalle','foto'];
+  constructor(private router: Router, private service:PersonaService,private formBuilder: FormBuilder,public dialog: MatDialog) {
     this.form = formBuilder.group({
       institucion:new FormControl('', []),
       pais:new FormControl('', []),
@@ -28,15 +40,34 @@ iddocente:number;
       foto:new FormControl('',[Validators.required]),
     });
    }
-
+   
+   @ViewChild (MatPaginator, {static: true}) paginador: MatPaginator;
+  
   ngOnInit(): void {
+    this.iddocente = Number(localStorage.getItem('iddocente'));
+    this.obteneraprot();
+  
+    this.service.getPaises().subscribe(
+      data=>{
+this.paises=data
+      }
+    )
     this.service.getsubfactor(28).subscribe(
       (data)=>{this.subfactores = data}
     )
-    this.iddocente = Number(localStorage.getItem('iddocente'));
+   
   }
   mostrar(event){
       this.archivo = event.target.files[0];
+  }
+  obteneraprot(){
+    this.service.getaportes(this.iddocente).subscribe(
+      data=>{this.aportes=data;
+        this.dataSource = new MatTableDataSource<any>(data);
+        this.dataSource.paginator = this.paginador;
+       }
+    )
+    
   }
   enviar(){
     this.form.disable();
@@ -47,6 +78,7 @@ iddocente:number;
     this.service.crearaporte(this.aporte).subscribe(
       data=>{
         this.service.guardarimagen(this.archivo,this.archivo.name);
+       
         console.log(data)
         Swal.fire({
         icon: 'success',
@@ -55,12 +87,19 @@ iddocente:number;
       
       });
       this.form.reset();
-      this.form.enable ()
+      this.form.enable ();
+      this.obteneraprot();
       }
       
     )
     
     
   }
-  
+  openDialog(foto) {
+    this.dialog.open(ModaldialogComponent, {
+      data: {
+        foto: foto
+      }
+    });
+  }
 }
