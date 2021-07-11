@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GestiondocenteComponent } from './Secretaria/gestiondocente/gestiondocente.component';
+
 import { AdminRoutingModule } from './admin-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -14,9 +14,15 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
 import {MatTabsModule} from '@angular/material/tabs';
+import { SidadminComponent } from './Sidebar/sidadmin/sidadmin.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
-  declarations: [GestiondocenteComponent],
+  declarations: [ SidadminComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -31,7 +37,16 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatButtonModule,
     MatTabsModule,
     MatSelectModule,
-    MatRadioModule
+    MatRadioModule,
+
+    MatSidenavModule,
+    MatListModule,
+    MatSliderModule,
+   
+    MatToolbarModule,
+    MatMenuModule,
+   
+    
   ]
 })
 export class AdminModule { }

@@ -1,0 +1,91 @@
+<div class="example-container">
+  <form [formGroup]="options" style="margin: 20px">
+    <!-- <mat-checkbox [formControl]="hideRequiredControl">Hide required marker</mat-checkbox>
+        <div>
+            <label>Float label: </label>
+            <mat-radio-group [formControl]="floatLabelControl">
+                <mat-radio-button value="auto">Auto</mat-radio-button>
+                <mat-radio-button value="always">Always</mat-radio-button>
+            </mat-radio-group>
+        </div> -->
+    <h1>Integración, Fé y Enseñanza</h1>
+    <hr />
+
+    <mat-form-field
+      appearance="fill"
+      [hideRequiredMarker]="hideRequiredControl.value"
+      [floatLabel]="floatLabelControl.value"
+    >
+      <mat-select required>
+        <mat-option value="option">Si</mat-option>
+        <mat-option value="option"> No </mat-option>
+      </mat-select>
+      <mat-label>
+        <i>Educación Religiosa</i>
+      </mat-label>
+    </mat-form-field>
+
+    <mat-form-field
+      appearance="fill"
+      [hideRequiredMarker]="hideRequiredControl.value"
+      [floatLabel]="floatLabelControl.value"
+    >
+      <mat-select required>
+        <mat-option value="option">Si</mat-option>
+        <mat-option value="option"> No </mat-option>
+      </mat-select>
+      <mat-label>
+        <i>Formación Cristiana</i>
+      </mat-label>
+    </mat-form-field>
+
+    <mat-form-field
+      appearance="fill"
+      [hideRequiredMarker]="hideRequiredControl.value"
+      [floatLabel]="floatLabelControl.value"
+    >
+      <mat-select required>
+        <mat-option value="option">Si</mat-option>
+        <mat-option value="option"> No </mat-option>
+      </mat-select>
+      <mat-label>
+        <i>Denominacional</i>
+      </mat-label>
+    </mat-form-field>
+
+    <mat-form-field
+      appearance="fill"
+      [hideRequiredMarker]="hideRequiredControl.value"
+      [floatLabel]="floatLabelControl.value"
+    >
+      <mat-select required>
+        <mat-option value="option">Si</mat-option>
+        <mat-option value="option"> No </mat-option>
+      </mat-select>
+      <mat-label>
+        <i>Actividad que Integra la Fé</i>
+      </mat-label>
+    </mat-form-field>
+
+    <mat-form-field
+      appearance="fill"
+      [hideRequiredMarker]="hideRequiredControl.value"
+      [floatLabel]="floatLabelControl.value"
+    >
+      <mat-select required>
+        <mat-option value="option">Si</mat-option>
+        <mat-option value="option"> No </mat-option>
+      </mat-select>
+      <mat-label>
+        <i>Cumplimiento de Sílabos</i>
+      </mat-label>
+    </mat-form-field>
+
+    <div class="mb-3" style="width: 28%; display: inline-block; margin: 5px">
+      <label for="formFileMultiple" class="form-label">Subir Archivo</label>
+      <input class="form-control" type="file" id="formFileMultiple" multiple />
+    </div>
+
+    <button type="button" class="btn btn-outline-primary">GUARDAR</button>
+  </form>
+</div>

@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { GestiondocenteComponent } from './Secretaria/gestiondocente/gestiondocente.component';
+
+
+import { SidadminComponent } from './Sidebar/sidadmin/sidadmin.component';
 
 
 const routes: Routes = [
- {path:'gestion',component:GestiondocenteComponent}
+ {path:'home',component:SidadminComponent, children:[{path: 'gestion',loadChildren:()=>import('../evaluacion/evaluacion.module').then(m=>m.EvaluacionModule)}]},
+
 ];
 
 @NgModule({
