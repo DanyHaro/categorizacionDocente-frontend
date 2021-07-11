@@ -29,40 +29,40 @@ import { PremiosComponent } from "./Vinculacion-Medio/premios/premios.component"
 import { ProyeccionSocialComponent } from "./Vinculacion-Medio/proyeccion-social/proyeccion-social.component";
 
 const routes: Routes = [
-    {path:'grados',component:GradosComponent},
-    {path:'títulos',component:TitulosComponent},
-    {path:'diplomaturas',component:DiplomaturasComponent},
-    {path:'estudios',component:EstudiosComponent},
-    {path:'idiomas',component:IdiomasComponent},
- 
-    {path:'dictaminación y jurado de tesis',component:AsesoriasComponent},
-    {path:'publicaciónes de libros u otros',component:LibrosComponent},
-    {path:'capacitación profesional',component:CapacitacionComponent},
-    {path:'publicación de investigaciones',component:PublicInvComponent},
-  
-    {path:'participación en eventos académicos',component:ParticipacionInvComponent},
+  { path: 'grados', component: GradosComponent },
+  { path: 'títulos', component: TitulosComponent },
+  { path: 'diplomaturas', component: DiplomaturasComponent },
+  { path: 'estudios', component: EstudiosComponent },
+  { path: 'idiomas', component: IdiomasComponent },
+
+  { path: 'dictaminación y jurado de tesis', component: AsesoriasComponent },
+  { path: 'publicaciónes de libros u otros', component: LibrosComponent },
+  { path: 'capacitación profesional', component: CapacitacionComponent },
+  { path: 'publicación de investigaciones', component: PublicInvComponent },
+
+  { path: 'participación en eventos académicos', component: ParticipacionInvComponent },
   { path: 'modelo', component: ModeloComponent },
-  { path: 'experiencia en la docencia', component: DocenciaComponent},
-  { path: 'experiencia administrativa universitaria', component: UniversitariaComponent},
-  { path: 'experiencia profesional', component: ProfesionalComponent},
-  { path: 'experiencia predocente', component: PredocenteComponent},
-  { path: 'experiencia administrativa no universitaria', component: NouniversitariaComponent},
-  { path: 'evaluación del desempeño docente', component: EvaluacionDesempenoComponent},
-  { path: 'actitudes laborales', component: ActitudesLaboralesComponent},
-  { path: 'adviser y consejeria', component: AdviserConsejeriaComponent},
-  { path: 'cosmovisión', component: CosmovisionComponent},
-  { path: 'ejercicio docente parcial', component: DocenteParcialComponent},
-  { path: 'integración fe enseñanza', component: IntegracionFeComponent},
+  { path: 'experiencia en la docencia', component: DocenciaComponent },
+  { path: 'experiencia administrativa universitaria', component: UniversitariaComponent },
+  { path: 'experiencia profesional', component: ProfesionalComponent },
+  { path: 'experiencia predocente', component: PredocenteComponent },
+  { path: 'experiencia administrativa no universitaria', component: NouniversitariaComponent },
+  { path: 'evaluación del desempeño docente', component: EvaluacionDesempenoComponent },
+  { path: 'actitudes laborales', component: ActitudesLaboralesComponent },
+  { path: 'adviser y consejeria', component: AdviserConsejeriaComponent },
+  { path: 'cosmovisión', component: CosmovisionComponent },
+  { path: 'ejercicio docente parcial', component: DocenteParcialComponent },
+  { path: 'integración fe enseñanza', component: IntegracionFeComponent },
   { path: 'clase modelo', component: ModeloComponent },
-  { path: 'reconocimiento de la capacidad docente', component: ReconocimientoCapacidadComponent},
+  { path: 'reconocimiento de la capacidad docente', component: ReconocimientoCapacidadComponent },
   { path: 'servicio aprendizaje', component: ServicioAprendizajeComponent },
-  {path:'aportes y logros',component:AportesLogrosComponent},
-  {path:'premios o reconocimientos',component:PremiosComponent},
-  {path:'proyección social',component:ProyeccionSocialComponent},
+  { path: 'aportes y logros', component: AportesLogrosComponent },
+  { path: 'premios o reconocimientos', component: PremiosComponent },
+  { path: 'proyección social', component: ProyeccionSocialComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class PagesRoutingModule {}
+export class PagesRoutingModule { }
