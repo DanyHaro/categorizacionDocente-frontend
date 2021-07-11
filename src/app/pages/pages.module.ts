@@ -93,30 +93,13 @@ import { NgxDocViewerModule } from 'ngx-doc-viewer';
     MatRadioModule,
     MatFormFieldModule,
     MatSelectModule,
-    ReactiveFormsModule,
     MatInputModule,
     MatDatepickerModule,
-
- 
-
     MatGridListModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    ReactiveFormsModule,
-MatButtonModule,
-MatSelectModule,
-MatRadioModule,
-CommonModule,
-
-
-MatDialogModule,
-
-
-
-
-MatTableModule,
-MatPaginatorModule
+    MatButtonModule,
+    MatDialogModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
 
 })
