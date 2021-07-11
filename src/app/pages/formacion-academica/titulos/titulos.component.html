@@ -58,7 +58,7 @@
 
         <mat-form-field appearance="fill" [color]="colorControl.value">
             <mat-label>Nº Creditos</mat-label>
-            <input required formControlName="horas" name="horas" autocomplete="off" matInput type="number" placeholder="Max. 60" [formControl]="fontSizeControl" min="10">
+            <input required formControlName="creditos" name="creditos" autocomplete="off" matInput type="number" placeholder="Max. 60" [formControl]="fontSizeControl" min="10">
             <!-- <span matSuffix>px</span> -->
             <mat-error *ngIf="fontSizeControl.invalid">Min: 12</mat-error>
         </mat-form-field>
@@ -108,7 +108,50 @@
         
 
 
-        <button type="button" (click)="guardarLegajo()" class="btn btn-outline-primary">GUARDAR</button>
+       <button mat-raised-button color="primary" type="button" (click)="guardarLegajo()" class="btn btn-outline-primary">Enviar</button>
     </form>
 </div>
 
+
+<!-- LISTAR -->
+
+<div class="card-body">
+
+    <table class="table table-hover">
+        <thead>
+            <tr style="text-align: center;">
+                <th>TIPO</th>
+                <th>UNIVERSIDAD</th>
+                <th>ESPECIALIDAD</th>
+                <th>HORAS</th>
+                <th>CREDITOS</th>
+                <th>F.OBTENCIÓN</th>
+                <th>SUNEDU</th>
+                <th>AÑOS</th>
+                <th>ARCHIVO</th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let titulos of element_datos" style="background: yellow; text-align: center;">
+                <td>{{titulos.idsubfactor}}</td>
+                <td>{{titulos.iduniversidad}}</td>
+                <td>{{titulos.especialidad}}</td>
+                <td>{{titulos.horas}}</td>
+                <td>{{titulos.creditos}}</td>
+                <td>{{titulos.f_obtencion}}</td>
+                <td>{{titulos.sunedu}}</td>
+                <td>{{titulos.years}}</td>
+                <td><i class="far fa-eye fa-2x"></i></td>
+                <td>
+                    <i style="margin: 15px;" class="far fa-trash-alt fa-2x"></i>
+                    <i class="far fa-edit fa-2x"></i>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <mat-paginator [length]="this.element_datos.length" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"
+        (page)="onPageChange($event)">
+    </mat-paginator>
+</div>

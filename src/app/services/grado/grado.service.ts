@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Grado } from 'src/app/Models/grados';
+import { Titulo } from 'src/app/Models/titulo';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,11 @@ export class GradoService {
   constructor(private metodohttp:HttpClient) { }
 
 
-  ruta = 'http://localhost:5050/CAD/grado';
+  //FORMACION ACADEMICA PROFESIONAL
 
+
+  //GRADOS
+  ruta = 'http://localhost:5050/CAD/grado';
   
   getAllgrados():Observable<Grado[]>{
     return this.metodohttp.get<Grado[]>(this.ruta + '/');
@@ -25,4 +29,21 @@ export class GradoService {
   createGrado(grado:Grado):Observable<Grado>{
     return this.metodohttp.post<Grado>(this.ruta+ '/',grado);
   }
+
+
+  //TITULOS
+  ruta2 = 'http://localhost:5050/CAD/titulo';
+
+  getAlltitulos():Observable<Titulo[]>{
+    return this.metodohttp.get<Titulo[]>(this.ruta + '/');
+  }
+
+  getOneTitulo(id:number):Observable<Titulo[]>{
+    return this.metodohttp.get<Titulo[]>(this.ruta + '/' + id);
+  }
+
+  createTitulo(titulo:Titulo):Observable<Titulo>{
+    return this.metodohttp.post<Titulo>(this.ruta+ '/',titulo);
+  }
+
 }
