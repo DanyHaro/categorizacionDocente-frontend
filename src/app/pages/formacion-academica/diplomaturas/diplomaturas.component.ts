@@ -1,10 +1,11 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogActions } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { timer } from 'rxjs';
+import { Diplomatura } from 'src/app/Models/dimplomatua';
 import { Grado } from 'src/app/Models/grados';
 import { Pais } from 'src/app/Models/pais';
 import { Subfactor } from 'src/app/Models/subfactor';
@@ -30,43 +31,51 @@ export class DiplomaturasComponent implements OnInit {
   hideRequiredControl = new FormControl(false);
   floatLabelControl = new FormControl('auto');
   
-  element_datos: Grado[] = [];
+
+  element_datos: Diplomatura[] = [];
+
   paises: Pais[] = []
   universidades: Universidad[] = [];
   subfactorArray: Subfactor[] = [];
   foto: File
-  gradoObjeto: Grado = new Grado();
+
+  diplomatura: Diplomatura = new Diplomatura();
+  
+
   // idusuarioForParam;
   myId = uuidv4();
   imgCodified: string;
+
+  
+  colorControl = new FormControl('primary');
+  fontSizeControl = new FormControl(16, Validators.min(10));
+  date = new FormControl(new Date());
+  serializedDate = new FormControl((new Date()).toISOString());
+  serializedDate2 = new FormControl((new Date()).toISOString());
+  var_id;
+
+  pageSlice;
   dataSource = null;
   @ViewChild(MatPaginator, { static: true }) paginador: MatPaginator;
   displayedColumns: string[] = [
     'n',
   'TIPO',
   'UNIVERSIDAD',
-  'ESPECIALIDAD',  'HORAS',
-  'F.OBTENCIÓN',
+  'ESPECIALIDAD',  'HORAS','CREDITOS',
+  'F_INICIO',
+
   'SUNEDU',
   'AÑOS',
   'ARCHIVO'
 ];
-  colorControl = new FormControl('primary');
-  fontSizeControl = new FormControl(16, Validators.min(10));
-  date = new FormControl(new Date());
-  serializedDate = new FormControl((new Date()).toISOString());
-  var_id;
-  pageSlice
 iddocente;
   form;
-  constructor(fb: FormBuilder,public dialog: MatDialog, private loginservice:LoginService,private gradoservice: GradoService, private personaservice: PersonaService, private formBuilder: FormBuilder, private unipaisservice: UnipaisService, private subfactorservice: SubfactorService, private rutaactivada: ActivatedRoute) {
+  constructor(fb: FormBuilder, private loginservice:LoginService,private gradoservice: GradoService, private personaservice: PersonaService, private formBuilder: FormBuilder, private unipaisservice: UnipaisService, private subfactorservice: SubfactorService, private rutaactivada: ActivatedRoute,public dialog: MatDialog,) {
+
     this.options = fb.group({
       hideRequired: this.hideRequiredControl,
       floatLabel: this.floatLabelControl,
     });
-
-    
-    
 
 
     this.form = formBuilder.group({
@@ -77,15 +86,17 @@ iddocente;
       idsubfactor: new FormControl('', [Validators.required]),
       archivo: new FormControl('', [Validators.required]),
       sunedu: new FormControl('', [Validators.required]),
-      f_obtencion: new FormControl('', [Validators.required]),
+      f_inicio: new FormControl('', [Validators.required]),
+      f_fin: new FormControl('', [Validators.required]),
+      creditos: new FormControl('', [Validators.required]),
      
+
+      
     });
 
     
   }
-  mostrar(event) {
-    this.foto = event.target.files[0];
-  }
+ 
 
   getFontSize() {
     return Math.max(10, this.fontSizeControl.value);
@@ -98,7 +109,14 @@ iddocente;
       }
     });
   }
-
+  obtenerdatos(){
+    this.gradoservice.getOnediplo(this.iddocente).subscribe(diplo=>{
+      this.element_datos = diplo;
+      this.dataSource = new MatTableDataSource<any>(diplo);
+      this.dataSource.paginator = this.paginador;
+    })
+  }
+  
   ngOnInit(): void {
     this.iddocente = Number(localStorage.getItem('iddocente'));
     this.obtenerdatos();
@@ -109,7 +127,6 @@ iddocente;
     });
 
     //LISTANDO TODOS LOS GRADOS SEGUN EL USUARIO
-  
 
     //OBTENIENDO ID DEL USUARIO LOGUEADO
     // this.rutaactivada.params.subscribe(parametroUsuario => {
@@ -132,9 +149,7 @@ iddocente;
 
     //   })
     // })
-
-    
-    this.personaservice.getsubfactor(1).subscribe(subfactores=>{
+    this.personaservice.getsubfactor(3).subscribe(subfactores=>{
       this.subfactorArray = subfactores
       console.log(this.subfactorArray,"CTMRE !!");
     })
@@ -142,16 +157,7 @@ iddocente;
     
     
   }
-  obtenerdatos(){
-    this.gradoservice.getOnegrado(this.iddocente).subscribe(gradoOfuser=>{
-      this.element_datos = gradoOfuser;
-      this.dataSource = new MatTableDataSource<any>(gradoOfuser);
-        this.dataSource.paginator = this.paginador;
-    })
-   
 
-    
-  }
 
 
 
@@ -173,18 +179,17 @@ iddocente;
     console.log(this.foto,"SOY EL ARCHIVO");
     if (this.form.valid) {
       
-     
+      this.form.disable();
       let rango = this.foto.name.split('.')
       let ext = rango[rango.length - 1];
       let nombrenuevo = this.myId + '.' + ext;
       this.myId = uuidv4();
       //
       
-      this.gradoObjeto = this.form.value;
-      this.gradoObjeto.archivo = nombrenuevo;
-      this.gradoObjeto.iddocente=this.iddocente;
-      console.log()
-      this.gradoservice.createGrado(this.gradoObjeto).subscribe(data => {
+      this.diplomatura = this.form.value;
+      this.diplomatura.archivo = nombrenuevo;
+      this.diplomatura.iddocente=this.iddocente;
+      this.gradoservice.creatediplo(this.diplomatura).subscribe(data => {
 
         console.log(data, "ESTE GRADO A SIDO INGRESADO");
         this.personaservice.guardarimagen(this.foto, nombrenuevo);
@@ -194,7 +199,10 @@ iddocente;
           // text: 'Estado de solicitud',
         });
         this.form.reset();
+        this.form.enable();
+        
         this.obtenerdatos();
+
 
         
 
@@ -205,5 +213,8 @@ iddocente;
     
   }
 
-  
+  mostrar(event) {
+    this.foto = event.target.files[0];
+  }
+
 }

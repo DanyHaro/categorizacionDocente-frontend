@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
 import { Estudios } from 'src/app/Models/estudios';
+import { Diplomatura } from 'src/app/Models/dimplomatua';
 import { Grado } from 'src/app/Models/grados';
 import { Idiomas } from 'src/app/Models/idiomas';
 import { Titulo } from 'src/app/Models/titulo';
@@ -50,6 +52,16 @@ export class GradoService {
   createTitulo(titulo:Titulo):Observable<Titulo>{
     return this.metodohttp.post<Titulo>(this.ruta2+ '/',titulo);
   }
+  updatetitulo(id,nota):Observable<string>{
+    return this.metodohttp.put<string>(this.ruta2 + '/',{idtitulo:id,nota:nota});
+}
+
+//DIPLOMATURAS
+ruta5 = 'http://localhost:5050/CAD/diplomatura';
+
+getAlldiplos():Observable<Diplomatura[]>{
+  return this.metodohttp.get<Diplomatura[]>(this.ruta5 + '/');
+}
 
 
   //ESTUDIOS
@@ -87,4 +99,14 @@ export class GradoService {
 
   
 
+getOnediplo(id:number):Observable<Diplomatura[]>{
+  return this.metodohttp.get<Diplomatura[]>(this.ruta5 + '/' + id);
+}
+
+creatediplo(di:Diplomatura):Observable<Diplomatura>{
+  return this.metodohttp.post<Diplomatura>(this.ruta5+ '/',di);
+}
+updatediplo(id,nota):Observable<string>{
+  return this.metodohttp.put<string>(this.ruta5 + '/',{idespecialidad:id,nota:nota});
+}
 }

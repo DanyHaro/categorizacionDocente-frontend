@@ -1,10 +1,11 @@
-export class Titulo{
-    public idtitulo:number;
+export class Diplomatura{
+    public idespecialidad:number;
     public idsubfactor:number;
     public iduniversidad:number;
     public especialidad:string;
     public horas:number;
-    public f_obtencion:Date;
+    public f_inicio:Date;
+    public f_fin:Date;
     public sunedu:boolean;
     public archivo:string;
     public iddocente:number;

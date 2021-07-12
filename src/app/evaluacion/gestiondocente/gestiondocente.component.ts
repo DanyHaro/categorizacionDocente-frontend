@@ -37,17 +37,8 @@ export class GestiondocenteComponent implements OnInit {
         console.log(this.personas)
       }
     )
-    this.service.allcategoria().subscribe(
-      (data)=>{
-          this.categorias=data as Categoria[];
-          console.log(data)
-      }
-    )
-    this.service.getusers().subscribe(
-      (data)=>{
-         this.users=data;
-      }
-    )
+    
+    
   }
 
   verdetalle(element:Persona){
@@ -59,50 +50,10 @@ export class GestiondocenteComponent implements OnInit {
   
   
   
-  generaruser(){
-    var nombre=this.detallepersona.nombres.split(' ')[0];
-    var apellido= this.detallepersona.apellidos.split(' ')[0];
-    var usuarioname=nombre+apellido,passwordname=nombre+apellido;
-    var encontrado=null;
-    var condicion=1;
-    do {
-      encontrado=this.users.find(
-        user=>{ if(user.usuario == usuarioname.toLowerCase()){
-          return true;
-        } else{
-          return null;
-        }
-      }
-      )
-      var num=Math.floor(Math.random()*101);
-      if(encontrado != null){
-        usuarioname = usuarioname.concat(num.toString());
-      }else{
-        condicion = 0;
-      }
-    } while (condicion==1);
-      this.usuario.usuario=usuarioname.toLocaleLowerCase();
-      this.usuario.password=passwordname.toLocaleLowerCase();
+  navegar(element:Persona){
+    console.log(element)
+    this.route.navigate(['admin/home/gestion/modal2'], {queryParams: {n: element}});
   }
 
-
-  crearusuario(){
-    this.docente.idpersona=this.detallepersona.idpersona;
-    console.log(this.docente);
-    console.log(this.usuario); 
-    this.service.crearusuario(this.usuario,this.docente).subscribe(
-      data=>{
-        console.log(data)
-      }
-    )
-
-
-    
-  }
-
-  eliminardata(){
-    this.docente=new Docente();
-    this.usuario=new User();
-  }
   
 }

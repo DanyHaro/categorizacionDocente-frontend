@@ -25,32 +25,31 @@ import { ModaldialogComponent } from '../../modaldialog/modaldialog.component';
   styleUrls: ['./titulos.component.css']
 })
 export class TitulosComponent implements OnInit {
-
+  myId = uuidv4();
   options: FormGroup;
   hideRequiredControl = new FormControl(false);
   floatLabelControl = new FormControl('auto');
   
-  element_datos: Grado[] = [];
+  element_datos: Titulo[] = [];
   paises: Pais[] = []
+  titulo:Titulo= new Titulo();
   universidades: Universidad[] = [];
   subfactorArray: Subfactor[] = [];
   foto: File
-  gradoObjeto: Grado = new Grado();
-  // idusuarioForParam;
-  myId = uuidv4();
-  imgCodified: string;
   dataSource = null;
   @ViewChild(MatPaginator, { static: true }) paginador: MatPaginator;
   displayedColumns: string[] = [
     'n',
   'TIPO',
   'UNIVERSIDAD',
-  'ESPECIALIDAD',  'HORAS',
+  'ESPECIALIDAD',  'HORAS','CREDITOS',
   'F.OBTENCIÓN',
   'SUNEDU',
   'AÑOS',
   'ARCHIVO'
 ];
+  
+
   colorControl = new FormControl('primary');
   fontSizeControl = new FormControl(16, Validators.min(10));
   date = new FormControl(new Date());
@@ -59,17 +58,18 @@ export class TitulosComponent implements OnInit {
   pageSlice
 iddocente;
   form;
-  constructor(fb: FormBuilder,public dialog: MatDialog, private loginservice:LoginService,private gradoservice: GradoService, private personaservice: PersonaService, private formBuilder: FormBuilder, private unipaisservice: UnipaisService, private subfactorservice: SubfactorService, private rutaactivada: ActivatedRoute) {
+  constructor(fb: FormBuilder,public dialog: MatDialog,  private loginservice:LoginService,private gradoservice: GradoService, private personaservice: PersonaService, private formBuilder: FormBuilder, private unipaisservice: UnipaisService, private subfactorservice: SubfactorService, private rutaactivada: ActivatedRoute) {
     this.options = fb.group({
       hideRequired: this.hideRequiredControl,
       floatLabel: this.floatLabelControl,
     });
 
+
     
     
 
 
-    this.form = formBuilder.group({
+this.form = formBuilder.group({
       
       especialidad: new FormControl('', [Validators.required]),
       horas: new FormControl('', [Validators.required]),
@@ -86,12 +86,24 @@ iddocente;
 
     
   }
-  mostrar(event) {
-    this.foto = event.target.files[0];
-  }
+ 
 
   getFontSize() {
     return Math.max(10, this.fontSizeControl.value);
+  }
+
+
+  obtenerdatos(){
+    this.gradoservice.getOneTitulo(this.iddocente).subscribe(tituloOfuser=>{
+      this.element_datos = tituloOfuser;
+      this.dataSource = new MatTableDataSource<any>(tituloOfuser);
+        this.dataSource.paginator = this.paginador;
+    })
+    
+    
+   
+
+    
   }
 
   openDialog(foto) {
@@ -101,6 +113,7 @@ iddocente;
       }
     });
   }
+
 
   ngOnInit(): void {
     this.iddocente = Number(localStorage.getItem('iddocente'));
@@ -112,7 +125,10 @@ iddocente;
     });
 
     //LISTANDO TODOS LOS GRADOS SEGUN EL USUARIO
-  
+    
+    
+
+    
 
     //OBTENIENDO ID DEL USUARIO LOGUEADO
     // this.rutaactivada.params.subscribe(parametroUsuario => {
@@ -145,17 +161,7 @@ iddocente;
     
     
   }
-  obtenerdatos(){
-    this.gradoservice.getOnegrado(this.iddocente).subscribe(gradoOfuser=>{
-      this.element_datos = gradoOfuser;
-      this.dataSource = new MatTableDataSource<any>(gradoOfuser);
-        this.dataSource.paginator = this.paginador;
-    })
-   
-
-    
-  }
-
+ 
 
 
   paisSeleccionado(idpais: number) {
@@ -176,27 +182,29 @@ iddocente;
     console.log(this.foto,"SOY EL ARCHIVO");
     if (this.form.valid) {
       
-     
+      this.form.disable();
       let rango = this.foto.name.split('.')
       let ext = rango[rango.length - 1];
       let nombrenuevo = this.myId + '.' + ext;
       this.myId = uuidv4();
       //
       
-      this.gradoObjeto = this.form.value;
-      this.gradoObjeto.archivo = nombrenuevo;
-      this.gradoObjeto.iddocente=this.iddocente;
-      console.log()
-      this.gradoservice.createGrado(this.gradoObjeto).subscribe(data => {
+      this.titulo = this.form.value;
+      this.titulo.archivo = nombrenuevo;
+      this.titulo.iddocente=this.iddocente;
+      this.gradoservice.createTitulo(this.titulo).subscribe(data => {
 
         console.log(data, "ESTE GRADO A SIDO INGRESADO");
-        this.personaservice.guardarimagen(this.foto, nombrenuevo);
+        this.personaservice.guardarimagen(this.foto,nombrenuevo);
+
         Swal.fire({
           icon: 'success',
           title: 'GUARDADO CORRECTAMENTE.',
           // text: 'Estado de solicitud',
         });
         this.form.reset();
+        this.form.enable();
+        
         this.obtenerdatos();
 
         
@@ -206,6 +214,9 @@ iddocente;
       console.log("NO SE HA ENVIADO");
     }
     
+  }
+  mostrar(event) {
+    this.foto = event.target.files[0];
   }
 
 }

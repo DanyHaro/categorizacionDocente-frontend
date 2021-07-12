@@ -43,6 +43,134 @@
               </mat-grid-tile>
               <mat-grid-tile [colspan]="4"  [rowspan]="6">
                             <div   id="contenedor-principal">
+                                <!--DIPLOMATURAS-->
+                             <div *ngIf="idfactor==3"  id="contenedor">
+                               <div  class="cont-primary" *ngFor="let diplo of diplomaturas">       
+                                 <div class="cont-second" *ngIf="diplo.type == false" >
+                                  <ngx-doc-viewer   style="border:1px solid black" url="{{diplo.archivo}}" viewer="google" style="width:100%;height:100%"></ngx-doc-viewer>
+                                   
+                                  
+                                  </div>
+                                  <div class="cont-second" *ngIf="diplo.type == true">
+                                 
+                                   <img src="{{diplo.archivo}}">
+                                  
+                                  </div>
+                                  <div class="cont-second cont-gridv2" >
+                                  <mat-form-field style="grid-column:1/2" class="example-full-width font" appearance="fill">
+                                     <mat-label>Tipo</mat-label>
+                                     <input matInput  style="color:white" value="{{diplo.nombre}}" disabled>
+                                  </mat-form-field>
+
+                                  <mat-form-field  style="grid-column:2/4" class="example-full-width font" appearance="fill">
+                                     <mat-label>Institucion</mat-label>
+                                     <input matInput  style="color:white" value="{{diplo.uni}}" disabled>
+                                  </mat-form-field>
+                                  <mat-form-field style="grid-column:1/3" class="example-full-width font" appearance="fill">
+                                     <mat-label>Especialidad</mat-label>
+                                     <input matInput style="color:white" value="{{diplo.especialidad}}"  disabled>
+                                  </mat-form-field>
+                                  
+                                  <mat-form-field  class="example-full-width font" appearance="fill">
+                                     <mat-label>Horas/Creditos</mat-label>
+                                     <input matInput  style="color:white" value="{{diplo.horas + ' / ' + diplo.creditos}}"  disabled>
+                                  </mat-form-field>
+                                
+                                
+                                  <mat-form-field   class="example-full-width font" appearance="fill">
+                                     <mat-label>Duracion</mat-label>
+                                     <input matInput style="color:white"  value="{{(diplo.f_inicio  | date: 'dd/MM/yyyy')+ '-'+(diplo.f_fin| date: 'dd/MM/yyyy')}}"  disabled>
+                                  </mat-form-field>
+                                    <mat-form-field  class="example-full-width font" class="example-full-width font" appearance="fill">
+                                     <mat-label>Sunedu</mat-label>
+                                     <input matInput  style="color:white" value="{{diplo.sunedu ? 'si' : 'no'}}"  disabled>
+                                  </mat-form-field>
+                              
+                              
+                                   
+                                    <mat-form-field style="width:50%;font-size:16px;"  class="example-full-width" appearance="fill">
+                                     <mat-label>Años</mat-label>
+                                     <input matInput  style="color:white" value="{{diplo.years}}" disabled >
+                                  </mat-form-field>
+                                    <mat-form-field style="width:40%;font-size:16px;"  class="example-full-width font" appearance="fill">
+                                     <mat-label>Puntaje</mat-label>
+                                     <input (keyup)="getRxcui($event)" matInput value="{{diplo.nota}}"  >
+                                  </mat-form-field>
+
+                                  <div style="text-align:center">
+                                  	<button  mat-raised-button  color="primary" style=" width:50%;height:50%;" (click)="modificar(diplo.idespecialidad)" >Modificar</button>
+                                  
+                                   </div>
+                                     
+                                   
+                                   </div>       
+                                    
+                                </div> 
+                                 </div>
+                             <!--Titulos-->
+                             <div *ngIf="idfactor==2"  id="contenedor">
+                               <div  class="cont-primary" *ngFor="let titulo of titulos">       
+                                 <div class="cont-second" *ngIf="titulo.type == false" >
+                                  <ngx-doc-viewer   style="border:1px solid black" url="{{titulo.archivo}}" viewer="google" style="width:100%;height:100%"></ngx-doc-viewer>
+                                   
+                                  
+                                  </div>
+                                  <div class="cont-second" *ngIf="titulo.type == true">
+                                 
+                                   <img src="{{titulo.archivo}}">
+                                  
+                                  </div>
+                                  <div class="cont-second cont-gridv2" >
+                                  <mat-form-field style="grid-column:1/2" class="example-full-width font" appearance="fill">
+                                     <mat-label>Tipo</mat-label>
+                                     <input matInput  style="color:white" value="{{titulo.nombre}}" disabled>
+                                  </mat-form-field>
+
+                                  <mat-form-field  style="grid-column:2/4" class="example-full-width font" appearance="fill">
+                                     <mat-label>Institucion</mat-label>
+                                     <input matInput  style="color:white" value="{{titulo.uni}}" disabled>
+                                  </mat-form-field>
+                                  <mat-form-field style="grid-column:1/3" class="example-full-width font" appearance="fill">
+                                     <mat-label>Especialidad</mat-label>
+                                     <input matInput style="color:white" value="{{titulo.especialidad}}"  disabled>
+                                  </mat-form-field>
+                                  
+                                  <mat-form-field  class="example-full-width font" appearance="fill">
+                                     <mat-label>Horas/Creditos</mat-label>
+                                     <input matInput  style="color:white" value="{{titulo.horas + ' / ' + titulo.creditos}}"  disabled>
+                                  </mat-form-field>
+                                
+                                
+                                  <mat-form-field   class="example-full-width font" appearance="fill">
+                                     <mat-label>Fecha de Obtencion</mat-label>
+                                     <input matInput style="color:white"  value="{{titulo.f_obtencion | date:'dd-MM-yyyy'}}"  disabled>
+                                  </mat-form-field>
+                                    <mat-form-field  class="example-full-width font" class="example-full-width font" appearance="fill">
+                                     <mat-label>Sunedu</mat-label>
+                                     <input matInput  style="color:white" value="{{titulo.sunedu ? 'si' : 'no'}}"  disabled>
+                                  </mat-form-field>
+                              
+                              
+                                   
+                                    <mat-form-field style="width:50%;font-size:16px;"  class="example-full-width" appearance="fill">
+                                     <mat-label>Años</mat-label>
+                                     <input matInput  style="color:white" value="{{titulo.years}}" disabled >
+                                  </mat-form-field>
+                                    <mat-form-field style="width:40%;font-size:16px;"  class="example-full-width font" appearance="fill">
+                                     <mat-label>Puntaje</mat-label>
+                                     <input (keyup)="getRxcui($event)" matInput value="{{titulo.nota}}"  >
+                                  </mat-form-field>
+
+                                  <div style="text-align:center">
+                                  	<button  mat-raised-button  color="primary" style=" width:50%;height:50%;" (click)="modificar(titulo.idtitulo)" >Modificar</button>
+                                  
+                                   </div>
+                                     
+                                   
+                                   </div>       
+                                    
+                                </div> 
+                                 </div>
                              <!--Undefinido-->
                               <!--Grados-->
                              <div *ngIf="idfactor==1"  id="contenedor">

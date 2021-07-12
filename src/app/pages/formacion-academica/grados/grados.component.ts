@@ -173,7 +173,7 @@ iddocente;
     console.log(this.foto,"SOY EL ARCHIVO");
     if (this.form.valid) {
       
-     
+      this.form.disable();
       let rango = this.foto.name.split('.')
       let ext = rango[rango.length - 1];
       let nombrenuevo = this.myId + '.' + ext;
@@ -194,6 +194,7 @@ iddocente;
           // text: 'Estado de solicitud',
         });
         this.form.reset();
+        this.form.enable();
         this.obtenerdatos();
 
         

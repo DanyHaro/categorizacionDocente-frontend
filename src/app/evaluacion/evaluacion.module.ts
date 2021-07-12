@@ -25,9 +25,10 @@ import { GestiondocenteComponent } from './gestiondocente/gestiondocente.compone
 import { ModalComponent } from './modal/modal.component';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { Model2Component } from './model2/model2.component';
 
 @NgModule({
-  declarations: [EvaluaciondocenteComponent, GestiondocenteComponent, ModalComponent],
+  declarations: [EvaluaciondocenteComponent, GestiondocenteComponent, ModalComponent, Model2Component],
   imports: [
     NgxDocViewerModule,
     CommonModule,

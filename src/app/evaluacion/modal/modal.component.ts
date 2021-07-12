@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AportesLogros } from 'src/app/Models/aporteslogros';
 import { Asesoria } from 'src/app/Models/asesoria';
 import { Categoria } from 'src/app/Models/categoria';
+import { Diplomatura } from 'src/app/Models/dimplomatua';
 import { Docente } from 'src/app/Models/docente';
 import { Factor } from 'src/app/Models/factor';
 import { Grado } from 'src/app/Models/grados';
@@ -12,6 +13,7 @@ import { Participacion_inv } from 'src/app/Models/participacion_inv';
 import { Premio } from 'src/app/Models/premio';
 import { Proyeccion } from 'src/app/Models/proyeccion';
 import { Publicacion_inv } from 'src/app/Models/publicacion_inv';
+import { Titulo } from 'src/app/Models/titulo';
 import { GradoService } from 'src/app/services/grado/grado.service';
 import { PersonaService } from 'src/app/services/Persona/persona.service';
 import Swal from 'sweetalert2';
@@ -29,6 +31,8 @@ export class ModalComponent implements OnInit {
   libros:Libro[]
   idfactor:number;
   premios:Premio[];
+  titulos:Titulo[];
+  diplomaturas:Diplomatura[];
   aportes:AportesLogros[]
   grados:Grado[];
   proyecciones:Proyeccion[];
@@ -178,34 +182,115 @@ this.service.obtenerdocente(this.iddocente).subscribe(
               return data2;
             })})
          break;
+         case 2:this.servicegrade.getOneTitulo(this.iddocente).subscribe(
+          data=>{
+            this.titulos=data.map(
+              data2=>{
+                this.service.mostrarimagenfirebase(data2.archivo).subscribe(
+                fot=>{
+                  data2.type=this.revisarfoto(fot);
+                  data2.archivo=fot
+                }
+              );
+              return data2;
+            })})
+         break;
+         case 3:this.servicegrade.getOnediplo(this.iddocente).subscribe(
+          data=>{
+            this.diplomaturas=data.map(
+              data2=>{
+                this.service.mostrarimagenfirebase(data2.archivo).subscribe(
+                fot=>{
+                  data2.type=this.revisarfoto(fot);
+                  data2.archivo=fot
+                }
+              );
+              return data2;
+            })})
+         break;
          default:
           break;
       }
     }
   
     modificar(grado){
-      Swal.fire({
-        title: 'Esta seguro de modificar la nota?',
-        text: "Confirme!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Modificar!'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.servicegrade.updategrado(grado,this.nota).subscribe(data=>{
-
-            Swal.fire(
-              'Modificado con exito!',
-              data,
-              'success'
+      switch (this.idfactor) {
+        case 1: Swal.fire({
+          title: 'Esta seguro de modificar la nota?',
+          text: "Confirme!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Modificar!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.servicegrade.updategrado(grado,this.nota).subscribe(data=>{
+  
+              Swal.fire(
+                'Modificado con exito!',
+                data,
+                'success'
+              )
+            }
             )
+            
           }
-          )
+        })
           
-        }
-      })
+          break;
+          case 2: Swal.fire({
+            title: 'Esta seguro de modificar la nota?',
+            text: "Confirme!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Modificar!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.servicegrade.updatetitulo(grado,this.nota).subscribe(data=>{
+    
+                Swal.fire(
+                  'Modificado con exito!',
+                  data,
+                  'success'
+                )
+              }
+              )
+              
+            }
+          })
+            
+            break;
+            case 3: Swal.fire({
+              title: 'Esta seguro de modificar la nota?',
+              text: "Confirme!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Modificar!'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this.servicegrade.updatediplo(grado,this.nota).subscribe(data=>{
+      
+                  Swal.fire(
+                    'Modificado con exito!',
+                    data,
+                    'success'
+                  )
+                }
+                )
+                
+              }
+            })
+              
+              break;
+        default:
+          break;
+      }
+     
       
     }
 
