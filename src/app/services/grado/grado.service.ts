@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Estudios } from 'src/app/Models/estudios';
 import { Grado } from 'src/app/Models/grados';
+import { Idiomas } from 'src/app/Models/idiomas';
 import { Titulo } from 'src/app/Models/titulo';
 
 @Injectable({
@@ -48,5 +50,41 @@ export class GradoService {
   createTitulo(titulo:Titulo):Observable<Titulo>{
     return this.metodohttp.post<Titulo>(this.ruta2+ '/',titulo);
   }
+
+
+  //ESTUDIOS
+  ruta3 = 'http://localhost:5050/CAD/estudios';
+
+  getAllestudios():Observable<Estudios[]>{
+    return this.metodohttp.get<Estudios[]>(this.ruta3 + '/');
+  }
+
+  getOneEstudios(id:number):Observable<Estudios[]>{
+    return this.metodohttp.get<Estudios[]>(this.ruta3 + '/' + id);
+  }
+
+  createEstudios(estudios:Estudios):Observable<Estudios>{
+    return this.metodohttp.post<Estudios>(this.ruta3+ '/',estudios);
+  }
+
+
+  //IDIOMAS
+  ruta4 = 'http://localhost:5050/CAD/idiomas';
+
+  getAllidiomas():Observable<Idiomas[]>{
+    return this.metodohttp.get<Idiomas[]>(this.ruta4 + '/');
+  }
+
+  getOneIdiomas(id:number):Observable<Idiomas[]>{
+    return this.metodohttp.get<Idiomas[]>(this.ruta4 + '/' + id);
+  }
+
+  createIdiomas(idiomas:Idiomas):Observable<Idiomas>{
+    return this.metodohttp.post<Idiomas>(this.ruta4+ '/',idiomas);
+  }
+
+
+
+  
 
 }
