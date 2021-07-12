@@ -7,6 +7,7 @@ import { timer } from 'rxjs';
 import { Grado } from 'src/app/Models/grados';
 import { Pais } from 'src/app/Models/pais';
 import { Subfactor } from 'src/app/Models/subfactor';
+import { Titulo } from 'src/app/Models/titulo';
 import { Universidad } from 'src/app/Models/universidad';
 import { GradoService } from 'src/app/services/grado/grado.service';
 import { LoginService } from 'src/app/services/login/login.service';
@@ -27,12 +28,13 @@ export class TitulosComponent implements OnInit {
   hideRequiredControl = new FormControl(false);
   floatLabelControl = new FormControl('auto');
   
-  element_datos: Grado[] = [];
+  element_datos: Titulo[] = [];
   paises: Pais[] = []
   universidades: Universidad[] = [];
   subfactorArray: Subfactor[] = [];
   foto: File
-  gradoObjeto: Grado = new Grado();
+  tituloObjeto: Titulo = new Titulo();
+  
   // idusuarioForParam;
   myId = uuidv4();
   imgCodified: string;
@@ -50,12 +52,9 @@ export class TitulosComponent implements OnInit {
       floatLabel: this.floatLabelControl,
     });
 
-    
-    
-
     //OBTENIENDO DEL LOCALSTORAGE
     this.var_id = this.loginservice.getInformation()
-    this.gradoObjeto.idusuario = parseInt(this.var_id)
+    this.tituloObjeto.idusuario = parseInt(this.var_id)
 
     this.form = formBuilder.group({
       especialidad: new FormControl('', [Validators.required]),
@@ -66,7 +65,8 @@ export class TitulosComponent implements OnInit {
       archivo: new FormControl('', [Validators.required]),
       sunedu: new FormControl('', [Validators.required]),
       f_obtencion: new FormControl('', [Validators.required]),
-      idusuario: new FormControl(this.gradoObjeto.idusuario),
+      creditos: new FormControl('', [Validators.required]),
+      idusuario: new FormControl(this.tituloObjeto.idusuario),
 
       
     });
@@ -88,6 +88,7 @@ export class TitulosComponent implements OnInit {
     this.pageSlice = this.element_datos.slice(startIndex, endIndex);
   }
 
+
   ngOnInit(): void {
 
     //OBTENIENDO LA LISTA DE PAISES PARA EL SELECT OPTION
@@ -97,8 +98,8 @@ export class TitulosComponent implements OnInit {
     });
 
     //LISTANDO TODOS LOS GRADOS SEGUN EL USUARIO
-    this.gradoservice.getOnegrado(this.gradoObjeto.idusuario).subscribe(gradoOfuser=>{
-      this.element_datos = gradoOfuser;
+    this.gradoservice.getOneTitulo(this.tituloObjeto.idusuario).subscribe(tituloOfuser=>{
+      this.element_datos = tituloOfuser;
       console.log(this.element_datos,"LISTA DE LEGAJOS");
 
       this.pageSlice= this.element_datos.slice(0,5)
@@ -122,16 +123,19 @@ export class TitulosComponent implements OnInit {
 
 
     //OBTENIENDO EL ID DE FACTOR PARA MOSTRAR EN EL SELECT OPTION LOS SUBFACTORES DE ACUERDO AL FACTOR SELECIONADO
-    this.rutaactivada.params.subscribe(parametroFactor => {
-      console.log(parametroFactor,"ESTOY EN TITULOS MRD");
+    // this.rutaactivada.params.subscribe(parametroFactor => {
+    //   console.log(parametroFactor,"ESTOY EN TITULOS MRD");
       
-      this.subfactorservice.getGroupSubfactor(parametroFactor['id']).subscribe(subfactores => {
-        console.log(subfactores, "WE ARE THE CHAMPIONS");
-        this.subfactorArray = subfactores;
+    //   this.subfactorservice.getGroupSubfactor(parametroFactor['id']).subscribe(subfactores => {
+    //     console.log(subfactores, "WE ARE THE CHAMPIONS");
+    //     this.subfactorArray = subfactores;
 
-      })
+    //   })
+    // })
+    this.personaservice.getsubfactor(2).subscribe(subfactores=>{
+      this.subfactorArray = subfactores
+      console.log(this.subfactorArray,"CTMRE !!");
     })
-    
   }
 
 
@@ -161,12 +165,12 @@ export class TitulosComponent implements OnInit {
       this.myId = uuidv4();
       //
       
-      this.gradoObjeto = this.form.value;
-      this.gradoObjeto.archivo = nombrenuevo;
-      this.gradoservice.createGrado(this.gradoObjeto).subscribe(data => {
+      this.tituloObjeto = this.form.value;
+      this.tituloObjeto.archivo = nombrenuevo;
+      this.gradoservice.createTitulo(this.tituloObjeto).subscribe(data => {
 
         console.log(data, "ESTE GRADO A SIDO INGRESADO");
-        this.personaservice.guardarimagen(this.foto, this.gradoObjeto.archivo);
+        this.personaservice.guardarimagen(this.foto, this.tituloObjeto.archivo);
         Swal.fire({
           icon: 'success',
           title: 'GUARDADO CORRECTAMENTE.',

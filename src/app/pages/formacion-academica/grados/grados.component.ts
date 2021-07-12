@@ -72,6 +72,7 @@ export class GradosComponent implements OnInit {
       
     });
 
+    
   }
 
   getFontSize() {
@@ -123,13 +124,21 @@ export class GradosComponent implements OnInit {
 
 
     //OBTENIENDO EL ID DE FACTOR PARA MOSTRAR EN EL SELECT OPTION LOS SUBFACTORES DE ACUERDO AL FACTOR SELECIONADO
-    this.rutaactivada.params.subscribe(parametroFactor => {
-      this.subfactorservice.getGroupSubfactor(parametroFactor['id']).subscribe(subfactores => {
-        console.log(subfactores, "WE ARE THE CHAMPIONS");
-        this.subfactorArray = subfactores;
+    // this.rutaactivada.params.subscribe(parametroFactor => {
+    //   this.subfactorservice.getGroupSubfactor(parametroFactor['id']).subscribe(subfactores => {
+    //     console.log(subfactores, "WE ARE THE CHAMPIONS");
+    //     this.subfactorArray = subfactores;
 
-      })
+    //   })
+    // })
+
+    
+    this.personaservice.getsubfactor(1).subscribe(subfactores=>{
+      this.subfactorArray = subfactores
+      console.log(this.subfactorArray,"CTMRE !!");
     })
+
+    
     
   }
 

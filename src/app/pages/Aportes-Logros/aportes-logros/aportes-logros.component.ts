@@ -18,82 +18,83 @@ import { ModaldialogComponent } from '../../modaldialog/modaldialog.component';
   styleUrls: ['./aportes-logros.component.css']
 })
 export class AportesLogrosComponent implements OnInit {
-iddocente:number;
+  iddocente: number;
   form;
-  archivo:File;
+  archivo: File;
   dataSource = null;
 
-  paises:Pais[];
-  subfactores:Subfactor[];
-  aportes:AportesLogros[]=[];
-  aporte:AportesLogros= new AportesLogros();
+  paises: Pais[];
+  subfactores: Subfactor[];
+  aportes: AportesLogros[] = [];
+  aporte: AportesLogros = new AportesLogros();
 
 
-  displayedColumns: string[] = ['Institucion', 'Pais', 'Fecha', 'Tipo','Detalle','foto'];
-  constructor(private router: Router, private service:PersonaService,private formBuilder: FormBuilder,public dialog: MatDialog) {
+  displayedColumns: string[] = ['Institucion', 'Pais', 'Fecha', 'Tipo', 'Detalle', 'foto'];
+  constructor(private router: Router, private service: PersonaService, private formBuilder: FormBuilder, public dialog: MatDialog) {
     this.form = formBuilder.group({
-      institucion:new FormControl('', []),
-      pais:new FormControl('', []),
-      idsubfactor: new FormControl('',[]),
-      fecha:new FormControl('',[]),
-      detalle:new FormControl('',[]),
-      foto:new FormControl('',[Validators.required]),
+      institucion: new FormControl('', []),
+      pais: new FormControl('', []),
+      idsubfactor: new FormControl('', []),
+      fecha: new FormControl('', []),
+      detalle: new FormControl('', []),
+      foto: new FormControl('', [Validators.required]),
     });
-   }
-   
-   @ViewChild (MatPaginator, {static: true}) paginador: MatPaginator;
-  
+  }
+
+  @ViewChild(MatPaginator, { static: true }) paginador: MatPaginator;
+
   ngOnInit(): void {
     this.iddocente = Number(localStorage.getItem('iddocente'));
     this.obteneraprot();
-  
+
     this.service.getPaises().subscribe(
-      data=>{
-this.paises=data
+      data => {
+        this.paises = data
       }
     )
     this.service.getsubfactor(28).subscribe(
-      (data)=>{this.subfactores = data}
+      (data) => { this.subfactores = data }
     )
-   
+
   }
-  mostrar(event){
-      this.archivo = event.target.files[0];
+  mostrar(event) {
+    this.archivo = event.target.files[0];
   }
-  obteneraprot(){
+  obteneraprot() {
     this.service.getaportes(this.iddocente).subscribe(
-      data=>{this.aportes=data;
+      data => {
+        this.aportes = data;
         this.dataSource = new MatTableDataSource<any>(data);
         this.dataSource.paginator = this.paginador;
-       }
+      }
     )
-    
+
   }
-  enviar(){
+  enviar() {
     this.form.disable();
-    this.aporte=this.form.value;
-    this.aporte.iddocente=this.iddocente;
-    this.aporte.foto=this.archivo.name;
+    this.aporte = this.form.value;
+    this.aporte.iddocente = this.iddocente;
+    this.aporte.foto = this.archivo.name;
     console.log(this.aporte);
     this.service.crearaporte(this.aporte).subscribe(
-      data=>{
-        this.service.guardarimagen(this.archivo,this.archivo.name);
-       
+      data => {
+        this.service.guardarimagen(this.archivo, this.archivo.name);
+
         console.log(data)
         Swal.fire({
-        icon: 'success',
-        title: 'ESTADO.',
-        text: 'SE REGISTRO CON EXITO.',
-      
-      });
-      this.form.reset();
-      this.form.enable ();
-      this.obteneraprot();
+          icon: 'success',
+          title: 'ESTADO.',
+          text: 'SE REGISTRO CON EXITO.',
+
+        });
+        this.form.reset();
+        this.form.enable();
+        this.obteneraprot();
       }
-      
+
     )
-    
-    
+
+
   }
   openDialog(foto) {
     this.dialog.open(ModaldialogComponent, {
