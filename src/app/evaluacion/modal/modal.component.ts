@@ -7,7 +7,10 @@ import { Docente } from 'src/app/Models/docente';
 import { Factor } from 'src/app/Models/factor';
 import { Items } from 'src/app/Models/items';
 import { Libro } from 'src/app/Models/libro';
+import { Participacion_inv } from 'src/app/Models/participacion_inv';
 import { Premio } from 'src/app/Models/premio';
+import { Proyeccion } from 'src/app/Models/proyeccion';
+import { Publicacion_inv } from 'src/app/Models/publicacion_inv';
 import { PersonaService } from 'src/app/services/Persona/persona.service';
 
 @Component({
@@ -23,7 +26,9 @@ export class ModalComponent implements OnInit {
   idfactor:number;
   premios:Premio[];
   aportes:AportesLogros[]
-
+  proyecciones:Proyeccion[];
+  participaciones:Participacion_inv[];
+  publicaciones:Publicacion_inv[];
   items:Items[];
   factores:Factor[];
   categorias:Categoria[];
@@ -114,8 +119,48 @@ this.service.obtenerdocente(this.iddocente).subscribe(
               return data2;
             })})
          break;
-      
-        default:
+         case 26:this.service.getproyeccion(this.iddocente).subscribe(
+          data=>{
+            this.proyecciones=data.map(
+              data2=>{
+                this.service.mostrarimagenfirebase(data2.foto).subscribe(
+                fot=>{
+                  data2.tipo=this.revisarfoto(fot);
+                  data2.foto=fot
+                }
+              );
+              return data2;
+            })})
+         break;
+         case 24:this.service.getparticipacion_inv(this.iddocente).subscribe(
+          data=>{
+            this.participaciones=data.map(
+              data2=>{
+                this.service.mostrarimagenfirebase(data2.foto).subscribe(
+                fot=>{
+                  data2.tipo=this.revisarfoto(fot);
+                  data2.foto=fot
+                }
+              );
+              return data2;
+            })})
+         break;
+         case 22:this.service.getpublicacion_inv(this.iddocente).subscribe(
+          data=>{
+            this.publicaciones=data.map(
+              data2=>{
+                this.service.mostrarimagenfirebase(data2.foto).subscribe(
+                fot=>{
+                  data2.tipo=this.revisarfoto(fot);
+                  data2.foto=fot
+                }
+              );
+              return data2;
+            })})
+         break;
+        
+        
+         default:
           break;
       }
     }

@@ -62,3 +62,12 @@ table {
      grid-template-columns: 1fr 1fr 1fr;
      grid-gap: 0px;
   }
+  #container{
+    width: 100%;
+   
+    text-align: left;
+    padding: 2% 5%;
+}
+table {
+  width: 100%;
+}

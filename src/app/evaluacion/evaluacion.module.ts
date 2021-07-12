@@ -24,6 +24,7 @@ import { EvaluacionRoutingModule } from './evaluacion-routing.module';
 import { GestiondocenteComponent } from './gestiondocente/gestiondocente.component';
 import { ModalComponent } from './modal/modal.component';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [EvaluaciondocenteComponent, GestiondocenteComponent, ModalComponent],
@@ -47,7 +48,8 @@ import { NgxDocViewerModule } from 'ngx-doc-viewer';
     MatListModule,
     MatSliderModule,
     MatToolbarModule,
-    MatMenuModule
+    MatMenuModule,
+    MatPaginatorModule
   ]
 })
 export class EvaluacionModule { }
