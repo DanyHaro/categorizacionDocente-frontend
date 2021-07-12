@@ -44,7 +44,164 @@
               <mat-grid-tile [colspan]="4"  [rowspan]="6">
                             <div   id="contenedor-principal">
                              <!--Undefinido-->
-                         
+                              <!--Publicaciones en investigacion-->
+                              <div *ngIf="idfactor==22"  id="contenedor">
+                               <div  class="cont-primary" *ngFor="let publicacion of publicaciones">       
+                                 <div class="cont-second" *ngIf="publicacion.tipo == false" >
+                                  <ngx-doc-viewer   style="border:1px solid black" url="{{publicacion.foto}}" viewer="google" style="width:100%;height:100%"></ngx-doc-viewer>
+                                   
+                                  
+                                  </div>
+                                  <div class="cont-second" *ngIf="publicacion.tipo == true">
+                                 
+                                   <img src="{{publicacion.foto}}">
+                                  
+                                  </div>
+                                  <div class="cont-second cont-gridv2" >
+                                  <mat-form-field class="example-full-width font" appearance="fill">
+                                     <mat-label>Año</mat-label>
+                                     <input matInput value="{{publicacion.ano}}" disabled>
+                                  </mat-form-field>
+
+                                  <mat-form-field class="example-full-width font" appearance="fill">
+                                     <mat-label>Linea de investigacion</mat-label>
+                                     <input matInput value="{{publicacion.titulo}}" disabled>
+                                  </mat-form-field>
+                                  <mat-form-field  class="example-full-width font" appearance="fill">
+                                     <mat-label>Rol</mat-label>
+                                     <input matInput value="{{publicacion.pais}}"  disabled>
+                                  </mat-form-field>
+                                  
+                                  <mat-form-field style="grid-column:1/4" class="example-full-width font" appearance="fill">
+                                     <mat-label>DIO/URL</mat-label>
+                                     <input matInput value="{{publicacion.url}}"  disabled>
+                                  </mat-form-field>
+                                
+                                
+                                  <mat-form-field  style="grid-column:2/4" class="example-full-width font" appearance="fill">
+                                     <mat-label>Tipo</mat-label>
+                                     <input matInput value="{{publicacion.nombre}}"  disabled>
+                                  </mat-form-field>
+                                    <mat-form-field  class="example-full-width font" class="example-full-width font" appearance="fill">
+                                     <mat-label>Nro.Paginas</mat-label>
+                                     <input matInput value="{{publicacion.paginas}}"  disabled>
+                                  </mat-form-field>
+                              
+                              
+                                   
+                                    <mat-form-field style="width:50%;font-size:16px;"  class="example-full-width" appearance="fill">
+                                     <mat-label>Puntaje</mat-label>
+                                     <input matInput value="{{publicacion.puntaje}}"  >
+                                  </mat-form-field>
+                                   
+                                   
+                                     	<button  mat-raised-button  color="primary" style=" width:50%;height:50%;" >Modificar</button>
+                                  
+                                   
+                                   </div>       
+                                    
+                                </div> 
+                                 </div>
+                              <!--Participaciones en investigacion-->
+                             <div *ngIf="idfactor==24"  id="contenedor">
+                               <div  class="cont-primary" *ngFor="let participacion of participaciones">       
+                                 <div class="cont-second" *ngIf="participacion.tipo == false" >
+                                  <ngx-doc-viewer   style="border:1px solid black" url="{{participacion.foto}}" viewer="google" style="width:100%;height:100%"></ngx-doc-viewer>
+                                   
+                                  
+                                  </div>
+                                  <div class="cont-second" *ngIf="participacion.tipo == true">
+                                 
+                                   <img src="{{participacion.foto}}">
+                                  
+                                  </div>
+                                  <div class="cont-second cont-gridv2" >
+                                  <mat-form-field class="example-full-width font" appearance="fill">
+                                     <mat-label>Año</mat-label>
+                                     <input matInput value="{{participacion.ano}}" disabled>
+                                  </mat-form-field>
+
+                                  <mat-form-field class="example-full-width font" appearance="fill">
+                                     <mat-label>Linea de investigacion</mat-label>
+                                     <input matInput value="{{participacion.linea_invest}}" disabled>
+                                  </mat-form-field>
+                                  <mat-form-field  class="example-full-width font" appearance="fill">
+                                     <mat-label>Rol</mat-label>
+                                     <input matInput value="{{participacion.rol}}"  disabled>
+                                  </mat-form-field>
+                                  
+                                  <mat-form-field style="grid-column:1/4" class="example-full-width font" appearance="fill">
+                                     <mat-label>Titulo</mat-label>
+                                     <input matInput value="{{participacion.titulo}}"  disabled>
+                                  </mat-form-field>
+                                  <mat-form-field  class="example-full-width font" appearance="fill">
+                                     <mat-label>Fecha de inicio</mat-label>
+                                     <input matInput value="{{participacion.f_inicio | date: 'dd-MM-yyyy'}}"  disabled>
+                                  </mat-form-field>
+                                
+                                  <mat-form-field  style="grid-column:2/4" class="example-full-width font" appearance="fill">
+                                     <mat-label>Tipo</mat-label>
+                                     <input matInput value="{{participacion.nombre}}"  disabled>
+                                  </mat-form-field>
+                              
+                                   
+                                    <mat-form-field style="width:50%;font-size:16px;"  class="example-full-width" appearance="fill">
+                                     <mat-label>Puntaje</mat-label>
+                                     <input matInput value="{{participacion.puntaje}}"  >
+                                  </mat-form-field>
+                                   
+                                   
+                                     	<button  mat-raised-button  color="primary" style=" width:50%;height:50%;" >Modificar</button>
+                                  
+                                   
+                                   </div>       
+                                    
+                                </div> 
+                                 </div>
+                             <!--Proyeccion social-->
+                           <div *ngIf="idfactor==26"  id="contenedor">
+                               <div  class="cont-primary" *ngFor="let proyeccion of proyecciones">       
+                                 <div class="cont-second" *ngIf="proyeccion.tipo == false" >
+                                  <ngx-doc-viewer   style="border:1px solid black" url="{{proyeccion.foto}}" viewer="google" style="width:100%;height:100%"></ngx-doc-viewer>
+                                   
+                                  
+                                  </div>
+                                  <div class="cont-second" *ngIf="proyeccion.tipo == true">
+                                 
+                                   <img src="{{proyeccion.foto}}">
+                                  
+                                  </div>
+                                  <div class="cont-second cont-grid" >
+                                  <mat-form-field class="example-full-width font" appearance="fill">
+                                     <mat-label>Tipo</mat-label>
+                                     <input matInput value="{{proyeccion.nombre}}" disabled>
+                                  </mat-form-field>
+                                 <mat-form-field  class="example-full-width font" appearance="fill"> 
+                                     <mat-label>Fecha</mat-label>
+                                     <input matInput value="{{proyeccion.fecha | date:  'dd-MM-yyyy'}}"  disabled>
+                                  </mat-form-field>
+                                 
+                                  
+                                  <mat-form-field style="grid-column:1/3" class="example-full-width font" appearance="fill">
+                                     <mat-label>Nombre del evento</mat-label>
+                                     <input matInput value="{{proyeccion.nombreeven}}"  disabled>
+                                  </mat-form-field>
+                                  
+
+                                   
+                                    <mat-form-field style="width:50%;font-size:16px;"  class="example-full-width" appearance="fill">
+                                     <mat-label>Puntaje</mat-label>
+                                     <input matInput value="{{proyeccion.puntaje}}"  >
+                                  </mat-form-field>
+                                   
+                                   
+                                     	<button  mat-raised-button  color="primary" style=" width:50%;height:50%;" >Modificar</button>
+                                  
+                                   
+                                   </div>       
+                                    
+                                </div> 
+                                 </div>
                                <!--Libros-->
                              <div *ngIf="idfactor==23"  id="contenedor">
                                <div  class="cont-primary" *ngFor="let libro of libros">       
@@ -66,7 +223,7 @@
 
                                   <mat-form-field class="example-full-width font" appearance="fill">
                                      <mat-label>Tipo</mat-label>
-                                     <input matInput value="{{libro.idsubfactor}}" disabled>
+                                     <input matInput value="{{libro.nombre}}" disabled>
                                   </mat-form-field>
                                     <mat-form-field style="grid-column:1/3" class="example-full-width font" appearance="fill">
                                      <mat-label>Titulo</mat-label>
@@ -176,10 +333,7 @@
                                      <input matInput value="{{premio.institucion}}" disabled>
                                   </mat-form-field>
 
-                                  <mat-form-field class="example-full-width font" appearance="fill">
-                                     <mat-label>Distincion</mat-label>
-                                     <input matInput value="{{premio.distincion}}" disabled>
-                                  </mat-form-field>
+                                  
                                   <mat-form-field style="grid-column:1/3" class="example-full-width font" appearance="fill">
                                      <mat-label>Detalle de Premio o Distincion</mat-label>
                                      <input matInput value="{{premio.detalle}}"  disabled>
@@ -190,7 +344,7 @@
                                   </mat-form-field>
                                   <mat-form-field  class="example-full-width font" appearance="fill">
                                      <mat-label>Tipo</mat-label>
-                                     <input matInput value="{{premio.idsubfactor}}"  disabled>
+                                     <input matInput value="{{premio.nombre}}"  disabled>
                                   </mat-form-field>
 
                                    <p></p>
@@ -212,37 +366,39 @@
                                <!--Aportes-->
                                 <div *ngIf="idfactor==28"  id="contenedor">
                                  <div  class="cont-primary" *ngFor="let aporte of aportes">       
-                                  <div class="cont-second" *ngIf="aporte.tipo == false" >
+                                
+                                  <div class="cont-second"    *ngIf="aporte.tipo == false" >
+                    
                                    <ngx-doc-viewer   style="border:1px solid black" url="{{aporte.foto}}" viewer="google" style="width:100%;height:100%"></ngx-doc-viewer>
                                    
                                   
                                   </div>
                                   <div class="cont-second" *ngIf="aporte.tipo == true">
-                                 
+                                  
                                    <img src="{{aporte.foto}}">
                                   
                                   </div>
                                   <div class="cont-second cont-grid" >
-                                  <mat-form-field class="example-full-width font" appearance="fill">
-                                     <mat-label>Institucion</mat-label>
-                                     <input matInput value="{{aporte.institucion}}" disabled>
+                                  <mat-form-field class="example-full-width font"  appearance="fill">
+                                     <mat-label  style="color:white">Institucion</mat-label>
+                                     <input matInput    style="color:white" value="{{aporte.institucion}}" disabled>
                                   </mat-form-field>
 
                                   <mat-form-field class="example-full-width font" appearance="fill">
-                                     <mat-label>Pais</mat-label>
-                                     <input matInput value="{{aporte.pais}}" disabled>
+                                     <mat-label  style="color:white">Pais</mat-label>
+                                     <input matInput   style="color:white" value="{{aporte.pais}}" disabled>
                                   </mat-form-field>
                                   <mat-form-field style="grid-column:1/3" class="example-full-width font" appearance="fill">
-                                     <mat-label>Detalle </mat-label>
-                                     <input matInput value="{{aporte.detalle}}"  disabled>
+                                     <mat-label   style="color:white">Detalle </mat-label>
+                                     <input matInput   style="color:white" value="{{aporte.detalle}}"  disabled>
                                   </mat-form-field>
                                   <mat-form-field  class="example-full-width font" appearance="fill">
-                                     <mat-label>Fecha</mat-label>
-                                     <input matInput value="{{aporte.fecha | date:  'dd-MM-yyyy'}}"  disabled>
+                                     <mat-label   style="color:white" >Fecha</mat-label>
+                                     <input matInput   style="color:white" value="{{aporte.fecha | date:  'dd-MM-yyyy'}}"  disabled>
                                   </mat-form-field>
                                   <mat-form-field  class="example-full-width font" appearance="fill">
-                                     <mat-label>Tipo</mat-label>
-                                     <input matInput value="{{aporte.idsubfactor}}"  disabled>
+                                     <mat-label   style="color:white">Tipo</mat-label>
+                                     <input matInput   style="color:white" value="{{aporte.nombre}}"  disabled>
                                   </mat-form-field>
 
                                    <p></p>

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { Route, Router } from '@angular/router';
 import { AportesLogros } from 'src/app/Models/aporteslogros';
 import { Asesoria } from 'src/app/Models/asesoria';
@@ -16,7 +18,8 @@ import { PersonaService } from 'src/app/services/Persona/persona.service';
   styleUrls: ['./evaluaciondocente.component.css']
 })
 export class EvaluaciondocenteComponent implements OnInit {
-
+  dataSource = null;
+  @ViewChild (MatPaginator, {static: true}) paginador: MatPaginator;
  
   displayedColumns: string[] = ['nombres', 'apellidos', 'correo', 'dni','detalle'];
   
@@ -28,6 +31,8 @@ export class EvaluaciondocenteComponent implements OnInit {
     this.service.getdocentes().subscribe(
       data=>{
         this.docentes=data;
+        this.dataSource = new MatTableDataSource<any>(data);
+        this.dataSource.paginator = this.paginador;
       }
     )
     
