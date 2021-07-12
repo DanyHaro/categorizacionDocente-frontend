@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
@@ -15,6 +16,7 @@ import { SubfactorService } from 'src/app/services/subfactor/subfactor.service';
 import { UnipaisService } from 'src/app/services/unipais/unipais.service';
 import Swal from 'sweetalert2';
 import { v4 as uuidv4 } from 'uuid';
+import { ModaldialogComponent } from '../../modaldialog/modaldialog.component';
 
 @Component({
   selector: 'app-grados',
@@ -37,15 +39,27 @@ export class GradosComponent implements OnInit {
   // idusuarioForParam;
   myId = uuidv4();
   imgCodified: string;
+  dataSource = null;
+  @ViewChild(MatPaginator, { static: true }) paginador: MatPaginator;
+  displayedColumns: string[] = [
+    'n',
+  'TIPO',
+  'UNIVERSIDAD',
+  'ESPECIALIDAD',  'HORAS',
+  'F.OBTENCIÓN',
+  'SUNEDU',
+  'AÑOS',
+  'ARCHIVO'
+];
   colorControl = new FormControl('primary');
   fontSizeControl = new FormControl(16, Validators.min(10));
   date = new FormControl(new Date());
   serializedDate = new FormControl((new Date()).toISOString());
   var_id;
   pageSlice
-
+iddocente;
   form;
-  constructor(fb: FormBuilder, private loginservice:LoginService,private gradoservice: GradoService, private personaservice: PersonaService, private formBuilder: FormBuilder, private unipaisservice: UnipaisService, private subfactorservice: SubfactorService, private rutaactivada: ActivatedRoute) {
+  constructor(fb: FormBuilder,public dialog: MatDialog, private loginservice:LoginService,private gradoservice: GradoService, private personaservice: PersonaService, private formBuilder: FormBuilder, private unipaisservice: UnipaisService, private subfactorservice: SubfactorService, private rutaactivada: ActivatedRoute) {
     this.options = fb.group({
       hideRequired: this.hideRequiredControl,
       floatLabel: this.floatLabelControl,
@@ -54,9 +68,6 @@ export class GradosComponent implements OnInit {
     
     
 
-    //OBTENIENDO DEL LOCALSTORAGE
-    this.var_id = this.loginservice.getInformation()
-    this.gradoObjeto.idusuario = parseInt(this.var_id)
 
     this.form = formBuilder.group({
       especialidad: new FormControl('', [Validators.required]),
@@ -67,31 +78,30 @@ export class GradosComponent implements OnInit {
       archivo: new FormControl('', [Validators.required]),
       sunedu: new FormControl('', [Validators.required]),
       f_obtencion: new FormControl('', [Validators.required]),
-      idusuario: new FormControl(this.gradoObjeto.idusuario),
-
-      
+     
     });
 
     
+  }
+  mostrar(event) {
+    this.foto = event.target.files[0];
   }
 
   getFontSize() {
     return Math.max(10, this.fontSizeControl.value);
   }
 
-  onPageChange(evento: PageEvent){
-    console.log(evento,"EVENTO");
-    
-    const startIndex = evento.pageIndex * evento.pageSize;
-    let endIndex = startIndex + evento.pageSize;
-    if (endIndex > this.element_datos.length) {
-      endIndex = this.element_datos.length;
-    }
-    this.pageSlice = this.element_datos.slice(startIndex, endIndex);
+  openDialog(foto) {
+    this.dialog.open(ModaldialogComponent, {
+      data: {
+        foto: foto
+      }
+    });
   }
 
   ngOnInit(): void {
-
+    this.iddocente = Number(localStorage.getItem('iddocente'));
+    this.obtenerdatos();
     //OBTENIENDO LA LISTA DE PAISES PARA EL SELECT OPTION
     this.unipaisservice.getAllpaises().subscribe(data => {
       console.log(data);
@@ -99,16 +109,7 @@ export class GradosComponent implements OnInit {
     });
 
     //LISTANDO TODOS LOS GRADOS SEGUN EL USUARIO
-    this.gradoservice.getOnegrado(this.gradoObjeto.idusuario).subscribe(gradoOfuser=>{
-      this.element_datos = gradoOfuser;
-      console.log(this.element_datos,"LISTA DE LEGAJOS");
-
-      this.pageSlice= this.element_datos.slice(0,5)
-      console.log(this.pageSlice,"PAGINATOR DE MRD");
-    })
-    console.log(this.var_id,"LOCAL STORAGE");
-
-    
+  
 
     //OBTENIENDO ID DEL USUARIO LOGUEADO
     // this.rutaactivada.params.subscribe(parametroUsuario => {
@@ -141,6 +142,16 @@ export class GradosComponent implements OnInit {
     
     
   }
+  obtenerdatos(){
+    this.gradoservice.getOnegrado(this.iddocente).subscribe(gradoOfuser=>{
+      this.element_datos = gradoOfuser;
+      this.dataSource = new MatTableDataSource<any>(gradoOfuser);
+        this.dataSource.paginator = this.paginador;
+    })
+   
+
+    
+  }
 
 
 
@@ -162,7 +173,7 @@ export class GradosComponent implements OnInit {
     console.log(this.foto,"SOY EL ARCHIVO");
     if (this.form.valid) {
       
-      
+     
       let rango = this.foto.name.split('.')
       let ext = rango[rango.length - 1];
       let nombrenuevo = this.myId + '.' + ext;
@@ -171,16 +182,19 @@ export class GradosComponent implements OnInit {
       
       this.gradoObjeto = this.form.value;
       this.gradoObjeto.archivo = nombrenuevo;
+      this.gradoObjeto.iddocente=this.iddocente;
+      console.log()
       this.gradoservice.createGrado(this.gradoObjeto).subscribe(data => {
 
         console.log(data, "ESTE GRADO A SIDO INGRESADO");
-        this.personaservice.guardarimagen(this.foto, this.gradoObjeto.archivo);
+        this.personaservice.guardarimagen(this.foto, nombrenuevo);
         Swal.fire({
           icon: 'success',
           title: 'GUARDADO CORRECTAMENTE.',
           // text: 'Estado de solicitud',
         });
-        this.ngOnInit();
+        this.form.reset();
+        this.obtenerdatos();
 
         
 
@@ -192,20 +206,6 @@ export class GradosComponent implements OnInit {
   }
   
 
-  mostrar(event) {
-    this.foto = event.target.files[0];
-    var supportedImages = ["image/jpeg", "image/png", "image/gif"];
-    var seEncontraronElementoNoValidos = false;
-  
-    if (supportedImages.indexOf(this.foto.type) != -1) {
-      this.imgCodified = URL.createObjectURL(this.foto);
-      var doc = document.getElementById('preview')
-      doc.innerHTML=`<img src="${this.imgCodified}" alt="Foto del usuario" width="100%" heigth="100%">`
-    }
-    else {
-      seEncontraronElementoNoValidos = true;
-    }
-  };
 
 }
 

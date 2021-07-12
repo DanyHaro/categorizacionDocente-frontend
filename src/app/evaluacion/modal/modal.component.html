@@ -44,6 +44,70 @@
               <mat-grid-tile [colspan]="4"  [rowspan]="6">
                             <div   id="contenedor-principal">
                              <!--Undefinido-->
+                              <!--Grados-->
+                             <div *ngIf="idfactor==1"  id="contenedor">
+                               <div  class="cont-primary" *ngFor="let grado of grados">       
+                                 <div class="cont-second" *ngIf="grado.type == false" >
+                                  <ngx-doc-viewer   style="border:1px solid black" url="{{grado.archivo}}" viewer="google" style="width:100%;height:100%"></ngx-doc-viewer>
+                                   
+                                  
+                                  </div>
+                                  <div class="cont-second" *ngIf="grado.type == true">
+                                 
+                                   <img src="{{grado.archivo}}">
+                                  
+                                  </div>
+                                  <div class="cont-second cont-gridv2" >
+                                  <mat-form-field style="grid-column:1/2" class="example-full-width font" appearance="fill">
+                                     <mat-label>Tipo</mat-label>
+                                     <input matInput  style="color:white" value="{{grado.nombre}}" disabled>
+                                  </mat-form-field>
+
+                                  <mat-form-field  style="grid-column:2/4" class="example-full-width font" appearance="fill">
+                                     <mat-label>Institucion</mat-label>
+                                     <input matInput  style="color:white" value="{{grado.uni}}" disabled>
+                                  </mat-form-field>
+                                  <mat-form-field style="grid-column:1/3" class="example-full-width font" appearance="fill">
+                                     <mat-label>Especialidad</mat-label>
+                                     <input matInput style="color:white" value="{{grado.especialidad}}"  disabled>
+                                  </mat-form-field>
+                                  
+                                  <mat-form-field  class="example-full-width font" appearance="fill">
+                                     <mat-label>Horas</mat-label>
+                                     <input matInput  style="color:white" value="{{grado.horas}}"  disabled>
+                                  </mat-form-field>
+                                
+                                
+                                  <mat-form-field   class="example-full-width font" appearance="fill">
+                                     <mat-label>Fecha</mat-label>
+                                     <input matInput style="color:white"  value="{{grado.f_obtencion | date:'dd-MM-yyyy'}}"  disabled>
+                                  </mat-form-field>
+                                    <mat-form-field  class="example-full-width font" class="example-full-width font" appearance="fill">
+                                     <mat-label>Sunedu</mat-label>
+                                     <input matInput  style="color:white" value="{{grado.sunedu ? 'si' : 'no'}}"  disabled>
+                                  </mat-form-field>
+                              
+                              
+                                   
+                                    <mat-form-field style="width:50%;font-size:16px;"  class="example-full-width" appearance="fill">
+                                     <mat-label>Años</mat-label>
+                                     <input matInput  style="color:white" value="{{grado.years}}" disabled >
+                                  </mat-form-field>
+                                    <mat-form-field style="width:40%;font-size:16px;"  class="example-full-width font" appearance="fill">
+                                     <mat-label>Puntaje</mat-label>
+                                     <input (keyup)="getRxcui($event)" matInput value="{{grado.nota}}"  >
+                                  </mat-form-field>
+
+                                  <div style="text-align:center">
+                                  	<button  mat-raised-button  color="primary" style=" width:50%;height:50%;" (click)="modificar(grado.idgrado)" >Modificar</button>
+                                  
+                                   </div>
+                                     
+                                   
+                                   </div>       
+                                    
+                                </div> 
+                                 </div>
                               <!--Publicaciones en investigacion-->
                               <div *ngIf="idfactor==22"  id="contenedor">
                                <div  class="cont-primary" *ngFor="let publicacion of publicaciones">       

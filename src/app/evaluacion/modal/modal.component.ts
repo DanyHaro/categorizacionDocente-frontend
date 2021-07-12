@@ -5,13 +5,17 @@ import { Asesoria } from 'src/app/Models/asesoria';
 import { Categoria } from 'src/app/Models/categoria';
 import { Docente } from 'src/app/Models/docente';
 import { Factor } from 'src/app/Models/factor';
+import { Grado } from 'src/app/Models/grados';
 import { Items } from 'src/app/Models/items';
 import { Libro } from 'src/app/Models/libro';
 import { Participacion_inv } from 'src/app/Models/participacion_inv';
 import { Premio } from 'src/app/Models/premio';
 import { Proyeccion } from 'src/app/Models/proyeccion';
 import { Publicacion_inv } from 'src/app/Models/publicacion_inv';
+import { GradoService } from 'src/app/services/grado/grado.service';
 import { PersonaService } from 'src/app/services/Persona/persona.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-modal',
@@ -26,13 +30,15 @@ export class ModalComponent implements OnInit {
   idfactor:number;
   premios:Premio[];
   aportes:AportesLogros[]
+  grados:Grado[];
   proyecciones:Proyeccion[];
   participaciones:Participacion_inv[];
   publicaciones:Publicacion_inv[];
   items:Items[];
   factores:Factor[];
+  nota:number=0;
   categorias:Categoria[];
-  constructor(private route: ActivatedRoute,private service:PersonaService) { }
+  constructor(private route: ActivatedRoute,private service:PersonaService,private servicegrade:GradoService) { }
      //Se obtienen los items  y el id del docente
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -159,12 +165,49 @@ this.service.obtenerdocente(this.iddocente).subscribe(
             })})
          break;
         
-        
+         case 1:this.servicegrade.getOnegrado(this.iddocente).subscribe(
+          data=>{
+            this.grados=data.map(
+              data2=>{
+                this.service.mostrarimagenfirebase(data2.archivo).subscribe(
+                fot=>{
+                  data2.type=this.revisarfoto(fot);
+                  data2.archivo=fot
+                }
+              );
+              return data2;
+            })})
+         break;
          default:
           break;
       }
     }
   
+    modificar(grado){
+      Swal.fire({
+        title: 'Esta seguro de modificar la nota?',
+        text: "Confirme!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Modificar!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.servicegrade.updategrado(grado,this.nota).subscribe(data=>{
+
+            Swal.fire(
+              'Modificado con exito!',
+              data,
+              'success'
+            )
+          }
+          )
+          
+        }
+      })
+      
+    }
 
     revisarfoto(foto:string):boolean{
       if(foto.toLowerCase().indexOf('jfif') >= 0 ||foto.toLowerCase().indexOf('jpg') >= 0 || foto.toLowerCase().indexOf('png') >= 0){
@@ -172,6 +215,9 @@ this.service.obtenerdocente(this.iddocente).subscribe(
       }else{
         return false; 
       }
+    }
+    getRxcui(event){
+this.nota=event.target.value
     }
 
 }

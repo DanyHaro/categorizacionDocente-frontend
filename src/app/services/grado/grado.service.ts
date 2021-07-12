@@ -29,6 +29,9 @@ export class GradoService {
   createGrado(grado:Grado):Observable<Grado>{
     return this.metodohttp.post<Grado>(this.ruta+ '/',grado);
   }
+  updategrado(id,nota):Observable<string>{
+      return this.metodohttp.put<string>(this.ruta + '/',{idgrado:id,nota:nota});
+  }
 
 
   //TITULOS

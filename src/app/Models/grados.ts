@@ -7,10 +7,10 @@ export class Grado{
     public f_obtencion:Date;
     public sunedu:boolean;
     public archivo:string;
-    public idusuario:number;
+    public iddocente:number;
     public years:number;
     public nota:number;
-
+public type:boolean;
     constructor(){
         this.nota = 0;
         // this.idusuario = idusuario;
