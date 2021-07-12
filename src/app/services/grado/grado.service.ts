@@ -35,15 +35,15 @@ export class GradoService {
   ruta2 = 'http://localhost:5050/CAD/titulo';
 
   getAlltitulos():Observable<Titulo[]>{
-    return this.metodohttp.get<Titulo[]>(this.ruta + '/');
+    return this.metodohttp.get<Titulo[]>(this.ruta2 + '/');
   }
 
   getOneTitulo(id:number):Observable<Titulo[]>{
-    return this.metodohttp.get<Titulo[]>(this.ruta + '/' + id);
+    return this.metodohttp.get<Titulo[]>(this.ruta2 + '/' + id);
   }
 
   createTitulo(titulo:Titulo):Observable<Titulo>{
-    return this.metodohttp.post<Titulo>(this.ruta+ '/',titulo);
+    return this.metodohttp.post<Titulo>(this.ruta2+ '/',titulo);
   }
 
 }
